@@ -34,7 +34,7 @@ export default function Footer() {
                 <span className="iconify text-xl" data-icon="mdi:github"></span>
               </a>
               <a href="https://www.figma.com/@zaidkhan" target="_blank" rel="noopener noreferrer" className="w-10 h-10 flex items-center justify-center bg-neutral-800 rounded-lg hover:bg-pink-600 transition-all duration-300 hover:scale-110 hover:shadow-lg">
-                <i className="fab fa-figma text-xl"></i>
+                <i className="fab fa-instagram text-xl"></i>
               </a>
               <a href="mailto:zaidkhan023761@gmail.com" className="w-10 h-10 flex items-center justify-center bg-neutral-800 rounded-lg hover:bg-red-600 transition-all duration-300 hover:scale-110 hover:shadow-lg">
                 <span className="iconify text-xl" data-icon="mdi:email"></span>
