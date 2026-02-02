@@ -1,0 +1,284 @@
+'use client';
+import { useState } from 'react';
+
+const projects = [
+  {
+    name: 'RedBus Clone',
+    category: 'design',
+    icon: 'mdi:bus',
+    gradient: 'from-red-500 to-red-700',
+    description: 'A comprehensive bus booking platform redesign with enhanced search functionality, seat selection, and booking management system.',
+    features: ['User-friendly booking flow design', 'Interactive seat selection interface', 'Mobile-optimized responsive layout'],
+    tags: ['Figma', 'UI Design', 'UX Research'],
+    badge: 'UI/UX',
+    badgeBg: 'bg-purple-100',
+    badgeText: 'text-purple-700'
+  },
+  {
+    name: 'BookMyShow Clone',
+    category: 'coding',
+    icon: 'mdi:movie-open',
+    gradient: 'from-red-500 to-pink-600',
+    description: 'A functional clone of the popular ticket booking platform with responsive design and interactive features.',
+    features: ['Movie listings with filters and search', 'Theatre seat selection system', 'Booking confirmation workflow'],
+    tags: ['HTML', 'CSS', 'JavaScript'],
+    badge: 'CODING',
+    badgeBg: 'bg-primary-100',
+    badgeText: 'text-primary-700'
+  },
+  {
+    name: 'Printify Clone',
+    category: 'coding',
+    icon: 'mdi:shopping-outline',
+    gradient: 'from-green-500 to-emerald-600',
+    description: 'A responsive e-commerce platform clone with product listings and user-friendly navigation.',
+    features: ['Product catalog with categories', 'Shopping cart functionality', 'Responsive grid layouts'],
+    tags: ['HTML', 'CSS', 'JavaScript'],
+    badge: 'CODING',
+    badgeBg: 'bg-primary-100',
+    badgeText: 'text-primary-700'
+  },
+  {
+    name: 'Wonderlust Travels',
+    category: 'coding',
+    icon: 'mdi:airplane',
+    gradient: 'from-blue-500 to-purple-600',
+    description: 'A modern travel booking web application with creative design and smooth interactions.',
+    features: ['Destination browsing with filters', 'Smooth scroll animations', 'Contact form integration'],
+    tags: ['HTML', 'Tailwind', 'JavaScript'],
+    badge: 'CODING',
+    badgeBg: 'bg-primary-100',
+    badgeText: 'text-primary-700'
+  },
+  {
+    name: 'Admin Dashboard',
+    category: 'coding',
+    icon: 'mdi:view-dashboard',
+    gradient: 'from-green-500 to-teal-600',
+    description: 'A responsive admin dashboard with intuitive controls and data visualization.',
+    features: ['Analytics and metrics display', 'User management interface', 'Responsive sidebar navigation'],
+    tags: ['HTML', 'CSS', 'JavaScript'],
+    badge: 'CODING',
+    badgeBg: 'bg-primary-100',
+    badgeText: 'text-primary-700'
+  },
+  {
+    name: 'ChatBot Interface',
+    category: 'coding',
+    icon: 'mdi:chat',
+    gradient: 'from-indigo-500 to-purple-600',
+    description: 'A responsive chatbot interface with natural language processing and user-friendly design.',
+    features: ['Real-time message exchange', 'Auto-response system', 'Typing indicator animation'],
+    tags: ['HTML', 'CSS', 'JavaScript'],
+    badge: 'CODING',
+    badgeBg: 'bg-primary-100',
+    badgeText: 'text-primary-700'
+  },
+  {
+    name: 'Quiz Application',
+    category: 'coding',
+    icon: 'mdi:help-box',
+    gradient: 'from-violet-500 to-pink-600',
+    description: 'An interactive quiz application with multiple-choice questions and scoring system.',
+    features: ['Dynamic question rendering', 'Score calculation and feedback', 'Timer functionality'],
+    tags: ['HTML', 'CSS', 'JavaScript'],
+    badge: 'CODING',
+    badgeBg: 'bg-primary-100',
+    badgeText: 'text-primary-700'
+  },
+  {
+    name: 'Tailkits Clone',
+    category: 'coding',
+    icon: 'mdi:palette',
+    gradient: 'from-cyan-500 to-blue-600',
+    description: 'A responsive clone of the Tailkits website with modern UI components and animations.',
+    features: ['Component library showcase', 'Smooth animations and transitions', 'Code snippet displays'],
+    tags: ['HTML', 'Tailwind', 'JavaScript'],
+    badge: 'CODING',
+    badgeBg: 'bg-primary-100',
+    badgeText: 'text-primary-700'
+  },
+  {
+    name: 'Subscription Plan',
+    category: 'coding',
+    icon: 'mdi:credit-card',
+    gradient: 'from-orange-500 to-red-600',
+    description: 'A responsive subscription plan page with interactive pricing cards and toggle options.',
+    features: ['Monthly/yearly toggle switch', 'Feature comparison table', 'Call-to-action buttons'],
+    tags: ['HTML', 'CSS', 'JavaScript'],
+    badge: 'CODING',
+    badgeBg: 'bg-primary-100',
+    badgeText: 'text-primary-700'
+  },
+  {
+    name: 'JioMart Clone Application',
+    category: 'design',
+    icon: 'mdi:shopping',
+    gradient: 'from-yellow-400 to-orange-500',
+    description: 'Complete mobile app redesign for quick commerce platform with enhanced user experience.',
+    features: ['User flow optimization', 'Mobile-first design approach', 'Interactive prototyping'],
+    tags: ['Figma', 'UI Design', 'Prototyping'],
+    badge: 'UI/UX',
+    badgeBg: 'bg-purple-100',
+    badgeText: 'text-purple-700'
+  },
+  {
+    name: 'Gozoop Website Clone',
+    category: 'design',
+    icon: 'mdi:briefcase',
+    gradient: 'from-indigo-500 to-blue-600',
+    description: 'Professional corporate website design with modern aesthetics and clean interface.',
+    features: ['Corporate branding consistency', 'Portfolio showcase design', 'Responsive layouts'],
+    tags: ['Figma', 'Web Design', 'UX Research'],
+    badge: 'UI/UX',
+    badgeBg: 'bg-purple-100',
+    badgeText: 'text-purple-700'
+  },
+  {
+    name: 'Snapdeal Website Clone',
+    category: 'design',
+    icon: 'mdi:cart',
+    gradient: 'from-red-500 to-orange-600',
+    description: 'E-commerce platform redesign focusing on improved navigation and checkout flow.',
+    features: ['Enhanced checkout process', 'Product discovery optimization', 'Trust-building elements'],
+    tags: ['Figma', 'E-commerce', 'User Flow'],
+    badge: 'UI/UX',
+    badgeBg: 'bg-purple-100',
+    badgeText: 'text-purple-700'
+  },
+  {
+    name: 'CoCo Cola Website Clone',
+    category: 'design',
+    icon: 'mdi:bottle-wine',
+    gradient: 'from-neutral-700 to-neutral-900',
+    description: 'Modern beverage brand website with engaging animations and responsive design.',
+    features: ['Brand storytelling design', 'Micro-interactions', 'Visual hierarchy'],
+    tags: ['Figma', 'Brand', 'Interactive'],
+    badge: 'UI/UX',
+    badgeBg: 'bg-purple-100',
+    badgeText: 'text-purple-700'
+  },
+  {
+    name: 'Tours & Travels Redesign',
+    category: 'design',
+    icon: 'mdi:earth',
+    gradient: 'from-emerald-500 to-green-600',
+    description: 'Complete website overhaul for halal tourism platform with cultural sensitivity and modern design.',
+    features: ['Cultural context consideration', 'Booking journey optimization', 'Accessibility compliance'],
+    tags: ['Figma', 'Redesign', 'Travel'],
+    badge: 'UI/UX',
+    badgeBg: 'bg-purple-100',
+    badgeText: 'text-purple-700'
+  },
+  {
+    name: 'School & Campus Redesign',
+    category: 'design',
+    icon: 'mdi:school',
+    gradient: 'from-blue-600 to-indigo-700',
+    description: 'Comprehensive redesign of educational institution\'s digital presence across web and mobile.',
+    features: ['Multi-platform design system', 'Student portal interface', 'Information architecture'],
+    tags: ['Figma', 'Education', 'Multi-platform'],
+    badge: 'UI/UX',
+    badgeBg: 'bg-purple-100',
+    badgeText: 'text-purple-700'
+  }
+];
+
+export default function Projects() {
+  const [filter, setFilter] = useState('all');
+
+  const filteredProjects = filter === 'all' 
+    ? projects 
+    : projects.filter(project => project.category === filter);
+
+  return (
+    <section id="projects" className="py-24 px-6 lg:px-8 bg-pattern">
+      <div className="max-w-7xl mx-auto">
+        <div className="text-center mb-16" data-aos="fade-up" data-aos-duration="1000">
+          <span className="text-primary-600 font-mono font-semibold text-sm tracking-wider uppercase">Portfolio</span>
+          <h2 className="text-4xl lg:text-5xl font-bold mt-2 mb-4">
+            Featured <span className="gradient-text">Projects</span>
+          </h2>
+          <p className="text-neutral-600 text-lg max-w-2xl mx-auto">
+            A showcase of my development and design work with real-world applications
+          </p>
+        </div>
+
+        <div className="flex flex-wrap justify-center gap-6 mb-16" data-aos="fade-up" data-aos-duration="1000">
+          <button 
+            onClick={() => setFilter('all')}
+            className={`px-6 py-2 rounded-lg font-medium transition-all duration-300 hover:scale-105 transform ${
+              filter === 'all' 
+                ? 'bg-primary-600 text-white shadow-md' 
+                : 'bg-white border-2 border-neutral-200 text-neutral-700 hover:border-primary-600 hover:text-primary-600 hover:bg-primary-50'
+            }`}
+          >
+            All Projects
+          </button>
+          <button 
+            onClick={() => setFilter('coding')}
+            className={`px-6 py-2 rounded-lg font-medium transition-all duration-300 hover:scale-105 transform ${
+              filter === 'coding' 
+                ? 'bg-primary-600 text-white shadow-md' 
+                : 'bg-white border-2 border-neutral-200 text-neutral-700 hover:border-primary-600 hover:text-primary-600 hover:bg-primary-50'
+            }`}
+          >
+            Coding
+          </button>
+          <button 
+            onClick={() => setFilter('design')}
+            className={`px-6 py-2 rounded-lg font-medium transition-all duration-300 hover:scale-105 transform ${
+              filter === 'design' 
+                ? 'bg-primary-600 text-white shadow-md' 
+                : 'bg-white border-2 border-neutral-200 text-neutral-700 hover:border-purple-600 hover:text-purple-600 hover:bg-purple-50'
+            }`}
+          >
+            UI/UX Design
+          </button>
+        </div>
+
+        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8 lg:gap-10">
+          {filteredProjects.map((project, index) => (
+            <div 
+              key={project.name}
+              className="project-card bg-white rounded-2xl overflow-hidden shadow-lg hover-lift"
+              data-aos="fade-up"
+              data-aos-duration="1000"
+              data-aos-delay={100 + (index % 3) * 50}
+            >
+              <div className={`project-image h-48 bg-gradient-to-br ${project.gradient}`}>
+                <span className="iconify text-white text-6xl" data-icon={project.icon}></span>
+              </div>
+              <div className="p-6">
+                <div className="flex items-center justify-between mb-3">
+                  <span className={`px-3 py-1 ${project.badgeBg} ${project.badgeText} rounded-full text-xs font-semibold`}>
+                    {project.badge}
+                  </span>
+                  {project.category === 'design' ? (
+                    <i className="fab fa-figma text-neutral-400 text-xl"></i>
+                  ) : (
+                    <span className="iconify text-neutral-400 text-xl" data-icon="mdi:code-tags"></span>
+                  )}
+                </div>
+                <h3 className="text-xl font-bold mb-2">{project.name}</h3>
+                <p className="text-neutral-600 mb-4">{project.description}</p>
+                <ul className="info-list text-sm text-neutral-600 mb-4">
+                  {project.features.map((feature, idx) => (
+                    <li key={idx}>{feature}</li>
+                  ))}
+                </ul>
+                <div className="flex flex-wrap gap-2">
+                  {project.tags.map((tag, idx) => (
+                    <span key={idx} className="px-3 py-1 bg-neutral-100 text-neutral-700 rounded-full text-xs">
+                      {tag}
+                    </span>
+                  ))}
+                </div>
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+  );
+}
