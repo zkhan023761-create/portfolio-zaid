@@ -4,9 +4,9 @@ const contactInfo = [
     title: 'Email',
     value: 'zaidkhan023761@gmail.com',
     link: 'mailto:zaidkhan023761@gmail.com',
-    bgColor: 'bg-primary-100',
-    textColor: 'text-primary-600',
-    hoverColor: 'hover:text-primary-600'
+    bgColor: 'bg-orange-100',
+    textColor: 'text-orange-600',
+    hoverColor: 'hover:text-orange-600'
   },
   {
     icon: 'mdi:phone',
