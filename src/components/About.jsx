@@ -28,7 +28,7 @@ export default function About() {
                       <div>
                         <h4 className="font-semibold text-lg group-hover:text-accent-600 transition-colors">Specialization</h4>
                         <p className="text-neutral-600">Full Stack Development</p>
-                        <p className="text-sm text-neutral-500">UI/UX Design with Figma</p>
+                        <p className="text-sm text-neutral-500">UI Design with Figma</p>
                       </div>
                     </div>
                     <div className="flex items-center gap-4 group hover:translate-x-2 transition-transform duration-300">

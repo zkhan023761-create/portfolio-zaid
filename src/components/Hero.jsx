@@ -102,7 +102,7 @@ export default function Hero() {
                         <i className="fab fa-figma text-2xl"></i>
                       </div>
                       <div>
-                        <h3 className="text-lg font-bold">UI/UX Designer</h3>
+                        <h3 className="text-lg font-bold">UI Designer</h3>
                         <p className="text-xs text-primary-100">User-Centered Design</p>
                       </div>
                     </div>
