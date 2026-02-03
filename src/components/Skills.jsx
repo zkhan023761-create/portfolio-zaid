@@ -10,6 +10,7 @@ const skills = [
   { name: 'C Programming', icon: 'mdi:language-c', bgColor: 'bg-indigo-100', textColor: 'text-indigo-600', progress: 50, description: 'Core programming fundamentals' },
   { name: 'Figma', icon: 'fab fa-figma', bgColor: 'bg-purple-100', textColor: 'text-purple-600', progress: 90, description: 'UI/UX design & prototyping', isFontAwesome: true },
   { name: 'WordPress', icon: 'mdi:wordpress', bgColor: 'bg-blue-100', textColor: 'text-blue-700', progress: 70, description: 'CMS & website development' },
+   { name: 'Git / GitHub', icon: 'mdi:github', bgColor: 'bg-neutral-100', textColor: 'text-blue-700', progress: 10, description: 'Version control & collaboration' },
 ];
 
 export default function Skills() {

@@ -51,7 +51,7 @@ export default function Education() {
 
                 <div className="flex items-center gap-2 text-neutral-600">
                   <span className="iconify text-xl" data-icon="mdi:calendar"></span>
-                  <span className="font-medium">2023 - Present</span>
+                  <span className="font-medium">2026 - Present</span>
                 </div>
 
                 {/* Key Highlights */}
@@ -82,10 +82,10 @@ export default function Education() {
                     AI/ML
                   </span>
                   <span className="px-3 py-1 bg-accent-100 text-accent-700 rounded-full text-xs font-semibold hover:bg-accent-200 transition-colors">
-                    Data Science
+                    Machine Learning
                   </span>
                   <span className="px-3 py-1 bg-blue-100 text-blue-700 rounded-full text-xs font-semibold hover:bg-blue-200 transition-colors">
-                    Python
+                    Artificial Intelligence
                   </span>
                 </div>
               </div>
@@ -123,13 +123,13 @@ export default function Education() {
                     Higher Secondary Education (12th)
                   </h3>
                   <p className="text-blue-600 font-semibold text-lg">
-                    Successfully Completed
+                   Anjuman Islam Junior College of Science & Commerce
                   </p>
                 </div>
 
                 <div className="flex items-center gap-2 text-neutral-600">
                   <span className="iconify text-xl" data-icon="mdi:calendar-check"></span>
-                  <span className="font-medium">Passed Out</span>
+                  <span className="font-medium">Pass Out in 2024-25</span>
                 </div>
 
                 {/* Key Highlights */}
@@ -137,7 +137,7 @@ export default function Education() {
                   <div className="flex items-start gap-3 group/item">
                     <div className="w-2 h-2 bg-blue-500 rounded-full mt-2 group-hover/item:scale-150 transition-transform"></div>
                     <p className="text-neutral-700 text-sm leading-relaxed">
-                      Strong foundation in science and mathematics
+                      Strong foundation in science 
                     </p>
                   </div>
                   <div className="flex items-start gap-3 group/item">
@@ -161,7 +161,7 @@ export default function Education() {
                       <span className="iconify text-3xl text-blue-600" data-icon="mdi:trophy"></span>
                       <div>
                         <p className="text-sm font-semibold text-neutral-800">Academic Excellence</p>
-                        <p className="text-xs text-neutral-600">Foundation for Tech Career</p>
+                        <p className="text-xs text-neutral-600">Foundation for Career</p>
                       </div>
                     </div>
                   </div>
@@ -187,7 +187,7 @@ export default function Education() {
           data-aos-delay="300"
         >
           <div className="text-center p-6 bg-white rounded-2xl shadow-lg hover-lift group">
-            <div className="text-3xl font-bold text-primary-600 mb-2 group-hover:scale-110 transition-transform">2+</div>
+            <div className="text-3xl font-bold text-primary-600 mb-2 group-hover:scale-110 transition-transform">0.5+</div>
             <div className="text-sm text-neutral-600">Years Learning</div>
           </div>
           <div className="text-center p-6 bg-white rounded-2xl shadow-lg hover-lift group">
@@ -195,7 +195,7 @@ export default function Education() {
             <div className="text-sm text-neutral-600">Projects Built</div>
           </div>
           <div className="text-center p-6 bg-white rounded-2xl shadow-lg hover-lift group">
-            <div className="text-3xl font-bold text-blue-600 mb-2 group-hover:scale-110 transition-transform">10+</div>
+            <div className="text-3xl font-bold text-blue-600 mb-2 group-hover:scale-110 transition-transform">12+</div>
             <div className="text-sm text-neutral-600">Technologies</div>
           </div>
           <div className="text-center p-6 bg-white rounded-2xl shadow-lg hover-lift group">
