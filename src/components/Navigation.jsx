@@ -24,6 +24,7 @@ export default function Navigation() {
           <div className="hidden md:flex space-x-8">
             <a href="#home" className="nav-link text-neutral-700 hover:text-primary-600 transition-colors font-medium">Home</a>
             <a href="#about" className="nav-link text-neutral-700 hover:text-primary-600 transition-colors font-medium">About</a>
+            <a href="#education" className="nav-link text-neutral-700 hover:text-primary-600 transition-colors font-medium">Education</a>
             <a href="#skills" className="nav-link text-neutral-700 hover:text-primary-600 transition-colors font-medium">Skills</a>
             <a href="#projects" className="nav-link text-neutral-700 hover:text-primary-600 transition-colors font-medium">Projects</a>
             <a href="#certifications" className="nav-link text-neutral-700 hover:text-primary-600 transition-colors font-medium">Certifications</a>
@@ -48,6 +49,7 @@ export default function Navigation() {
           <div className="px-6 py-6 space-y-4">
             <a href="#home" onClick={() => setMobileMenuOpen(false)} className="block py-2 text-neutral-700 hover:text-primary-600 font-medium">Home</a>
             <a href="#about" onClick={() => setMobileMenuOpen(false)} className="block py-2 text-neutral-700 hover:text-primary-600 font-medium">About</a>
+            <a href="#education" onClick={() => setMobileMenuOpen(false)} className="block py-2 text-neutral-700 hover:text-primary-600 font-medium">Education</a>
             <a href="#skills" onClick={() => setMobileMenuOpen(false)} className="block py-2 text-neutral-700 hover:text-primary-600 font-medium">Skills</a>
             <a href="#projects" onClick={() => setMobileMenuOpen(false)} className="block py-2 text-neutral-700 hover:text-primary-600 font-medium">Projects</a>
             <a href="#certifications" onClick={() => setMobileMenuOpen(false)} className="block py-2 text-neutral-700 hover:text-primary-600 font-medium">Certifications</a>

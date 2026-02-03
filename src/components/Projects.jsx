@@ -12,7 +12,8 @@ const projects = [
     tags: ['Figma', 'UI Design', 'UX Research'],
     badge: 'UI/UX',
     badgeBg: 'bg-purple-100',
-    badgeText: 'text-purple-700'
+    badgeText: 'text-purple-700',
+    link: 'https://www.figma.com/design/rfiuPmW8GxbPksQYOuBe3q/CARHARTT?node-id=0-1&t=MGbptlkmYnr1nyDt-1'
   },
   {
     name: 'BookMyShow Clone',
@@ -24,7 +25,8 @@ const projects = [
     tags: ['HTML', 'CSS', 'JavaScript'],
     badge: 'CODING',
     badgeBg: 'bg-primary-100',
-    badgeText: 'text-primary-700'
+    badgeText: 'text-primary-700',
+    link: 'https://github.com/zkhan023761-create/BookMyShow-Clone'
   },
   {
     name: 'Printify Clone',
@@ -36,7 +38,8 @@ const projects = [
     tags: ['HTML', 'CSS', 'JavaScript'],
     badge: 'CODING',
     badgeBg: 'bg-primary-100',
-    badgeText: 'text-primary-700'
+    badgeText: 'text-primary-700',
+    link: 'https://github.com/zkhan023761-create/Printify-Clone'
   },
   {
     name: 'Wonderlust Travels',
@@ -48,7 +51,8 @@ const projects = [
     tags: ['HTML', 'Tailwind', 'JavaScript'],
     badge: 'CODING',
     badgeBg: 'bg-primary-100',
-    badgeText: 'text-primary-700'
+    badgeText: 'text-primary-700',
+    link: 'https://github.com/zkhan023761-create/Wonderlust-Travels-clone'
   },
   {
     name: 'Admin Dashboard',
@@ -60,7 +64,8 @@ const projects = [
     tags: ['HTML', 'CSS', 'JavaScript'],
     badge: 'CODING',
     badgeBg: 'bg-primary-100',
-    badgeText: 'text-primary-700'
+    badgeText: 'text-primary-700',
+    link: 'https://github.com/zkhan023761-create/admin-dashboard'
   },
   {
     name: 'ChatBot Interface',
@@ -72,7 +77,8 @@ const projects = [
     tags: ['HTML', 'CSS', 'JavaScript'],
     badge: 'CODING',
     badgeBg: 'bg-primary-100',
-    badgeText: 'text-primary-700'
+    badgeText: 'text-primary-700',
+    link: 'https://github.com/zkhan023761-create/chatbot'
   },
   {
     name: 'Quiz Application',
@@ -84,7 +90,8 @@ const projects = [
     tags: ['HTML', 'CSS', 'JavaScript'],
     badge: 'CODING',
     badgeBg: 'bg-primary-100',
-    badgeText: 'text-primary-700'
+    badgeText: 'text-primary-700',
+    link: 'https://github.com/zkhan023761-create/Quiz'
   },
   {
     name: 'Tailkits Clone',
@@ -96,7 +103,8 @@ const projects = [
     tags: ['HTML', 'Tailwind', 'JavaScript'],
     badge: 'CODING',
     badgeBg: 'bg-primary-100',
-    badgeText: 'text-primary-700'
+    badgeText: 'text-primary-700',
+    link: 'https://github.com/zkhan023761-create/tailkits-clone'
   },
   {
     name: 'Subscription Plan',
@@ -108,7 +116,8 @@ const projects = [
     tags: ['HTML', 'CSS', 'JavaScript'],
     badge: 'CODING',
     badgeBg: 'bg-primary-100',
-    badgeText: 'text-primary-700'
+    badgeText: 'text-primary-700',
+    link: 'https://github.com/zkhan023761-create/subscription-plan'
   },
   {
     name: 'JioMart Clone Application',
@@ -120,7 +129,8 @@ const projects = [
     tags: ['Figma', 'UI Design', 'Prototyping'],
     badge: 'UI/UX',
     badgeBg: 'bg-purple-100',
-    badgeText: 'text-purple-700'
+    badgeText: 'text-purple-700',
+    link: 'https://www.figma.com/design/rfiuPmW8GxbPksQYOuBe3q/CARHARTT?node-id=0-1&t=MGbptlkmYnr1nyDt-1'
   },
   {
     name: 'Gozoop Website Clone',
@@ -132,7 +142,8 @@ const projects = [
     tags: ['Figma', 'Web Design', 'UX Research'],
     badge: 'UI/UX',
     badgeBg: 'bg-purple-100',
-    badgeText: 'text-purple-700'
+    badgeText: 'text-purple-700',
+    link: 'https://www.figma.com/design/rfiuPmW8GxbPksQYOuBe3q/CARHARTT?node-id=0-1&t=MGbptlkmYnr1nyDt-1'
   },
   {
     name: 'Snapdeal Website Clone',
@@ -144,7 +155,8 @@ const projects = [
     tags: ['Figma', 'E-commerce', 'User Flow'],
     badge: 'UI/UX',
     badgeBg: 'bg-purple-100',
-    badgeText: 'text-purple-700'
+    badgeText: 'text-purple-700',
+    link: 'https://www.figma.com/design/rfiuPmW8GxbPksQYOuBe3q/CARHARTT?node-id=0-1&t=MGbptlkmYnr1nyDt-1'
   },
   {
     name: 'CoCo Cola Website Clone',
@@ -156,7 +168,8 @@ const projects = [
     tags: ['Figma', 'Brand', 'Interactive'],
     badge: 'UI/UX',
     badgeBg: 'bg-purple-100',
-    badgeText: 'text-purple-700'
+    badgeText: 'text-purple-700',
+    link: 'https://www.figma.com/design/rfiuPmW8GxbPksQYOuBe3q/CARHARTT?node-id=0-1&t=MGbptlkmYnr1nyDt-1'
   },
   {
     name: 'Tours & Travels Redesign',
@@ -168,7 +181,8 @@ const projects = [
     tags: ['Figma', 'Redesign', 'Travel'],
     badge: 'UI/UX',
     badgeBg: 'bg-purple-100',
-    badgeText: 'text-purple-700'
+    badgeText: 'text-purple-700',
+    link: 'https://www.figma.com/design/rfiuPmW8GxbPksQYOuBe3q/CARHARTT?node-id=0-1&t=MGbptlkmYnr1nyDt-1'
   },
   {
     name: 'School & Campus Redesign',
@@ -180,7 +194,8 @@ const projects = [
     tags: ['Figma', 'Education', 'Multi-platform'],
     badge: 'UI/UX',
     badgeBg: 'bg-purple-100',
-    badgeText: 'text-purple-700'
+    badgeText: 'text-purple-700',
+    link: 'https://www.figma.com/design/rfiuPmW8GxbPksQYOuBe3q/CARHARTT?node-id=0-1&t=MGbptlkmYnr1nyDt-1'
   }
 ];
 
@@ -192,10 +207,14 @@ export default function Projects() {
     : projects.filter(project => project.category === filter);
 
   return (
-    <section id="projects" className="py-24 px-6 lg:px-8 bg-pattern">
-      <div className="max-w-7xl mx-auto">
+    <section id="projects" className="py-24 px-6 lg:px-8 bg-pattern relative overflow-hidden">
+      {/* Animated Background */}
+      <div className="absolute top-20 left-20 w-96 h-96 bg-primary-200 rounded-full mix-blend-multiply filter blur-3xl opacity-20 animate-float"></div>
+      <div className="absolute bottom-20 right-20 w-96 h-96 bg-accent-200 rounded-full mix-blend-multiply filter blur-3xl opacity-20 animate-float" style={{animationDelay: '2s'}}></div>
+
+      <div className="max-w-7xl mx-auto relative z-10">
         <div className="text-center mb-16" data-aos="fade-up" data-aos-duration="1000">
-          <span className="text-primary-600 font-mono font-semibold text-sm tracking-wider uppercase">Portfolio</span>
+          <span className="text-primary-600 font-mono font-semibold text-sm tracking-wider uppercase animate-pulse">Portfolio</span>
           <h2 className="text-4xl lg:text-5xl font-bold mt-2 mb-4">
             Featured <span className="gradient-text">Projects</span>
           </h2>
@@ -209,7 +228,7 @@ export default function Projects() {
             onClick={() => setFilter('all')}
             className={`px-6 py-2 rounded-lg font-medium transition-all duration-300 hover:scale-105 transform ${
               filter === 'all' 
-                ? 'bg-primary-600 text-white shadow-md' 
+                ? 'bg-primary-600 text-white shadow-md shadow-primary-600/30' 
                 : 'bg-white border-2 border-neutral-200 text-neutral-700 hover:border-primary-600 hover:text-primary-600 hover:bg-primary-50'
             }`}
           >
@@ -219,7 +238,7 @@ export default function Projects() {
             onClick={() => setFilter('coding')}
             className={`px-6 py-2 rounded-lg font-medium transition-all duration-300 hover:scale-105 transform ${
               filter === 'coding' 
-                ? 'bg-primary-600 text-white shadow-md' 
+                ? 'bg-primary-600 text-white shadow-md shadow-primary-600/30' 
                 : 'bg-white border-2 border-neutral-200 text-neutral-700 hover:border-primary-600 hover:text-primary-600 hover:bg-primary-50'
             }`}
           >
@@ -229,7 +248,7 @@ export default function Projects() {
             onClick={() => setFilter('design')}
             className={`px-6 py-2 rounded-lg font-medium transition-all duration-300 hover:scale-105 transform ${
               filter === 'design' 
-                ? 'bg-primary-600 text-white shadow-md' 
+                ? 'bg-primary-600 text-white shadow-md shadow-primary-600/30' 
                 : 'bg-white border-2 border-neutral-200 text-neutral-700 hover:border-purple-600 hover:text-purple-600 hover:bg-purple-50'
             }`}
           >
@@ -241,39 +260,51 @@ export default function Projects() {
           {filteredProjects.map((project, index) => (
             <div 
               key={project.name}
-              className="project-card bg-white rounded-2xl overflow-hidden shadow-lg hover-lift"
+              className="project-card bg-white rounded-2xl overflow-hidden shadow-lg hover-lift border-2 border-neutral-200 hover:border-primary-300 transition-all duration-500 group"
               data-aos="fade-up"
               data-aos-duration="1000"
               data-aos-delay={100 + (index % 3) * 50}
             >
-              <div className={`project-image h-48 bg-gradient-to-br ${project.gradient}`}>
-                <span className="iconify text-white text-6xl" data-icon={project.icon}></span>
+              <div className={`project-image h-48 bg-gradient-to-br ${project.gradient} relative overflow-hidden`}>
+                <span className="iconify text-white text-6xl group-hover:scale-125 transition-transform duration-500" data-icon={project.icon}></span>
+                {/* Overlay on hover */}
+                <div className="absolute inset-0 bg-black/20 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
               </div>
               <div className="p-6">
                 <div className="flex items-center justify-between mb-3">
-                  <span className={`px-3 py-1 ${project.badgeBg} ${project.badgeText} rounded-full text-xs font-semibold`}>
+                  <span className={`px-3 py-1 ${project.badgeBg} ${project.badgeText} rounded-full text-xs font-semibold group-hover:scale-110 transition-transform`}>
                     {project.badge}
                   </span>
                   {project.category === 'design' ? (
-                    <i className="fab fa-figma text-neutral-400 text-xl"></i>
+                    <i className="fab fa-figma text-neutral-400 text-xl group-hover:text-purple-600 group-hover:scale-125 transition-all duration-300"></i>
                   ) : (
-                    <span className="iconify text-neutral-400 text-xl" data-icon="mdi:code-tags"></span>
+                    <span className="iconify text-neutral-400 text-xl group-hover:text-primary-600 group-hover:scale-125 transition-all duration-300" data-icon="mdi:code-tags"></span>
                   )}
                 </div>
-                <h3 className="text-xl font-bold mb-2">{project.name}</h3>
-                <p className="text-neutral-600 mb-4">{project.description}</p>
+                <h3 className="text-xl font-bold mb-2 group-hover:text-primary-600 transition-colors">{project.name}</h3>
+                <p className="text-neutral-600 mb-4 text-sm">{project.description}</p>
                 <ul className="info-list text-sm text-neutral-600 mb-4">
                   {project.features.map((feature, idx) => (
-                    <li key={idx}>{feature}</li>
+                    <li key={idx} className="group-hover:translate-x-1 transition-transform duration-300">{feature}</li>
                   ))}
                 </ul>
-                <div className="flex flex-wrap gap-2">
+                <div className="flex flex-wrap gap-2 mb-4">
                   {project.tags.map((tag, idx) => (
-                    <span key={idx} className="px-3 py-1 bg-neutral-100 text-neutral-700 rounded-full text-xs">
+                    <span key={idx} className="px-3 py-1 bg-neutral-100 text-neutral-700 rounded-full text-xs hover:bg-primary-100 hover:text-primary-700 transition-colors">
                       {tag}
                     </span>
                   ))}
                 </div>
+                {/* See Project Button */}
+                <a 
+                  href={project.link}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="btn-hover-glow w-full flex items-center justify-center gap-2 px-4 py-3 bg-gradient-to-r from-primary-600 to-accent-600 text-white rounded-lg font-medium hover:shadow-xl hover:shadow-primary-600/30 hover:scale-105 transition-all duration-300 group/btn"
+                >
+                  <span>See Project</span>
+                  <span className="iconify text-lg group-hover/btn:translate-x-1 transition-transform" data-icon="mdi:arrow-right"></span>
+                </a>
               </div>
             </div>
           ))}

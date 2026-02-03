@@ -18,6 +18,15 @@ const contactInfo = [
     hoverColor: 'hover:text-primary-600'
   },
   {
+    icon: 'mdi:linkedin',
+    title: 'LinkedIn',
+    value: 'Connect on LinkedIn',
+    link: 'https://www.linkedin.com/in/zaid-khan-943376379',
+    bgColor: 'bg-blue-100',
+    textColor: 'text-blue-700',
+    hoverColor: 'hover:text-blue-700'
+  },
+  {
     icon: 'mdi:whatsapp',
     title: 'WhatsApp',
     value: 'Chat on WhatsApp',
@@ -27,23 +36,26 @@ const contactInfo = [
     hoverColor: 'hover:text-green-600'
   },
   {
-    icon: 'fab fa-figma',
-    title: 'Figma',
-    value: 'View Design Work',
-    link: 'https://www.figma.com/@zaidkhan',
-    bgColor: 'bg-purple-100',
-    textColor: 'text-purple-600',
-    hoverColor: 'hover:text-purple-600',
-    isFontAwesome: true
+    icon: 'mdi:instagram',
+    title: 'Instagram',
+    value: 'Follow on Instagram',
+    link: 'https://www.instagram.com/khan.zaxid/',
+    bgColor: 'bg-pink-100',
+    textColor: 'text-pink-600',
+    hoverColor: 'hover:text-pink-600'
   }
 ];
 
 export default function Contact() {
   return (
-    <section id="contact" className="py-24 px-6 lg:px-8 bg-pattern">
-      <div className="max-w-7xl mx-auto">
+    <section id="contact" className="py-24 px-6 lg:px-8 bg-pattern relative overflow-hidden">
+      {/* Animated Background Elements */}
+      <div className="absolute top-10 left-10 w-72 h-72 bg-primary-200 rounded-full mix-blend-multiply filter blur-3xl opacity-20 animate-float"></div>
+      <div className="absolute bottom-10 right-10 w-72 h-72 bg-accent-200 rounded-full mix-blend-multiply filter blur-3xl opacity-20 animate-float" style={{animationDelay: '1.5s'}}></div>
+
+      <div className="max-w-7xl mx-auto relative z-10">
         <div className="text-center mb-16" data-aos="fade-up" data-aos-duration="1000">
-          <span className="text-primary-600 font-mono font-semibold text-sm tracking-wider uppercase">Get In Touch</span>
+          <span className="text-primary-600 font-mono font-semibold text-sm tracking-wider uppercase animate-pulse">Get In Touch</span>
           <h2 className="text-4xl lg:text-5xl font-bold mt-2 mb-4">
             Let's <span className="gradient-text">Connect</span>
           </h2>
@@ -52,23 +64,23 @@ export default function Contact() {
           </p>
         </div>
 
-        <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8 max-w-6xl mx-auto">
+        <div className="grid md:grid-cols-2 lg:grid-cols-5 gap-8 max-w-7xl mx-auto">
           {contactInfo.map((contact, index) => (
             <div 
               key={contact.title}
-              className="bg-white p-6 rounded-2xl shadow-lg hover-lift border-2 border-neutral-200"
+              className="bg-white p-6 rounded-2xl shadow-lg hover-lift border-2 border-neutral-200 hover:border-primary-300 transition-all duration-300 group"
               data-aos="fade-up"
               data-aos-duration="1000"
               data-aos-delay={100 + index * 50}
             >
-              <div className={`w-14 h-14 ${contact.bgColor} rounded-xl flex items-center justify-center mb-4`}>
+              <div className={`w-14 h-14 ${contact.bgColor} rounded-xl flex items-center justify-center mb-4 group-hover:scale-110 group-hover:rotate-6 transition-all duration-300`}>
                 {contact.isFontAwesome ? (
                   <i className={`${contact.icon} text-2xl ${contact.textColor}`}></i>
                 ) : (
                   <span className={`iconify text-2xl ${contact.textColor}`} data-icon={contact.icon}></span>
                 )}
               </div>
-              <h3 className="font-semibold text-lg mb-2">{contact.title}</h3>
+              <h3 className="font-semibold text-lg mb-2 group-hover:text-primary-600 transition-colors">{contact.title}</h3>
               <a 
                 href={contact.link}
                 target={contact.link.startsWith('http') ? '_blank' : undefined}

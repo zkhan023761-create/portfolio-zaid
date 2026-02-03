@@ -30,7 +30,7 @@ export default function Skills() {
           {skills.map((skill, index) => (
             <div 
               key={skill.name}
-              className="bg-gradient-to-br from-neutral-50 to-white p-6 rounded-2xl border-2 border-neutral-200 hover-lift group"
+              className="bg-linear-to-br from-neutral-50 to-white p-6 rounded-2xl border-2 border-neutral-200 hover-lift group"
               data-aos="fade-up"
               data-aos-duration="1000"
               data-aos-delay={100 + index * 50}

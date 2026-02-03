@@ -17,6 +17,7 @@ export default function Footer() {
             <div className="space-y-2">
               <a href="#home" className="block text-neutral-400 hover:text-primary-400 transition-colors">Home</a>
               <a href="#about" className="block text-neutral-400 hover:text-primary-400 transition-colors">About</a>
+              <a href="#education" className="block text-neutral-400 hover:text-primary-400 transition-colors">Education</a>
               <a href="#skills" className="block text-neutral-400 hover:text-primary-400 transition-colors">Skills</a>
               <a href="#projects" className="block text-neutral-400 hover:text-primary-400 transition-colors">Projects</a>
               <a href="#contact" className="block text-neutral-400 hover:text-primary-400 transition-colors">Contact</a>
@@ -33,7 +34,7 @@ export default function Footer() {
               <a href="https://github.com/zkhan023761-create" target="_blank" rel="noopener noreferrer" className="w-10 h-10 flex items-center justify-center bg-neutral-800 rounded-lg hover:bg-neutral-700 transition-all duration-300 hover:scale-110 hover:shadow-lg">
                 <span className="iconify text-xl" data-icon="mdi:github"></span>
               </a>
-              <a href="https://www.figma.com/@zaidkhan" target="_blank" rel="noopener noreferrer" className="w-10 h-10 flex items-center justify-center bg-neutral-800 rounded-lg hover:bg-pink-600 transition-all duration-300 hover:scale-110 hover:shadow-lg">
+              <a href="https://www.instagram.com/khan.zaxid/" target="_blank" rel="noopener noreferrer" className="w-10 h-10 flex items-center justify-center bg-neutral-800 rounded-lg hover:bg-pink-600 transition-all duration-300 hover:scale-110 hover:shadow-lg">
                 <i className="fab fa-instagram text-xl"></i>
               </a>
               <a href="mailto:zaidkhan023761@gmail.com" className="w-10 h-10 flex items-center justify-center bg-neutral-800 rounded-lg hover:bg-red-600 transition-all duration-300 hover:scale-110 hover:shadow-lg">

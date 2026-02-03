@@ -21,7 +21,7 @@ export default function Hero() {
             </h1>
 
             <h2 className="text-2xl lg:text-3xl text-neutral-600 font-medium">
-              Full Stack Developer & UI/UX Designer
+              Frontend Developer & UI/UX Designer
             </h2>
 
             <p className="text-lg text-neutral-600 leading-relaxed max-w-xl">
@@ -46,7 +46,7 @@ export default function Hero() {
               <a href="https://github.com/zkhan023761-create" target="_blank" rel="noopener noreferrer" className="w-12 h-12 flex items-center justify-center bg-white border-2 border-neutral-200 rounded-lg hover:border-neutral-800 hover:text-neutral-800 hover:bg-neutral-50 transition-all duration-300 hover:scale-110 hover:shadow-lg shadow-sm">
                 <span className="iconify text-2xl" data-icon="mdi:github"></span>
               </a>
-              <a href="https://www.figma.com/@zaidkhan" target="_blank" rel="noopener noreferrer" className="w-12 h-12 flex items-center justify-center bg-white border-2 border-neutral-200 rounded-lg hover:border-pink-600 hover:text-pink-600 hover:bg-pink-50 transition-all duration-300 hover:scale-110 hover:shadow-lg shadow-sm">
+              <a href="https://www.instagram.com/khan.zaxid/" target="_blank" rel="noopener noreferrer" className="w-12 h-12 flex items-center justify-center bg-white border-2 border-neutral-200 rounded-lg hover:border-pink-600 hover:text-pink-600 hover:bg-pink-50 transition-all duration-300 hover:scale-110 hover:shadow-lg shadow-sm">
                 <i className="fab fa-instagram text-2xl"></i>
               </a>
               <a href="mailto:zaidkhan023761@gmail.com" className="w-12 h-12 flex items-center justify-center bg-white border-2 border-neutral-200 rounded-lg hover:border-red-600 hover:text-red-600 hover:bg-red-50 transition-all duration-300 hover:scale-110 hover:shadow-lg shadow-sm">
@@ -59,13 +59,13 @@ export default function Hero() {
           </div>
 
           {/* Right Content - Photo & Info */}
-          <div className="hidden lg:block" data-aos="fade-left" data-aos-duration="1000" data-aos-delay="200">
-            <div className="flex-row justify-center">
+          <div className=" lg:block  sm:mx-auto sm:w-full sm:grid sm:place-items-center" data-aos="fade-left" data-aos-duration="1000" data-aos-delay="200">
+            <div className="grid place-items-center sm: w-fit sm:mx-auto  sm:grid sm:place-items-center">
               {/* Profile Photo Card */}
               <div className="bg-white rounded-3xl p-8 shadow-2xl transform rotate-3 hover:rotate-0 transition-transform duration-500 hover-lift">
                 {/* Photo Container */}
                 <div className="relative mb-6">
-                  <div className="aspect-square rounded-2xl overflow-hidden bg-gradient-to-br from-primary-500 to-accent-500 p-1">
+                  <div className="aspect-square rounded-2xl overflow-hidden bg-linear-to-br from-primary-500 to-accent-500 p-1">
                     <div className="w-full h-full bg-neutral-200 rounded-2xl flex items-center justify-center">
                       {/* Placeholder for photo - replace with actual image */}
                       <div className="text-center">
@@ -86,7 +86,7 @@ export default function Hero() {
                   </div>
                 </div>
 
-                <div className="bg-gradient-to-br from-primary-500 to-accent-500 rounded-2xl p-6 text-white">
+                <div className="bg-linear-to-br from-primary-500 to-accent-500 rounded-2xl p-6 text-white">
                   <div className="space-y-4">
                     <div className="flex items-center gap-3">
                       <div className="w-12 h-12 bg-white/20 rounded-full flex items-center justify-center backdrop-blur-sm shrink-0">
