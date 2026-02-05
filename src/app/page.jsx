@@ -10,6 +10,7 @@ import Certifications from '@/components/Certifications';
 import Contact from '@/components/Contact';
 import Footer from '@/components/Footer';
 import WhatsAppFloat from '@/components/WhatsAppFloat';
+import ThreeBackground from '@/components/ThreeBackground';
 
 export default function Home() {
   useEffect(() => {
@@ -73,6 +74,7 @@ export default function Home() {
 
   return (
     <>
+      <ThreeBackground />
       <Navigation />
       <Hero />
       <About />

@@ -74,7 +74,7 @@
 .stagger-3 { animation-delay: 0.3s; }
 .stagger-4 { animation-delay: 0.4s; }
 
-/* Gradient Text */
+/* Gradient Text - Original Blue/Purple */
 .gradient-text {
   background: linear-gradient(135deg, #0ea5e9 0%, #d946ef 100%);
   -webkit-background-clip: text;
@@ -82,7 +82,12 @@
   background-clip: text;
 }
 
-/* Custom Scrollbar */
+@keyframes gradientShift {
+  0%, 100% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+}
+
+/* Custom Scrollbar - Original */
 ::-webkit-scrollbar {
   width: 10px;
 }
@@ -100,7 +105,7 @@
   background: #0284c7;
 }
 
-/* Smooth Hover Effects */
+/* Smooth Hover Effects - Original */
 .hover-lift {
   transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
@@ -110,7 +115,7 @@
   box-shadow: 0 20px 40px rgba(14, 165, 233, 0.15);
 }
 
-/* Enhanced Button Hover Effects */
+/* Enhanced Button Hover Effects - Original */
 .btn-hover-glow {
   position: relative;
   overflow: hidden;
@@ -131,7 +136,7 @@
   left: 100%;
 }
 
-/* Skill Progress Bar */
+/* Skill Progress Bar - Original */
 .skill-bar {
   position: relative;
   background: #e2e8f0;
@@ -147,31 +152,44 @@
   transition: width 1.5s ease-out;
 }
 
-/* Backdrop Blur Effect */
+/* Backdrop Blur Effect - Original */
 .glass-effect {
   background: rgba(255, 255, 255, 0.95);
   backdrop-filter: blur(10px);
   -webkit-backdrop-filter: blur(10px);
 }
 
-/* Decorative Elements */
+/* Decorative Elements - Original */
 .bg-pattern {
   background-image: 
     radial-gradient(circle at 20% 50%, rgba(14, 165, 233, 0.05) 0%, transparent 50%),
     radial-gradient(circle at 80% 80%, rgba(217, 70, 239, 0.05) 0%, transparent 50%);
 }
 
-/* Form Focus States */
+/* Form Focus States - Original */
 .form-input:focus {
   outline: none;
   border-color: #0ea5e9;
   box-shadow: 0 0 0 3px rgba(14, 165, 233, 0.1);
 }
 
-/* Body Background */
+/* Body Background - Original Light Theme */
 body {
   background: linear-gradient(135deg, #f0f9ff 0%, #fdf4ff 50%, #f8fafc 100%);
   min-height: 100vh;
+  position: relative;
+  color: #1e293b;
+}
+
+/* Ensure content appears above Three.js background */
+section {
+  position: relative;
+  z-index: 1;
+}
+
+nav {
+  position: relative;
+  z-index: 50;
 }
 
 /* Font Variables */
@@ -188,7 +206,7 @@ body {
   font-family: var(--font-mono);
 }
 
-/* Project Image Container */
+/* Project Image Container - Original */
 .project-image {
   position: relative;
   overflow: hidden;
@@ -214,7 +232,7 @@ body {
   opacity: 1;
 }
 
-/* Active Nav Link */
+/* Active Nav Link - Original */
 .nav-link.active {
   color: #0ea5e9;
   font-weight: 600;
@@ -247,7 +265,7 @@ body {
   animation: float 3s ease-in-out infinite;
 }
 
-/* Tailwind Theme Extension */
+/* Tailwind Theme Extension - Original Colors */
 @theme {
   --color-primary-50: #f0f9ff;
   --color-primary-100: #e0f2fe;
