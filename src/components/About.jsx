@@ -17,8 +17,8 @@ export default function About() {
                       </div>
                       <div>
                         <h4 className="font-semibold text-lg group-hover:text-primary-600 transition-colors">Education</h4>
-                        <p className="text-neutral-600">Nexcore Institute of Technology</p>
-                        <p className="text-sm text-neutral-500">AI & Machine Learning</p>
+                        <p className="text-black">Nexcore Institute of Technology</p>
+                        <p className="text-sm text-black">AI & Machine Learning</p>
                       </div>
                     </div>
                     <div className="flex items-center gap-4 group hover:translate-x-2 transition-transform duration-300">
@@ -27,8 +27,8 @@ export default function About() {
                       </div>
                       <div>
                         <h4 className="font-semibold text-lg group-hover:text-accent-600 transition-colors">Specialization</h4>
-                        <p className="text-neutral-600">Full Stack Development</p>
-                        <p className="text-sm text-neutral-500">UI Design with Figma</p>
+                        <p className="text-black">Frontend Development </p>
+                        <p className="text-sm text-black">UI Design with Figma</p>
                       </div>
                     </div>
                     <div className="flex items-center gap-4 group hover:translate-x-2 transition-transform duration-300">
@@ -37,8 +37,8 @@ export default function About() {
                       </div>
                       <div>
                         <h4 className="font-semibold text-lg group-hover:text-blue-600 transition-colors">Mission</h4>
-                        <p className="text-neutral-600">Creating Impact</p>
-                        <p className="text-sm text-neutral-500">Through Technology</p>
+                        <p className="text-black">Creating Impact</p>
+                        <p className="text-sm text-black">Through Technology</p>
                       </div>
                     </div>
                   </div>
@@ -55,17 +55,17 @@ export default function About() {
               </h2>
             </div>
 
-            <p className="text-lg text-neutral-600 leading-relaxed" data-aos="fade-up" data-aos-delay="300">
+            <p className="text-lg text-black leading-relaxed" data-aos="fade-up" data-aos-delay="300">
               I'm a driven full-stack developer and UI/UX designer currently pursuing Artificial Intelligence & Machine Learning at Nexcore Institute of Technology. My journey in tech is fueled by a deep passion for creating digital experiences that are both beautiful and functional.
             </p>
 
-            <p className="text-lg text-neutral-600 leading-relaxed" data-aos="fade-up" data-aos-delay="400">
+            <p className="text-lg text-black leading-relaxed" data-aos="fade-up" data-aos-delay="400">
               With expertise spanning from front-end development using React.js and Next.js to back-end technologies like Node.js and Express.js, I bridge the gap between code and creativity. I specialize in building responsive, scalable web applications while crafting intuitive user experiences and interactive prototypes in Figma.
             </p>
 
             <div className="pt-4" data-aos="fade-up" data-aos-delay="500">
               <h3 className="font-semibold text-xl mb-4">What I Bring to the Table:</h3>
-              <ul className="info-list text-neutral-700">
+              <ul className="info-list text-black">
                 <li className="hover:translate-x-2 transition-transform duration-300">Clean, maintainable, and scalable code architecture</li>
                 <li className="hover:translate-x-2 transition-transform duration-300">User-centered design thinking and research methodology</li>
                 <li className="hover:translate-x-2 transition-transform duration-300">Responsive, mobile-first development approach</li>
@@ -79,7 +79,7 @@ export default function About() {
 
             <div className="pt-4" data-aos="fade-up" data-aos-delay="600">
               <h3 className="font-semibold text-xl mb-4">Core Competencies:</h3>
-              <ul className="info-list text-neutral-700">
+              <ul className="info-list text-black">
                 <li className="hover:translate-x-2 transition-transform duration-300">Frontend Development: React.js, Next.js, HTML5, CSS3, Tailwind CSS</li>
                 <li className="hover:translate-x-2 transition-transform duration-300">Backend Development: Node.js, Express.js</li>
                 <li className="hover:translate-x-2 transition-transform duration-300">Programming Languages: JavaScript, C Programming</li>

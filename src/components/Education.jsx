@@ -187,20 +187,20 @@ export default function Education() {
           data-aos-delay="300"
         >
           <div className="text-center p-6 bg-white rounded-2xl shadow-lg hover-lift group">
-            <div className="text-3xl font-bold text-primary-600 mb-2 group-hover:scale-110 transition-transform">0.5+</div>
-            <div className="text-sm text-neutral-600">Years Learning</div>
+            <div className="text-3xl font-bold text-primary-600 mb-2 group-hover:scale-110 transition-transform">0.6+</div>
+            <div className="text-sm text-black">Years Learning</div>
           </div>
           <div className="text-center p-6 bg-white rounded-2xl shadow-lg hover-lift group">
             <div className="text-3xl font-bold text-accent-600 mb-2 group-hover:scale-110 transition-transform">15+</div>
-            <div className="text-sm text-neutral-600">Projects Built</div>
+            <div className="text-sm text-black">Projects Built</div>
           </div>
           <div className="text-center p-6 bg-white rounded-2xl shadow-lg hover-lift group">
             <div className="text-3xl font-bold text-blue-600 mb-2 group-hover:scale-110 transition-transform">12+</div>
-            <div className="text-sm text-neutral-600">Technologies</div>
+            <div className="text-sm text-black">Technologies</div>
           </div>
           <div className="text-center p-6 bg-white rounded-2xl shadow-lg hover-lift group">
             <div className="text-3xl font-bold text-green-600 mb-2 group-hover:scale-110 transition-transform">100%</div>
-            <div className="text-sm text-neutral-600">Dedication</div>
+            <div className="text-sm text-black">Dedication</div>
           </div>
         </div>
       </div>
