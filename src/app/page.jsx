@@ -30,6 +30,51 @@ export default function Home() {
     iconifyScript.src = 'https://code.iconify.design/3/3.1.0/iconify.min.js';
     document.head.appendChild(iconifyScript);
 
+    // Content Protection - Disable right-click
+    const disableRightClick = (e) => {
+      e.preventDefault();
+      return false;
+    };
+
+    // Content Protection - Disable keyboard shortcuts
+    const disableKeyboardShortcuts = (e) => {
+      // Disable Ctrl+C, Ctrl+X, Ctrl+A, Ctrl+U, Ctrl+S, F12, Ctrl+Shift+I, Ctrl+Shift+J, Ctrl+Shift+C
+      if (
+        (e.ctrlKey && (e.key === 'c' || e.key === 'x' || e.key === 'a' || e.key === 'u' || e.key === 's')) ||
+        (e.ctrlKey && e.shiftKey && (e.key === 'I' || e.key === 'J' || e.key === 'C')) ||
+        e.key === 'F12'
+      ) {
+        e.preventDefault();
+        return false;
+      }
+    };
+
+    // Content Protection - Disable text selection via mouse
+    const disableSelection = (e) => {
+      e.preventDefault();
+      showCopyAlert();
+      return false;
+    };
+
+    // Show copy protection alert
+    const showCopyAlert = () => {
+      const alert = document.createElement('div');
+      alert.className = 'copy-alert';
+      alert.textContent = '⚠️ Content is Protected!';
+      document.body.appendChild(alert);
+      
+      setTimeout(() => {
+        alert.remove();
+      }, 2000);
+    };
+
+    // Add event listeners
+    document.addEventListener('contextmenu', disableRightClick);
+    document.addEventListener('keydown', disableKeyboardShortcuts);
+    document.addEventListener('selectstart', disableSelection);
+    document.addEventListener('copy', disableSelection);
+    document.addEventListener('cut', disableSelection);
+
     // Smooth scroll for navigation links
     const handleClick = (e) => {
       const target = e.target.closest('a[href^="#"]');
@@ -69,6 +114,11 @@ export default function Home() {
 
     return () => {
       document.removeEventListener('click', handleClick);
+      document.removeEventListener('contextmenu', disableRightClick);
+      document.removeEventListener('keydown', disableKeyboardShortcuts);
+      document.removeEventListener('selectstart', disableSelection);
+      document.removeEventListener('copy', disableSelection);
+      document.removeEventListener('cut', disableSelection);
     };
   }, []);
 

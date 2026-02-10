@@ -8,10 +8,10 @@ export default function Education() {
       <div className="max-w-7xl mx-auto relative z-10">
         <div className="text-center mb-16" data-aos="fade-up" data-aos-duration="1000">
           <span className="text-primary-600 font-mono font-semibold text-sm tracking-wider uppercase">Academic Journey</span>
-          <h2 className="text-4xl lg:text-5xl font-bold mt-2 mb-4">
+          <h2 className="text-4xl lg:text-5xl font-bold mt-2 mb-4 text-neutral-900">
             My <span className="gradient-text">Education</span>
           </h2>
-          <p className="text-neutral-600 text-lg max-w-2xl mx-auto">
+          <p className="text-neutral-800 text-lg max-w-2xl mx-auto font-medium">
             Building a strong foundation in technology and innovation
           </p>
         </div>
@@ -186,22 +186,54 @@ export default function Education() {
           data-aos-duration="1000"
           data-aos-delay="300"
         >
-          <div className="text-center p-6 bg-white rounded-2xl shadow-lg hover-lift group">
-            <div className="text-3xl font-bold text-primary-600 mb-2 group-hover:scale-110 transition-transform">0.6+</div>
-            <div className="text-sm text-black">Years Learning</div>
-          </div>
-          <div className="text-center p-6 bg-white rounded-2xl shadow-lg hover-lift group">
-            <div className="text-3xl font-bold text-accent-600 mb-2 group-hover:scale-110 transition-transform">15+</div>
-            <div className="text-sm text-black">Projects Built</div>
-          </div>
-          <div className="text-center p-6 bg-white rounded-2xl shadow-lg hover-lift group">
-            <div className="text-3xl font-bold text-blue-600 mb-2 group-hover:scale-110 transition-transform">12+</div>
-            <div className="text-sm text-black">Technologies</div>
-          </div>
-          <div className="text-center p-6 bg-white rounded-2xl shadow-lg hover-lift group">
-            <div className="text-3xl font-bold text-green-600 mb-2 group-hover:scale-110 transition-transform">100%</div>
-            <div className="text-sm text-black">Dedication</div>
-          </div>
+          <a 
+            href="#skills"
+            className="text-center p-8 bg-white rounded-2xl shadow-xl hover:shadow-2xl transition-all duration-500 transform hover:scale-105 hover:-translate-y-2 group border-2 border-transparent hover:border-primary-500 cursor-pointer"
+          >
+            <div className="text-5xl font-bold bg-gradient-to-r from-primary-600 to-accent-600 bg-clip-text text-transparent mb-2 group-hover:scale-125 transition-transform">
+              12+
+            </div>
+            <div className="text-sm text-neutral-900 font-bold">Technologies</div>
+            <div className="mt-2 opacity-0 group-hover:opacity-100 transition-opacity">
+              <span className="text-xs text-primary-600 font-semibold">View Skills →</span>
+            </div>
+          </a>
+          <a 
+            href="#about"
+            className="text-center p-8 bg-white rounded-2xl shadow-xl hover:shadow-2xl transition-all duration-500 transform hover:scale-105 hover:-translate-y-2 group border-2 border-transparent hover:border-accent-500 cursor-pointer"
+          >
+            <div className="text-5xl font-bold bg-gradient-to-r from-accent-600 to-pink-600 bg-clip-text text-transparent mb-2 group-hover:scale-125 transition-transform">
+              100%
+            </div>
+            <div className="text-sm text-neutral-900 font-bold">Dedication</div>
+            <div className="mt-2 opacity-0 group-hover:opacity-100 transition-opacity">
+              <span className="text-xs text-accent-600 font-semibold">About Me →</span>
+            </div>
+          </a>
+          <a 
+            href="#projects"
+            className="text-center p-8 bg-white rounded-2xl shadow-xl hover:shadow-2xl transition-all duration-500 transform hover:scale-105 hover:-translate-y-2 group border-2 border-transparent hover:border-blue-500 cursor-pointer"
+          >
+            <div className="text-5xl font-bold bg-gradient-to-r from-blue-600 to-cyan-600 bg-clip-text text-transparent mb-2 group-hover:scale-125 transition-transform">
+              15+
+            </div>
+            <div className="text-sm text-neutral-900 font-bold">Projects Built</div>
+            <div className="mt-2 opacity-0 group-hover:opacity-100 transition-opacity">
+              <span className="text-xs text-blue-600 font-semibold">View Projects →</span>
+            </div>
+          </a>
+          <a 
+            href="#contact"
+            className="text-center p-8 bg-white rounded-2xl shadow-xl hover:shadow-2xl transition-all duration-500 transform hover:scale-105 hover:-translate-y-2 group border-2 border-transparent hover:border-green-500 cursor-pointer"
+          >
+            <div className="text-5xl font-bold bg-gradient-to-r from-green-600 to-emerald-600 bg-clip-text text-transparent mb-2 group-hover:scale-125 transition-transform">
+              ∞
+            </div>
+            <div className="text-sm text-neutral-900 font-bold">Learning</div>
+            <div className="mt-2 opacity-0 group-hover:opacity-100 transition-opacity">
+              <span className="text-xs text-green-600 font-semibold">Get in Touch →</span>
+            </div>
+          </a>
         </div>
       </div>
     </section>
