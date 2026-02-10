@@ -7,9 +7,13 @@ export default function Education() {
 
       <div className="max-w-7xl mx-auto relative z-10">
         <div className="text-center mb-16" data-aos="fade-up" data-aos-duration="1000">
-          <span className="text-primary-600 font-mono font-semibold text-sm tracking-wider uppercase">Academic Journey</span>
-          <h2 className="text-4xl lg:text-5xl font-bold mt-2 mb-4 text-neutral-900">
-            My <span className="gradient-text">Education</span>
+          <div className="inline-block animate-float mb-4">
+            <span className="text-primary-600 font-mono font-semibold text-sm tracking-wider uppercase bg-primary-100 px-6 py-2 rounded-full hover:scale-110 transition-all duration-300 animate-pulse">
+              Academic Journey
+            </span>
+          </div>
+          <h2 className="text-4xl lg:text-5xl font-bold mt-3 mb-4 text-neutral-900">
+            <span className="gradient-text">My Education</span>
           </h2>
           <p className="text-neutral-800 text-lg max-w-2xl mx-auto font-medium">
             Building a strong foundation in technology and innovation

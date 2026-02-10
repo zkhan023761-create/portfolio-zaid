@@ -223,51 +223,63 @@ export default function Projects() {
 
   return (
     <section id="projects" className="py-24 px-6 lg:px-8 bg-pattern relative overflow-hidden">
-      {/* Animated Background */}
+      {/* Animated Background with More Elements */}
       <div className="absolute top-20 left-20 w-96 h-96 bg-primary-200 rounded-full mix-blend-multiply filter blur-3xl opacity-20 animate-float"></div>
       <div className="absolute bottom-20 right-20 w-96 h-96 bg-accent-200 rounded-full mix-blend-multiply filter blur-3xl opacity-20 animate-float" style={{animationDelay: '2s'}}></div>
+      <div className="absolute top-1/2 right-1/3 w-64 h-64 bg-blue-200 rounded-full mix-blend-multiply filter blur-3xl opacity-15 animate-float" style={{animationDelay: '3s'}}></div>
+      
+      {/* Animated Particles */}
+      <div className="absolute top-1/4 right-1/4 w-3 h-3 bg-primary-400 rounded-full animate-ping opacity-30"></div>
+      <div className="absolute bottom-1/3 left-1/4 w-2 h-2 bg-accent-400 rounded-full animate-ping opacity-30" style={{animationDelay: '1.5s'}}></div>
 
       <div className="max-w-7xl mx-auto relative z-10">
-        <div className="text-center mb-16" data-aos="fade-up" data-aos-duration="1000">
-          <span className="text-primary-600 font-mono font-semibold text-sm tracking-wider uppercase animate-pulse">Portfolio</span>
-          <h2 className="text-4xl lg:text-5xl font-bold mt-2 mb-4">
-            Featured <span className="gradient-text">Projects</span>
+        <div className="text-center" data-aos="fade-up" data-aos-duration="1000">
+          <div className="inline-block animate-float mb-4">
+            <span className="text-primary-600 font-mono font-semibold text-sm tracking-wider uppercase bg-primary-100 px-6 py-2 rounded-full hover:scale-110 transition-all duration-300 animate-pulse">
+              Portfolio
+            </span>
+          </div>
+          <h2 className="text-4xl lg:text-5xl font-bold mt-3 mb-4 text-neutral-900">
+            <span className="gradient-text">Featured Projects</span>
           </h2>
-          <p className="text-neutral-600 text-lg max-w-2xl mx-auto">
+          <p className="text-neutral-800 text-lg max-w-2xl mx-auto mb-16 font-medium">
             A showcase of my development and design work with real-world applications
           </p>
         </div>
 
-        <div className="flex flex-wrap justify-center gap-6 mb-16" data-aos="fade-up" data-aos-duration="1000">
+        <div className="flex flex-wrap justify-center gap-6 mb-16 animate-zoomIn" data-aos="fade-up" data-aos-duration="1000">
           <button 
             onClick={() => setFilter('all')}
-            className={`px-6 py-2 rounded-lg font-medium transition-all duration-300 hover:scale-105 transform ${
+            className={`px-6 py-2 rounded-lg font-medium transition-all duration-500 hover:scale-110 transform relative overflow-hidden group ${
               filter === 'all' 
-                ? 'bg-primary-600 text-white shadow-md shadow-primary-600/30' 
-                : 'bg-white border-2 border-neutral-200 text-neutral-700 hover:border-primary-600 hover:text-primary-600 hover:bg-primary-50'
+                ? 'bg-gradient-to-r from-primary-600 to-accent-600 text-white shadow-2xl shadow-primary-600/50 scale-105 animate-pulse' 
+                : 'bg-white border-2 border-neutral-200 text-neutral-700 hover:border-primary-600 hover:text-primary-600 hover:bg-primary-50 hover:shadow-xl'
             }`}
           >
-            All Projects
+            <span className="relative z-10">All Projects</span>
+            {filter === 'all' && <span className="absolute inset-0 bg-gradient-to-r from-accent-600 to-primary-600 opacity-50 animate-shimmer"></span>}
           </button>
           <button 
             onClick={() => setFilter('coding')}
-            className={`px-6 py-2 rounded-lg font-medium transition-all duration-300 hover:scale-105 transform ${
+            className={`px-6 py-2 rounded-lg font-medium transition-all duration-500 hover:scale-110 transform relative overflow-hidden group ${
               filter === 'coding' 
-                ? 'bg-primary-600 text-white shadow-md shadow-primary-600/30' 
-                : 'bg-white border-2 border-neutral-200 text-neutral-700 hover:border-primary-600 hover:text-primary-600 hover:bg-primary-50'
+                ? 'bg-gradient-to-r from-primary-600 to-accent-600 text-white shadow-2xl shadow-primary-600/50 scale-105 animate-pulse' 
+                : 'bg-white border-2 border-neutral-200 text-neutral-700 hover:border-primary-600 hover:text-primary-600 hover:bg-primary-50 hover:shadow-xl'
             }`}
           >
-            Coding
+            <span className="relative z-10">Coding</span>
+            {filter === 'coding' && <span className="absolute inset-0 bg-gradient-to-r from-accent-600 to-primary-600 opacity-50 animate-shimmer"></span>}
           </button>
           <button 
             onClick={() => setFilter('design')}
-            className={`px-6 py-2 rounded-lg font-medium transition-all duration-300 hover:scale-105 transform ${
+            className={`px-6 py-2 rounded-lg font-medium transition-all duration-500 hover:scale-110 transform relative overflow-hidden group ${
               filter === 'design' 
-                ? 'bg-primary-600 text-white shadow-md shadow-primary-600/30' 
-                : 'bg-white border-2 border-neutral-200 text-neutral-700 hover:border-purple-600 hover:text-purple-600 hover:bg-purple-50'
+                ? 'bg-gradient-to-r from-purple-600 to-pink-600 text-white shadow-2xl shadow-purple-600/50 scale-105 animate-pulse' 
+                : 'bg-white border-2 border-neutral-200 text-neutral-700 hover:border-purple-600 hover:text-purple-600 hover:bg-purple-50 hover:shadow-xl'
             }`}
           >
-            UI/UX Design
+            <span className="relative z-10">UI/UX Design</span>
+            {filter === 'design' && <span className="absolute inset-0 bg-gradient-to-r from-pink-600 to-purple-600 opacity-50 animate-shimmer"></span>}
           </button>
         </div>
 
@@ -275,50 +287,59 @@ export default function Projects() {
           {filteredProjects.map((project, index) => (
             <div 
               key={project.name}
-              className="project-card bg-white rounded-2xl overflow-hidden shadow-lg hover-lift border-2 border-neutral-200 hover:border-primary-300 transition-all duration-500 group"
+              className="project-card bg-white rounded-2xl overflow-hidden shadow-lg hover-lift border-2 border-neutral-200 hover:border-primary-300 transition-all duration-500 group relative animate-zoomIn"
               data-aos="fade-up"
               data-aos-duration="1000"
               data-aos-delay={100 + (index % 3) * 50}
             >
+              {/* Animated Glow Effect */}
+              <div className="absolute -inset-0.5 bg-gradient-to-r from-primary-500 via-accent-500 to-primary-500 rounded-2xl opacity-0 group-hover:opacity-20 blur transition-opacity duration-500"></div>
+              
               <div className={`project-image h-48 bg-gradient-to-br ${project.gradient} relative overflow-hidden`}>
-                <span className="iconify text-white text-6xl group-hover:scale-125 transition-transform duration-500" data-icon={project.icon}></span>
-                {/* Overlay on hover */}
-                <div className="absolute inset-0 bg-black/20 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                <span className="iconify text-white text-6xl group-hover:scale-150 group-hover:rotate-12 transition-all duration-500 relative z-10" data-icon={project.icon}></span>
+                {/* Overlay on hover with Animation */}
+                <div className="absolute inset-0 bg-black/30 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                {/* Animated Shine Effect */}
+                <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/30 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-1000"></div>
+                {/* Floating Particles */}
+                <div className="absolute top-4 right-4 w-2 h-2 bg-white rounded-full opacity-0 group-hover:opacity-100 animate-ping"></div>
+                <div className="absolute bottom-4 left-4 w-1.5 h-1.5 bg-white rounded-full opacity-0 group-hover:opacity-100 animate-ping" style={{animationDelay: '0.3s'}}></div>
               </div>
-              <div className="p-6">
+              <div className="p-6 relative z-10">
                 <div className="flex items-center justify-between mb-3">
-                  <span className={`px-3 py-1 ${project.badgeBg} ${project.badgeText} rounded-full text-xs font-semibold group-hover:scale-110 transition-transform`}>
+                  <span className={`px-3 py-1 ${project.badgeBg} ${project.badgeText} rounded-full text-xs font-semibold group-hover:scale-110 transition-all duration-300 animate-pulse`}>
                     {project.badge}
                   </span>
                   {project.category === 'design' ? (
-                    <i className="fab fa-figma text-neutral-400 text-xl group-hover:text-purple-600 group-hover:scale-125 transition-all duration-300"></i>
+                    <i className="fab fa-figma text-neutral-400 text-xl group-hover:text-purple-600 group-hover:scale-150 group-hover:rotate-[360deg] transition-all duration-500"></i>
                   ) : (
-                    <span className="iconify text-neutral-400 text-xl group-hover:text-primary-600 group-hover:scale-125 transition-all duration-300" data-icon="mdi:code-tags"></span>
+                    <span className="iconify text-neutral-400 text-xl group-hover:text-primary-600 group-hover:scale-150 group-hover:rotate-[360deg] transition-all duration-500" data-icon="mdi:code-tags"></span>
                   )}
                 </div>
-                <h3 className="text-xl font-bold mb-2 group-hover:text-primary-600 transition-colors">{project.name}</h3>
-                <p className="text-neutral-600 mb-4 text-sm">{project.description}</p>
-                <ul className="info-list text-sm text-neutral-600 mb-4">
+                <h3 className="text-xl font-bold mb-2 text-neutral-900 group-hover:text-primary-600 transition-colors duration-300 group-hover:translate-x-1">{project.name}</h3>
+                <p className="text-neutral-800 mb-4 text-sm font-medium group-hover:text-neutral-900 transition-colors">{project.description}</p>
+                <ul className="info-list text-sm text-neutral-800 font-medium mb-4">
                   {project.features.map((feature, idx) => (
-                    <li key={idx} className="group-hover:translate-x-1 transition-transform duration-300">{feature}</li>
+                    <li key={idx} className="group-hover:translate-x-2 transition-transform duration-300" style={{transitionDelay: `${idx * 50}ms`}}>{feature}</li>
                   ))}
                 </ul>
                 <div className="flex flex-wrap gap-2 mb-4">
                   {project.tags.map((tag, idx) => (
-                    <span key={idx} className="px-3 py-1 bg-neutral-100 text-neutral-700 rounded-full text-xs hover:bg-primary-100 hover:text-primary-700 transition-colors">
+                    <span key={idx} className="px-3 py-1 bg-neutral-100 text-neutral-700 rounded-full text-xs hover:bg-primary-100 hover:text-primary-700 transition-all duration-300 hover:scale-110 cursor-pointer">
                       {tag}
                     </span>
                   ))}
                 </div>
-                {/* See Project Button */}
+                {/* See Project Button with Enhanced Animation */}
                 <a 
                   href={project.link}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="btn-hover-glow w-full flex items-center justify-center gap-2 px-4 py-3 bg-gradient-to-r from-primary-600 to-accent-600 text-white rounded-lg font-medium hover:shadow-xl hover:shadow-primary-600/30 hover:scale-105 transition-all duration-300 group/btn"
+                  className="btn-hover-glow w-full flex items-center justify-center gap-2 px-4 py-3 bg-gradient-to-r from-primary-600 to-accent-600 text-white rounded-lg font-medium hover:shadow-2xl hover:shadow-primary-600/50 hover:scale-105 transition-all duration-300 group/btn relative overflow-hidden"
                 >
-                  <span>See Project</span>
-                  <span className="iconify text-lg group-hover/btn:translate-x-1 transition-transform" data-icon="mdi:arrow-right"></span>
+                  <span className="relative z-10">See Project</span>
+                  <span className="iconify text-lg group-hover/btn:translate-x-2 transition-transform relative z-10" data-icon="mdi:arrow-right"></span>
+                  <span className="absolute inset-0 bg-gradient-to-r from-accent-600 to-pink-600 opacity-0 group-hover/btn:opacity-100 transition-opacity duration-300"></span>
                 </a>
               </div>
             </div>

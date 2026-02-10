@@ -158,10 +158,14 @@ export default function About() {
 
           {/* Right Side - Content */}
           <div className="order-1 lg:order-2 space-y-6" data-aos="fade-left" data-aos-duration="1000">
-            <div data-aos="fade-up" data-aos-delay="200">
-              <span className="text-primary-600 font-mono font-semibold text-xs tracking-wider uppercase bg-primary-100 px-4 py-2 rounded-full inline-block">About Me</span>
+            <div className="text-center lg:text-left" data-aos="fade-up" data-aos-delay="200">
+              <div className="inline-block animate-float mb-4">
+                <span className="text-primary-600 font-mono font-semibold text-sm tracking-wider uppercase bg-primary-100 px-6 py-2 rounded-full hover:scale-110 transition-all duration-300 animate-pulse">
+                  About Me
+                </span>
+              </div>
               <h2 className="text-3xl lg:text-4xl font-bold mt-3 mb-4 text-neutral-900">
-                Passionate About <span className="gradient-text">Creating</span>
+                <span className="gradient-text">Passionate About Creating</span>
               </h2>
             </div>
 

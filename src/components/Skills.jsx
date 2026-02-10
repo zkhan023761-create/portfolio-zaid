@@ -156,7 +156,7 @@ export default function Skills() {
             </span>
           </div>
           <h2 className="text-4xl lg:text-6xl font-bold mt-2 mb-6 text-neutral-900 animate-fadeInUp">
-            Skills & <span className="gradient-text animate-glow">Technologies</span>
+            Skills & <span className="gradient-text ">Technologies</span>
           </h2>
           <p className="text-neutral-800 text-lg max-w-2xl mx-auto font-medium animate-fadeInUp stagger-1">
             A comprehensive toolkit combining modern development frameworks with advanced design capabilities

@@ -29,15 +29,16 @@ export default function Certifications() {
       <div className="absolute bottom-1/4 right-1/3 w-2 h-2 bg-accent-400 rounded-full animate-ping opacity-30" style={{animationDelay: '1s'}}></div>
       
       <div className="max-w-7xl mx-auto relative z-10">
-        <div className="text-center mb-12 animate-slideDown" data-aos="fade-up" data-aos-duration="1000">
-          <span className="text-primary-600 font-mono font-semibold text-xs tracking-wider uppercase bg-primary-100 px-4 py-2 rounded-full inline-block hover:scale-110 transition-all duration-300 animate-pulse">Achievements</span><br></br><br></br>
-          <h2 className="text-3xl lg:text-4xl font-bold mt-3 mb-3 text-neutral-900 animate-fadeInUp relative inline-block">
-            <span className="gradient-text animate-glow relative">
-              Certifications
-              <span className="absolute -inset-2 bg-gradient-to-r from-primary-500/10 to-accent-500/10 blur-2xl animate-pulse"></span>
+        <div className="text-center" data-aos="fade-up" data-aos-duration="1000">
+          <div className="inline-block animate-float mb-4">
+            <span className="text-primary-600 font-mono font-semibold text-sm tracking-wider uppercase bg-primary-100 px-6 py-2 rounded-full hover:scale-110 transition-all duration-300 animate-pulse">
+              Achievements
             </span>
+          </div>
+          <h2 className="text-3xl lg:text-4xl font-bold mt-3 mb-3 text-neutral-900">
+            <span className="gradient-text">Certifications</span>
           </h2>
-          <p className="text-neutral-800 text-base max-w-2xl mx-auto font-medium animate-fadeInUp stagger-1">
+          <p className="text-neutral-800 text-base max-w-2xl mx-auto mb-12 font-medium">
             Validated skills and professional achievements
           </p>
         </div>
