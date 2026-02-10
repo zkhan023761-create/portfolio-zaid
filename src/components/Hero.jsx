@@ -83,7 +83,7 @@ export default function Hero() {
           </div>
 
           {/* Right Content - Photo & Info */}
-          <div className="hidden lg:block" data-aos="fade-left" data-aos-duration="1000" data-aos-delay="200">
+          <div className="sm:w-fit h-fit lg:block" data-aos="fade-left" data-aos-duration="1000" data-aos-delay="200">
             <div className="flex-row justify-center">
               {/* Profile Photo Card with Enhanced Animations */}
               <div className="bg-white rounded-3xl p-8 shadow-2xl transform rotate-3 hover:rotate-0 transition-all duration-500 hover-lift hover:shadow-primary-500/30 animate-zoomIn relative group">
