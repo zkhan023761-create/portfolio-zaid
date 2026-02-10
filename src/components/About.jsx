@@ -98,57 +98,57 @@ export default function About() {
             <div className="relative h-[400px]" data-aos="fade-up" data-aos-delay="200">
               <div className="bg-gradient-to-br from-purple-500 to-pink-500 rounded-3xl p-1 hover:shadow-2xl transition-all duration-500 group h-full">
                 <div className="bg-white rounded-3xl p-6 h-full flex flex-col">
-                  <h3 className="font-bold text-lg mb-4 text-neutral-900 flex items-center gap-2 group-hover:scale-105 transition-transform">
+                  <h3 className="font-bold text-lg mb-5 text-neutral-900 flex items-center gap-2 group-hover:scale-105 transition-transform flex-shrink-0">
                     <span className="w-1.5 h-6 bg-gradient-to-b from-purple-500 to-pink-500 rounded-full group-hover:h-8 transition-all duration-300"></span>
                     Core Competencies
                   </h3>
-                  <div className="grid grid-cols-2 gap-3 flex-1 content-start">
-                    <div className="p-3 bg-gradient-to-br from-primary-50 to-primary-100 rounded-xl hover:from-primary-100 hover:to-primary-200 transition-all duration-300 cursor-pointer group/comp border-2 border-transparent hover:border-primary-300 hover:scale-105 hover:-translate-y-1">
-                      <div className="flex items-center gap-2 mb-1">
-                        <span className="iconify text-blue-500 text-lg group-hover/comp:scale-125 group-hover/comp:rotate-12 transition-all duration-300" data-icon="mdi:react"></span>
-                        <p className="font-bold text-xs text-neutral-900">React & Next.js</p>
+                  <div className="grid grid-cols-2 gap-4 flex-1">
+                    <div className="flex flex-col justify-center p-4 bg-gradient-to-br from-primary-50 to-primary-100 rounded-xl hover:from-primary-100 hover:to-primary-200 transition-all duration-300 cursor-pointer group/comp border-2 border-transparent hover:border-primary-300 hover:scale-105 hover:-translate-y-1">
+                      <div className="flex items-center gap-2 mb-2">
+                        <span className="iconify text-blue-500 text-xl group-hover/comp:scale-125 group-hover/comp:rotate-12 transition-all duration-300" data-icon="mdi:react"></span>
+                        <p className="font-bold text-sm text-neutral-900">React & Next.js</p>
                       </div>
-                      <p className="text-[10px] text-neutral-700">Frontend Frameworks</p>
+                      <p className="text-xs text-neutral-700">Frontend Frameworks</p>
                     </div>
                     
-                    <div className="p-3 bg-gradient-to-br from-green-50 to-green-100 rounded-xl hover:from-green-100 hover:to-green-200 transition-all duration-300 cursor-pointer group/comp border-2 border-transparent hover:border-green-300 hover:scale-105 hover:-translate-y-1">
-                      <div className="flex items-center gap-2 mb-1">
-                        <span className="iconify text-green-600 text-lg group-hover/comp:scale-125 group-hover/comp:rotate-12 transition-all duration-300" data-icon="mdi:nodejs"></span>
-                        <p className="font-bold text-xs text-neutral-900">Node & Express</p>
+                    <div className="flex flex-col justify-center p-4 bg-gradient-to-br from-green-50 to-green-100 rounded-xl hover:from-green-100 hover:to-green-200 transition-all duration-300 cursor-pointer group/comp border-2 border-transparent hover:border-green-300 hover:scale-105 hover:-translate-y-1">
+                      <div className="flex items-center gap-2 mb-2">
+                        <span className="iconify text-green-600 text-xl group-hover/comp:scale-125 group-hover/comp:rotate-12 transition-all duration-300" data-icon="mdi:nodejs"></span>
+                        <p className="font-bold text-sm text-neutral-900">Node & Express</p>
                       </div>
-                      <p className="text-[10px] text-neutral-700">Backend Development</p>
+                      <p className="text-xs text-neutral-700">Backend Development</p>
                     </div>
                     
-                    <div className="p-3 bg-gradient-to-br from-yellow-50 to-yellow-100 rounded-xl hover:from-yellow-100 hover:to-yellow-200 transition-all duration-300 cursor-pointer group/comp border-2 border-transparent hover:border-yellow-300 hover:scale-105 hover:-translate-y-1">
-                      <div className="flex items-center gap-2 mb-1">
-                        <span className="iconify text-yellow-600 text-lg group-hover/comp:scale-125 group-hover/comp:rotate-12 transition-all duration-300" data-icon="mdi:language-javascript"></span>
-                        <p className="font-bold text-xs text-neutral-900">JavaScript</p>
+                    <div className="flex flex-col justify-center p-4 bg-gradient-to-br from-yellow-50 to-yellow-100 rounded-xl hover:from-yellow-100 hover:to-yellow-200 transition-all duration-300 cursor-pointer group/comp border-2 border-transparent hover:border-yellow-300 hover:scale-105 hover:-translate-y-1">
+                      <div className="flex items-center gap-2 mb-2">
+                        <span className="iconify text-yellow-600 text-xl group-hover/comp:scale-125 group-hover/comp:rotate-12 transition-all duration-300" data-icon="mdi:language-javascript"></span>
+                        <p className="font-bold text-sm text-neutral-900">JavaScript</p>
                       </div>
-                      <p className="text-[10px] text-neutral-700">Programming Language</p>
+                      <p className="text-xs text-neutral-700">Programming Language</p>
                     </div>
                     
-                    <div className="p-3 bg-gradient-to-br from-cyan-50 to-cyan-100 rounded-xl hover:from-cyan-100 hover:to-cyan-200 transition-all duration-300 cursor-pointer group/comp border-2 border-transparent hover:border-cyan-300 hover:scale-105 hover:-translate-y-1">
-                      <div className="flex items-center gap-2 mb-1">
-                        <span className="iconify text-cyan-600 text-lg group-hover/comp:scale-125 group-hover/comp:rotate-12 transition-all duration-300" data-icon="mdi:tailwind"></span>
-                        <p className="font-bold text-xs text-neutral-900">Tailwind CSS</p>
+                    <div className="flex flex-col justify-center p-4 bg-gradient-to-br from-cyan-50 to-cyan-100 rounded-xl hover:from-cyan-100 hover:to-cyan-200 transition-all duration-300 cursor-pointer group/comp border-2 border-transparent hover:border-cyan-300 hover:scale-105 hover:-translate-y-1">
+                      <div className="flex items-center gap-2 mb-2">
+                        <span className="iconify text-cyan-600 text-xl group-hover/comp:scale-125 group-hover/comp:rotate-12 transition-all duration-300" data-icon="mdi:tailwind"></span>
+                        <p className="font-bold text-sm text-neutral-900">Tailwind CSS</p>
                       </div>
-                      <p className="text-[10px] text-neutral-700">Styling Framework</p>
+                      <p className="text-xs text-neutral-700">Styling Framework</p>
                     </div>
                     
-                    <div className="p-3 bg-gradient-to-br from-purple-50 to-purple-100 rounded-xl hover:from-purple-100 hover:to-purple-200 transition-all duration-300 cursor-pointer group/comp border-2 border-transparent hover:border-purple-300 hover:scale-105 hover:-translate-y-1">
-                      <div className="flex items-center gap-2 mb-1">
-                        <i className="fab fa-figma text-purple-600 text-lg group-hover/comp:scale-125 group-hover/comp:rotate-12 transition-all duration-300"></i>
-                        <p className="font-bold text-xs text-neutral-900">Figma</p>
+                    <div className="flex flex-col justify-center p-4 bg-gradient-to-br from-purple-50 to-purple-100 rounded-xl hover:from-purple-100 hover:to-purple-200 transition-all duration-300 cursor-pointer group/comp border-2 border-transparent hover:border-purple-300 hover:scale-105 hover:-translate-y-1">
+                      <div className="flex items-center gap-2 mb-2">
+                        <i className="fab fa-figma text-purple-600 text-xl group-hover/comp:scale-125 group-hover/comp:rotate-12 transition-all duration-300"></i>
+                        <p className="font-bold text-sm text-neutral-900">Figma</p>
                       </div>
-                      <p className="text-[10px] text-neutral-700">UI/UX Design</p>
+                      <p className="text-xs text-neutral-700">UI/UX Design</p>
                     </div>
                     
-                    <div className="p-3 bg-gradient-to-br from-indigo-50 to-indigo-100 rounded-xl hover:from-indigo-100 hover:to-indigo-200 transition-all duration-300 cursor-pointer group/comp border-2 border-transparent hover:border-indigo-300 hover:scale-105 hover:-translate-y-1">
-                      <div className="flex items-center gap-2 mb-1">
-                        <span className="iconify text-indigo-600 text-lg group-hover/comp:scale-125 group-hover/comp:rotate-12 transition-all duration-300" data-icon="mdi:language-c"></span>
-                        <p className="font-bold text-xs text-neutral-900">C Programming</p>
+                    <div className="flex flex-col justify-center p-4 bg-gradient-to-br from-indigo-50 to-indigo-100 rounded-xl hover:from-indigo-100 hover:to-indigo-200 transition-all duration-300 cursor-pointer group/comp border-2 border-transparent hover:border-indigo-300 hover:scale-105 hover:-translate-y-1">
+                      <div className="flex items-center gap-2 mb-2">
+                        <span className="iconify text-indigo-600 text-xl group-hover/comp:scale-125 group-hover/comp:rotate-12 transition-all duration-300" data-icon="mdi:language-c"></span>
+                        <p className="font-bold text-sm text-neutral-900">C Programming</p>
                       </div>
-                      <p className="text-[10px] text-neutral-700">Core Programming</p>
+                      <p className="text-xs text-neutral-700">Core Programming</p>
                     </div>
                   </div>
                 </div>
