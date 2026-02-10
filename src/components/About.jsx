@@ -5,7 +5,7 @@ export default function About() {
       <div className="absolute top-0 right-0 w-72 h-72 bg-accent-200 rounded-full mix-blend-multiply filter blur-3xl opacity-10 animate-float"></div>
       
       <div className="max-w-7xl mx-auto relative z-10">
-        <div className="grid lg:grid-cols-2 gap-12 items-start">
+        <div className="grid lg:grid-cols-2 gap-8 lg:gap-16 items-start">
           {/* Left Side - Info Cards */}
           <div className="order-2 lg:order-1 space-y-8" data-aos="fade-right" data-aos-duration="1000">
             {/* Education Cards Container */}
