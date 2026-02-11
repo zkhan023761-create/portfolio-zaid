@@ -14,7 +14,11 @@ const projects = [
     badge: 'UI/UX',
     badgeBg: 'bg-purple-100',
     badgeText: 'text-purple-700',
-    link: 'https://www.figma.com/design/rfiuPmW8GxbPksQYOuBe3q/CARHARTT?node-id=0-1&t=MGbptlkmYnr1nyDt-1'
+    link: 'https://www.figma.com/design/rfiuPmW8GxbPksQYOuBe3q/CARHARTT?node-id=0-1&t=MGbptlkmYnr1nyDt-1',
+    hasGallery: true,
+    galleryImages: [
+      '/rebbus.png'
+    ]
   },
   {
     name: 'BookMyShow Clone',
@@ -28,7 +32,11 @@ const projects = [
     badge: 'CODING',
     badgeBg: 'bg-primary-100',
     badgeText: 'text-primary-700',
-    link: 'https://github.com/zkhan023761-create/BookMyShow-Clone'
+    link: 'https://github.com/zkhan023761-create/BookMyShow-Clone',
+    hasGallery: true,
+    galleryImages: [
+      '/book-my-show.png'
+    ]
   },
   {
     name: 'Printify Clone',
@@ -42,7 +50,11 @@ const projects = [
     badge: 'CODING',
     badgeBg: 'bg-primary-100',
     badgeText: 'text-primary-700',
-    link: 'https://github.com/zkhan023761-create/Printify-Clone'
+    link: 'https://github.com/zkhan023761-create/Printify-Clone',
+    hasGallery: true,
+    galleryImages: [
+      '/printify.png'
+    ]
   },
   {
     name: 'Wonderlust Travels',
@@ -56,7 +68,11 @@ const projects = [
     badge: 'CODING',
     badgeBg: 'bg-primary-100',
     badgeText: 'text-primary-700',
-    link: 'https://github.com/zkhan023761-create/Wonderlust-Travels-clone'
+    link: 'https://github.com/zkhan023761-create/Wonderlust-Travels-clone',
+    hasGallery: true,
+    galleryImages: [
+      '/wonderlust-travels.png'
+    ]
   },
   {
     name: 'Admin Dashboard',
@@ -70,7 +86,11 @@ const projects = [
     badge: 'CODING',
     badgeBg: 'bg-primary-100',
     badgeText: 'text-primary-700',
-    link: 'https://github.com/zkhan023761-create/admin-dashboard'
+    link: 'https://github.com/zkhan023761-create/admin-dashboard',
+    hasGallery: true,
+    galleryImages: [
+      '/admin-dashboard.png'
+    ]
   },
   {
     name: 'ChatBot Interface',
@@ -84,7 +104,11 @@ const projects = [
     badge: 'CODING',
     badgeBg: 'bg-primary-100',
     badgeText: 'text-primary-700',
-    link: 'https://github.com/zkhan023761-create/chatbot'
+    link: 'https://github.com/zkhan023761-create/chatbot',
+    hasGallery: true,
+    galleryImages: [
+      '/chatbot.png'
+    ]
   },
   {
     name: 'Quiz Application',
@@ -98,7 +122,11 @@ const projects = [
     badge: 'CODING',
     badgeBg: 'bg-primary-100',
     badgeText: 'text-primary-700',
-    link: 'https://github.com/zkhan023761-create/Quiz'
+    link: 'https://github.com/zkhan023761-create/Quiz',
+    hasGallery: true,
+    galleryImages: [
+      '/quiz.png'
+    ]
   },
   {
     name: 'Tailkits Clone',
@@ -112,7 +140,11 @@ const projects = [
     badge: 'CODING',
     badgeBg: 'bg-primary-100',
     badgeText: 'text-primary-700',
-    link: 'https://github.com/zkhan023761-create/tailkits-clone'
+    link: 'https://github.com/zkhan023761-create/tailkits-clone',
+    hasGallery: true,
+    galleryImages: [
+      '/tailkits.png'
+    ]
   },
   {
     name: 'Subscription Plan',
@@ -126,7 +158,11 @@ const projects = [
     badge: 'CODING',
     badgeBg: 'bg-primary-100',
     badgeText: 'text-primary-700',
-    link: 'https://github.com/zkhan023761-create/subscription-plan'
+    link: 'https://github.com/zkhan023761-create/subscription-plan',
+    hasGallery: true,
+    galleryImages: [
+      '/subscription.png'
+    ]
   },
   {
     name: 'JioMart Clone Application',
@@ -140,7 +176,11 @@ const projects = [
     badge: 'UI/UX',
     badgeBg: 'bg-purple-100',
     badgeText: 'text-purple-700',
-    link: 'https://www.figma.com/design/rfiuPmW8GxbPksQYOuBe3q/CARHARTT?node-id=0-1&t=MGbptlkmYnr1nyDt-1'
+    link: 'https://www.figma.com/design/rfiuPmW8GxbPksQYOuBe3q/CARHARTT?node-id=0-1&t=MGbptlkmYnr1nyDt-1',
+    hasGallery: true,
+    galleryImages: [
+      '/jio-mart.png'
+    ]
   },
   {
     name: 'Gozoop Website Clone',
@@ -154,7 +194,11 @@ const projects = [
     badge: 'UI/UX',
     badgeBg: 'bg-purple-100',
     badgeText: 'text-purple-700',
-    link: 'https://www.figma.com/design/rfiuPmW8GxbPksQYOuBe3q/CARHARTT?node-id=0-1&t=MGbptlkmYnr1nyDt-1'
+    link: 'https://www.figma.com/design/rfiuPmW8GxbPksQYOuBe3q/CARHARTT?node-id=0-1&t=MGbptlkmYnr1nyDt-1',
+    hasGallery: true,
+    galleryImages: [
+      '/Gozzop.png'
+    ]
   },
   {
     name: 'Snapdeal Website Clone',
@@ -168,7 +212,11 @@ const projects = [
     badge: 'UI/UX',
     badgeBg: 'bg-purple-100',
     badgeText: 'text-purple-700',
-    link: 'https://www.figma.com/design/rfiuPmW8GxbPksQYOuBe3q/CARHARTT?node-id=0-1&t=MGbptlkmYnr1nyDt-1'
+    link: 'https://www.figma.com/design/rfiuPmW8GxbPksQYOuBe3q/CARHARTT?node-id=0-1&t=MGbptlkmYnr1nyDt-1',
+    hasGallery: true,
+    galleryImages: [
+      '/snapdeal.png'
+    ]
   },
   {
     name: 'CoCo Cola Website Clone',
@@ -182,7 +230,11 @@ const projects = [
     badge: 'UI/UX',
     badgeBg: 'bg-purple-100',
     badgeText: 'text-purple-700',
-    link: 'https://www.figma.com/design/rfiuPmW8GxbPksQYOuBe3q/CARHARTT?node-id=0-1&t=MGbptlkmYnr1nyDt-1'
+    link: 'https://www.figma.com/design/rfiuPmW8GxbPksQYOuBe3q/CARHARTT?node-id=0-1&t=MGbptlkmYnr1nyDt-1',
+    hasGallery: true,
+    galleryImages: [
+      '/coco-cola.png'
+    ]
   },
   {
     name: 'Tours & Travels Redesign',
@@ -196,7 +248,11 @@ const projects = [
     badge: 'UI/UX',
     badgeBg: 'bg-purple-100',
     badgeText: 'text-purple-700',
-    link: 'https://www.figma.com/design/rfiuPmW8GxbPksQYOuBe3q/CARHARTT?node-id=0-1&t=MGbptlkmYnr1nyDt-1'
+    link: 'https://www.figma.com/design/rfiuPmW8GxbPksQYOuBe3q/CARHARTT?node-id=0-1&t=MGbptlkmYnr1nyDt-1',
+    hasGallery: true,
+    galleryImages: [
+      '/travels.png'
+    ]
   },
   {
     name: 'School & Campus Redesign',
@@ -210,7 +266,12 @@ const projects = [
     badge: 'UI/UX',
     badgeBg: 'bg-purple-100',
     badgeText: 'text-purple-700',
-    link: 'https://www.figma.com/design/rfiuPmW8GxbPksQYOuBe3q/CARHARTT?node-id=0-1&t=MGbptlkmYnr1nyDt-1'
+    link: 'https://www.figma.com/design/rfiuPmW8GxbPksQYOuBe3q/CARHARTT?node-id=0-1&t=MGbptlkmYnr1nyDt-1',
+    hasGallery: true,
+    galleryImages: [
+      '/school-admission.png',
+      '/campus-gallery.png'
+    ]
   }
 ];
 
@@ -287,18 +348,40 @@ export default function Projects() {
           {filteredProjects.map((project, index) => (
             <div 
               key={project.name}
-              className="project-card bg-white rounded-2xl overflow-hidden shadow-lg hover-lift border-2 border-neutral-200 hover:border-primary-300 transition-all duration-500 group relative animate-zoomIn"
+              className="project-card bg-white rounded-2xl overflow-hidden shadow-lg hover-lift border-2 border-neutral-200 hover:border-primary-300 transition-all duration-500 group relative animate-zoomIn hover:shadow-2xl hover:shadow-primary-500/20"
               data-aos="fade-up"
               data-aos-duration="1000"
               data-aos-delay={100 + (index % 3) * 50}
             >
               {/* Animated Glow Effect */}
-              <div className="absolute -inset-0.5 bg-gradient-to-r from-primary-500 via-accent-500 to-primary-500 rounded-2xl opacity-0 group-hover:opacity-20 blur transition-opacity duration-500"></div>
+              <div className="absolute -inset-0.5 bg-gradient-to-r from-primary-500 via-accent-500 to-primary-500 rounded-2xl opacity-0 group-hover:opacity-20 blur transition-opacity duration-500 animate-pulse"></div>
+              
+              {/* Animated Corner Accents */}
+              <div className="absolute top-0 left-0 w-20 h-20 bg-gradient-to-br from-primary-400/20 to-transparent rounded-br-full opacity-0 group-hover:opacity-100 transition-opacity duration-500 animate-pulse"></div>
+              <div className="absolute bottom-0 right-0 w-20 h-20 bg-gradient-to-tl from-accent-400/20 to-transparent rounded-tl-full opacity-0 group-hover:opacity-100 transition-opacity duration-500 animate-pulse" style={{animationDelay: '0.2s'}}></div>
               
               <div className={`project-image h-48 bg-gradient-to-br ${project.gradient} relative overflow-hidden`}>
-                <span className="iconify text-white text-6xl group-hover:scale-150 group-hover:rotate-12 transition-all duration-500 relative z-10" data-icon={project.icon}></span>
+                {project.hasGallery ? (
+                  <div className={`absolute inset-0 grid ${project.galleryImages.length === 1 ? 'grid-cols-1' : 'grid-cols-1 md:grid-cols-2'} gap-0`}>
+                    {project.galleryImages.map((imgSrc, idx) => (
+                      <div key={idx} className={`relative overflow-hidden ${project.galleryImages.length === 1 ? 'h-full' : 'h-24 md:h-full'} bg-white`}>
+                        <img 
+                          src={imgSrc} 
+                          alt={`${project.name} - ${idx === 0 ? 'School Admissions' : 'Campus Gallery'}`}
+                          className="w-full h-full object-contain group-hover:scale-105 transition-transform duration-700"
+                          onError={(e) => {
+                            e.target.style.display = 'none';
+                            e.target.parentElement.innerHTML = `<div class="w-full h-full flex items-center justify-center bg-gradient-to-br ${project.gradient}"><span class="iconify text-white text-3xl" data-icon="${project.icon}"></span></div>`;
+                          }}
+                        />
+                      </div>
+                    ))}
+                  </div>
+                ) : (
+                  <span className="iconify text-white text-6xl group-hover:scale-150 group-hover:rotate-12 transition-all duration-500 relative z-10" data-icon={project.icon}></span>
+                )}
                 {/* Overlay on hover with Animation */}
-                <div className="absolute inset-0 bg-black/30 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                <div className="absolute inset-0 bg-black/20 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
                 {/* Animated Shine Effect */}
                 <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/30 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-1000"></div>
                 {/* Floating Particles */}
@@ -307,25 +390,28 @@ export default function Projects() {
               </div>
               <div className="p-6 relative z-10">
                 <div className="flex items-center justify-between mb-3">
-                  <span className={`px-3 py-1 ${project.badgeBg} ${project.badgeText} rounded-full text-xs font-semibold group-hover:scale-110 transition-all duration-300 animate-pulse`}>
+                  <span className={`px-3 py-1 ${project.badgeBg} ${project.badgeText} rounded-full text-xs font-semibold group-hover:scale-110 transition-all duration-300 animate-pulse group-hover:animate-bounce`}>
                     {project.badge}
                   </span>
                   {project.category === 'design' ? (
-                    <i className="fab fa-figma text-neutral-400 text-xl group-hover:text-purple-600 group-hover:scale-150 group-hover:rotate-[360deg] transition-all duration-500"></i>
+                    <i className="fab fa-figma text-neutral-400 text-xl group-hover:text-purple-600 group-hover:scale-150 group-hover:rotate-[360deg] transition-all duration-500 animate-float"></i>
                   ) : (
-                    <span className="iconify text-neutral-400 text-xl group-hover:text-primary-600 group-hover:scale-150 group-hover:rotate-[360deg] transition-all duration-500" data-icon="mdi:code-tags"></span>
+                    <span className="iconify text-neutral-400 text-xl group-hover:text-primary-600 group-hover:scale-150 group-hover:rotate-[360deg] transition-all duration-500 animate-float" data-icon="mdi:code-tags"></span>
                   )}
                 </div>
-                <h3 className="text-xl font-bold mb-2 text-neutral-900 group-hover:text-primary-600 transition-colors duration-300 group-hover:translate-x-1">{project.name}</h3>
+                <h3 className="text-xl font-bold mb-2 text-neutral-900 group-hover:text-primary-600 transition-colors duration-300 group-hover:translate-x-1 relative">
+                  {project.name}
+                  <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-gradient-to-r from-primary-600 to-accent-600 group-hover:w-full transition-all duration-500"></span>
+                </h3>
                 <p className="text-neutral-800 mb-4 text-sm font-medium group-hover:text-neutral-900 transition-colors">{project.description}</p>
                 <ul className="info-list text-sm text-neutral-800 font-medium mb-4">
                   {project.features.map((feature, idx) => (
-                    <li key={idx} className="group-hover:translate-x-2 transition-transform duration-300" style={{transitionDelay: `${idx * 50}ms`}}>{feature}</li>
+                    <li key={idx} className="group-hover:translate-x-2 transition-transform duration-300 hover:text-primary-600" style={{transitionDelay: `${idx * 50}ms`}}>{feature}</li>
                   ))}
                 </ul>
                 <div className="flex flex-wrap gap-2 mb-4">
                   {project.tags.map((tag, idx) => (
-                    <span key={idx} className="px-3 py-1 bg-neutral-100 text-neutral-700 rounded-full text-xs hover:bg-primary-100 hover:text-primary-700 transition-all duration-300 hover:scale-110 cursor-pointer">
+                    <span key={idx} className="px-3 py-1 bg-neutral-100 text-neutral-700 rounded-full text-xs hover:bg-primary-100 hover:text-primary-700 transition-all duration-300 hover:scale-110 cursor-pointer hover:rotate-3 hover:shadow-md">
                       {tag}
                     </span>
                   ))}
@@ -335,11 +421,13 @@ export default function Projects() {
                   href={project.link}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="btn-hover-glow w-full flex items-center justify-center gap-2 px-4 py-3 bg-gradient-to-r from-primary-600 to-accent-600 text-white rounded-lg font-medium hover:shadow-2xl hover:shadow-primary-600/50 hover:scale-105 transition-all duration-300 group/btn relative overflow-hidden"
+                  className="btn-hover-glow w-full flex items-center justify-center gap-2 px-4 py-3 bg-gradient-to-r from-primary-600 to-accent-600 text-white rounded-lg font-medium hover:shadow-2xl hover:shadow-primary-600/50 hover:scale-105 transition-all duration-300 group/btn relative overflow-hidden animate-shimmer"
                 >
                   <span className="relative z-10">See Project</span>
-                  <span className="iconify text-lg group-hover/btn:translate-x-2 transition-transform relative z-10" data-icon="mdi:arrow-right"></span>
+                  <span className="iconify text-lg group-hover/btn:translate-x-2 transition-transform relative z-10 animate-bounce" data-icon="mdi:arrow-right"></span>
                   <span className="absolute inset-0 bg-gradient-to-r from-accent-600 to-pink-600 opacity-0 group-hover/btn:opacity-100 transition-opacity duration-300"></span>
+                  {/* Ripple Effect */}
+                  <span className="absolute inset-0 rounded-lg opacity-0 group-hover/btn:opacity-100 group-hover/btn:animate-ping bg-white/20"></span>
                 </a>
               </div>
             </div>
