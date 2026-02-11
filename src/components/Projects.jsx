@@ -14,7 +14,7 @@ const projects = [
     badge: 'UI/UX',
     badgeBg: 'bg-purple-100',
     badgeText: 'text-purple-700',
-    link: 'https://www.figma.com/design/rfiuPmW8GxbPksQYOuBe3q/CARHARTT?node-id=0-1&t=MGbptlkmYnr1nyDt-1',
+    link: 'https://www.figma.com/design/xVgaR3muKlLBEf0DTcGfnq/Portfolio-Project?node-id=0-1&t=sgpLUIVpfpaP3OaV-1',
     hasGallery: true,
     galleryImages: [
       '/rebbus.png'
@@ -176,7 +176,7 @@ const projects = [
     badge: 'UI/UX',
     badgeBg: 'bg-purple-100',
     badgeText: 'text-purple-700',
-    link: 'https://www.figma.com/design/rfiuPmW8GxbPksQYOuBe3q/CARHARTT?node-id=0-1&t=MGbptlkmYnr1nyDt-1',
+    link: 'https://www.figma.com/design/xVgaR3muKlLBEf0DTcGfnq/Portfolio-Project?node-id=0-1&t=sgpLUIVpfpaP3OaV-1',
     hasGallery: true,
     galleryImages: [
       '/jio-mart.png'
@@ -230,7 +230,7 @@ const projects = [
     badge: 'UI/UX',
     badgeBg: 'bg-purple-100',
     badgeText: 'text-purple-700',
-    link: 'https://www.figma.com/design/rfiuPmW8GxbPksQYOuBe3q/CARHARTT?node-id=0-1&t=MGbptlkmYnr1nyDt-1',
+    link: 'https://www.figma.com/design/xVgaR3muKlLBEf0DTcGfnq/Portfolio-Project?node-id=0-1&t=sgpLUIVpfpaP3OaV-1',
     hasGallery: true,
     galleryImages: [
       '/coco-cola.png'
@@ -248,7 +248,7 @@ const projects = [
     badge: 'UI/UX',
     badgeBg: 'bg-purple-100',
     badgeText: 'text-purple-700',
-    link: 'https://www.figma.com/design/rfiuPmW8GxbPksQYOuBe3q/CARHARTT?node-id=0-1&t=MGbptlkmYnr1nyDt-1',
+    link: 'https://www.figma.com/design/xVgaR3muKlLBEf0DTcGfnq/Portfolio-Project?node-id=0-1&t=sgpLUIVpfpaP3OaV-1',
     hasGallery: true,
     galleryImages: [
       '/travels.png'
@@ -266,7 +266,7 @@ const projects = [
     badge: 'UI/UX',
     badgeBg: 'bg-purple-100',
     badgeText: 'text-purple-700',
-    link: 'https://www.figma.com/design/rfiuPmW8GxbPksQYOuBe3q/CARHARTT?node-id=0-1&t=MGbptlkmYnr1nyDt-1',
+    link: 'https://www.figma.com/design/xVgaR3muKlLBEf0DTcGfnq/Portfolio-Project?node-id=0-1&t=sgpLUIVpfpaP3OaV-1',
     hasGallery: true,
     galleryImages: [
       '/school-admission.png',
