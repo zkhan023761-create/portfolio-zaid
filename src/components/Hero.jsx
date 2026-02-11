@@ -83,10 +83,10 @@ export default function Hero() {
           </div>
 
           {/* Right Content - Photo & Info */}
-          <div className="sm:w-fit h-fit lg:block lg:ml-auto lg:mr-0 lg:w-[480px]" data-aos="fade-left" data-aos-duration="1000" data-aos-delay="200">
-            <div className="flex-row justify-center lg:justify-end">
+          <div className="w-full max-w-md mx-auto lg:max-w-none lg:w-[480px] lg:ml-auto lg:mr-0" data-aos="fade-left" data-aos-duration="1000" data-aos-delay="200">
+            <div className="flex flex-col items-center lg:items-end">
               {/* Profile Photo Card with Enhanced Animations */}
-              <div className="bg-white rounded-3xl p-8 shadow-2xl transform rotate-3 hover:rotate-0 transition-all duration-500 hover-lift hover:shadow-primary-500/30 animate-zoomIn relative group">
+              <div className="bg-white rounded-3xl p-6 sm:p-8 shadow-2xl transform rotate-3 hover:rotate-0 transition-all duration-500 hover-lift hover:shadow-primary-500/30 animate-zoomIn relative group w-full">
                 {/* Animated Border Glow */}
                 <div className="absolute -inset-0.5 bg-gradient-to-r from-primary-500 via-accent-500 to-primary-500 rounded-3xl opacity-0 group-hover:opacity-20 blur transition-opacity duration-500 animate-pulse"></div>
                 
@@ -123,44 +123,44 @@ export default function Hero() {
                     <div className="absolute bottom-0 left-0 w-16 h-16 bg-white rounded-full blur-2xl animate-float" style={{animationDelay: '1s'}}></div>
                   </div>
                   
-                  <div className="space-y-5 relative z-10">
-                    <div className="flex items-center gap-4 hover:translate-x-3 transition-all duration-300 group/item cursor-pointer">
-                      <div className="w-14 h-14 bg-white/20 rounded-full flex items-center justify-center backdrop-blur-sm shrink-0 group-hover/item:rotate-[360deg] group-hover/item:scale-125 transition-all duration-500 shadow-lg">
-                        <span className="iconify text-2xl group-hover/item:animate-bounce" data-icon="mdi:code-braces"></span>
+                  <div className="space-y-4 sm:space-y-5 relative z-10">
+                    <div className="flex flex-col items-center text-center hover:scale-105 transition-all duration-300 group/item cursor-pointer">
+                      <div className="w-12 h-12 sm:w-14 sm:h-14 bg-white/20 rounded-full flex items-center justify-center backdrop-blur-sm shrink-0 group-hover/item:rotate-[360deg] group-hover/item:scale-125 transition-all duration-500 shadow-lg mb-3">
+                        <span className="iconify text-xl sm:text-2xl group-hover/item:animate-bounce" data-icon="mdi:code-braces"></span>
                       </div>
                       <div>
-                        <h3 className="text-xl font-bold">Frontend Developer</h3>
-                        <p className="text-sm text-primary-100">Modern Web Applications</p>
+                        <h3 className="text-lg sm:text-xl font-bold">Frontend Developer</h3>
+                        <p className="text-xs sm:text-sm text-primary-100">Modern Web Applications</p>
                       </div>
                     </div>
-                    <div className="flex items-center gap-4 hover:translate-x-3 transition-all duration-300 group/item cursor-pointer">
-                      <div className="w-14 h-14 bg-white/20 rounded-full flex items-center justify-center backdrop-blur-sm shrink-0 group-hover/item:rotate-[360deg] group-hover/item:scale-125 transition-all duration-500 shadow-lg">
-                        <i className="fab fa-figma text-2xl group-hover/item:animate-bounce"></i>
+                    <div className="flex flex-col items-center text-center hover:scale-105 transition-all duration-300 group/item cursor-pointer">
+                      <div className="w-12 h-12 sm:w-14 sm:h-14 bg-white/20 rounded-full flex items-center justify-center backdrop-blur-sm shrink-0 group-hover/item:rotate-[360deg] group-hover/item:scale-125 transition-all duration-500 shadow-lg mb-3">
+                        <i className="fab fa-figma text-xl sm:text-2xl group-hover/item:animate-bounce"></i>
                       </div>
                       <div>
-                        <h3 className="text-xl font-bold">UI/UX Designer</h3>
-                        <p className="text-sm text-primary-100">User-Centered Design</p>
+                        <h3 className="text-lg sm:text-xl font-bold">UI/UX Designer</h3>
+                        <p className="text-xs sm:text-sm text-primary-100">User-Centered Design</p>
                       </div>
                     </div>
                   </div>
                 </div>
 
                 {/* Stats with Enhanced Animations */}
-                <div className="grid grid-cols-3 gap-5 mt-8 z-10 relative" data-aos="fade-up" data-aos-delay="700">
-                  <div className="text-center p-5 bg-primary-50 rounded-xl hover:bg-primary-100 hover:scale-110 transition-all duration-300 cursor-default group relative overflow-hidden animate-zoomIn">
+                <div className="grid grid-cols-3 gap-3 sm:gap-5 mt-6 sm:mt-8 z-10 relative" data-aos="fade-up" data-aos-delay="700">
+                  <div className="text-center p-3 sm:p-5 bg-primary-50 rounded-xl hover:bg-primary-100 hover:scale-110 transition-all duration-300 cursor-default group relative overflow-hidden animate-zoomIn">
                     <div className="absolute inset-0 bg-gradient-to-br from-primary-200 to-transparent opacity-0 group-hover:opacity-50 transition-opacity"></div>
-                    <div className="text-3xl font-bold text-primary-600 group-hover:scale-125 transition-transform relative z-10 animate-heartbeat">15+</div>
-                    <div className="text-base text-neutral-900 font-semibold relative z-10">Projects</div>
+                    <div className="text-2xl sm:text-3xl font-bold text-primary-600 group-hover:scale-125 transition-transform relative z-10 animate-heartbeat">15+</div>
+                    <div className="text-sm sm:text-base text-neutral-900 font-semibold relative z-10">Projects</div>
                   </div>
-                  <div className="text-center p-5 bg-primary-50 rounded-xl hover:bg-primary-100 hover:scale-110 transition-all duration-300 cursor-default group relative overflow-hidden animate-zoomIn" style={{animationDelay: '0.1s'}}>
+                  <div className="text-center p-3 sm:p-5 bg-primary-50 rounded-xl hover:bg-primary-100 hover:scale-110 transition-all duration-300 cursor-default group relative overflow-hidden animate-zoomIn" style={{animationDelay: '0.1s'}}>
                     <div className="absolute inset-0 bg-gradient-to-br from-accent-200 to-transparent opacity-0 group-hover:opacity-50 transition-opacity"></div>
-                    <div className="text-3xl font-bold text-primary-600 group-hover:scale-125 transition-transform relative z-10 animate-heartbeat" style={{animationDelay: '0.3s'}}>9+</div>
-                    <div className="text-base text-neutral-900 font-semibold relative z-10">Skills</div>
+                    <div className="text-2xl sm:text-3xl font-bold text-primary-600 group-hover:scale-125 transition-transform relative z-10 animate-heartbeat" style={{animationDelay: '0.3s'}}>9+</div>
+                    <div className="text-sm sm:text-base text-neutral-900 font-semibold relative z-10">Skills</div>
                   </div>
-                  <div className="text-center p-5 bg-primary-50 rounded-xl hover:bg-primary-100 hover:scale-110 transition-all duration-300 cursor-default group relative overflow-hidden animate-zoomIn" style={{animationDelay: '0.2s'}}>
+                  <div className="text-center p-3 sm:p-5 bg-primary-50 rounded-xl hover:bg-primary-100 hover:scale-110 transition-all duration-300 cursor-default group relative overflow-hidden animate-zoomIn" style={{animationDelay: '0.2s'}}>
                     <div className="absolute inset-0 bg-gradient-to-br from-blue-200 to-transparent opacity-0 group-hover:opacity-50 transition-opacity"></div>
-                    <div className="text-3xl font-bold text-primary-600 group-hover:scale-125 transition-transform relative z-10 animate-heartbeat" style={{animationDelay: '0.6s'}}>100%</div>
-                    <div className="text-base text-neutral-900 font-semibold relative z-10">Passion</div>
+                    <div className="text-2xl sm:text-3xl font-bold text-primary-600 group-hover:scale-125 transition-transform relative z-10 animate-heartbeat" style={{animationDelay: '0.6s'}}>100%</div>
+                    <div className="text-sm sm:text-base text-neutral-900 font-semibold relative z-10">Passion</div>
                   </div>
                 </div>
               </div>
