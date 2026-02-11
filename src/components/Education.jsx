@@ -183,49 +183,6 @@ export default function Education() {
           <div className="w-24 h-1 bg-gradient-to-r from-primary-300 via-accent-300 to-blue-300 rounded-full animate-pulse"></div>
         </div>
 
-        {/* School & Campus Gallery Section */}
-        <div className="mt-20" data-aos="fade-up" data-aos-duration="1000" data-aos-delay="400">
-          <div className="grid md:grid-cols-2 gap-8 lg:gap-12">
-            {/* School Admissions Image */}
-            <div className="group relative overflow-hidden rounded-3xl shadow-2xl hover:shadow-primary-500/50 transition-all duration-500 hover:-translate-y-2">
-              <div className="absolute inset-0 bg-gradient-to-br from-primary-500/20 to-accent-500/20 opacity-0 group-hover:opacity-100 transition-opacity duration-500 z-10"></div>
-              <div className="relative overflow-hidden">
-                <img 
-                  src="/school-admission.jpg" 
-                  alt="School Admissions - Where Education is an Amanah" 
-                  className="w-full h-auto object-cover group-hover:scale-110 transition-transform duration-700"
-                />
-                <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
-                <div className="absolute bottom-0 left-0 right-0 p-6 text-white transform translate-y-full group-hover:translate-y-0 transition-transform duration-500">
-                  <h3 className="text-2xl font-bold mb-2">School Admissions</h3>
-                  <p className="text-sm opacity-90">Where Education is an Amanah, and Success is Eternal</p>
-                </div>
-              </div>
-              {/* Animated Border */}
-              <div className="absolute inset-0 border-4 border-primary-500 rounded-3xl opacity-0 group-hover:opacity-100 transition-opacity duration-500 animate-pulse"></div>
-            </div>
-
-            {/* Campus Gallery Image */}
-            <div className="group relative overflow-hidden rounded-3xl shadow-2xl hover:shadow-accent-500/50 transition-all duration-500 hover:-translate-y-2">
-              <div className="absolute inset-0 bg-gradient-to-br from-accent-500/20 to-pink-500/20 opacity-0 group-hover:opacity-100 transition-opacity duration-500 z-10"></div>
-              <div className="relative overflow-hidden">
-                <img 
-                  src="/campus-gallery.jpg" 
-                  alt="Campus Gallery - Explore Our Campus Journey" 
-                  className="w-full h-auto object-cover group-hover:scale-110 transition-transform duration-700"
-                />
-                <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
-                <div className="absolute bottom-0 left-0 right-0 p-6 text-white transform translate-y-full group-hover:translate-y-0 transition-transform duration-500">
-                  <h3 className="text-2xl font-bold mb-2">Campus Gallery</h3>
-                  <p className="text-sm opacity-90">Step Inside & Explore Our Campus Journey</p>
-                </div>
-              </div>
-              {/* Animated Border */}
-              <div className="absolute inset-0 border-4 border-accent-500 rounded-3xl opacity-0 group-hover:opacity-100 transition-opacity duration-500 animate-pulse"></div>
-            </div>
-          </div>
-        </div>
-
         {/* Bottom Stats */}
         <div 
           className="mt-16 grid grid-cols-2 md:grid-cols-4 gap-6 max-w-4xl mx-auto"

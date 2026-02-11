@@ -367,7 +367,7 @@ export default function Projects() {
                       <div key={idx} className={`relative overflow-hidden ${project.galleryImages.length === 1 ? 'h-full' : 'h-24 md:h-full'} bg-white`}>
                         <img 
                           src={imgSrc} 
-                          alt={`${project.name} - ${idx === 0 ? 'School Admissions' : 'Campus Gallery'}`}
+                          alt=""
                           className="w-full h-full object-contain group-hover:scale-105 transition-transform duration-700"
                           onError={(e) => {
                             e.target.style.display = 'none';
