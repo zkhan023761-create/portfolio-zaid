@@ -14,6 +14,38 @@ const certifications = [
     link: 'https://www.linkedin.com/in/zaid-khan-943376379',
     bgColor: 'bg-accent-100',
     textColor: 'text-accent-600'
+  },
+  {
+    title: 'AI Fluency: Framework & Foundations',
+    issuer: 'ANTHROPIC',
+    date: 'January 2026',
+    link: 'https://www.linkedin.com/in/zaid-khan-943376379',
+    bgColor: 'bg-primary-100',
+    textColor: 'text-primary-600'
+  },
+  {
+    title: 'Claude 101',
+    issuer: 'ANTHROPIC',
+    date: 'January 2026',
+    link: 'https://www.linkedin.com/in/zaid-khan-943376379',
+    bgColor: 'bg-accent-100',
+    textColor: 'text-accent-600'
+  },
+  {
+    title: 'AI Fluency for Students',
+    issuer: 'ANTHROPIC',
+    date: 'January 2026',
+    link: 'https://www.linkedin.com/in/zaid-khan-943376379',
+    bgColor: 'bg-primary-100',
+    textColor: 'text-primary-600'
+  },
+  {
+    title: 'AI Fluency for Nonprofits',
+    issuer: 'ANTHROPIC',
+    date: 'January 2026',
+    link: 'https://www.linkedin.com/in/zaid-khan-943376379',
+    bgColor: 'bg-accent-100',
+    textColor: 'text-accent-600'
   }
 ];
 
@@ -43,7 +75,7 @@ export default function Certifications() {
           </p>
         </div>
 
-        <div className="grid md:grid-cols-2 gap-6 max-w-5xl mx-auto">
+        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 max-w-7xl mx-auto">
           {certifications.map((cert, index) => (
             <div 
               key={cert.title}
