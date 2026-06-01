@@ -6,7 +6,7 @@ import { ScrollTrigger } from 'gsap/ScrollTrigger';
 gsap.registerPlugin(ScrollTrigger);
 
 const contactInfo = [
-  { icon: 'mdi:email', title: 'Email', value: 'zaidkhan023761@gmail.com', link: 'mailto:zaidkhan023761@gmail.com', color: 'orange' },
+  { icon: 'mdi:email', title: 'Email', value: 'zkhan023761@gmail.com', link: 'mailto:zkhan023761@gmail.com', color: 'orange' },
   { icon: 'mdi:phone', title: 'Phone', value: '+91 9082775122', link: 'tel:+919082775122', color: 'blue' },
   { icon: 'mdi:linkedin', title: 'LinkedIn', value: 'Connect on LinkedIn', link: 'https://www.linkedin.com/in/zaid-khan-943376379', color: 'cyan' },
   { icon: 'mdi:whatsapp', title: 'WhatsApp', value: 'Chat on WhatsApp', link: 'https://wa.me/919082775122', color: 'green' },

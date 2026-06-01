@@ -402,7 +402,7 @@ export default function Hero() {
                 { href: 'https://www.linkedin.com/in/zaid-khan-943376379', icon: 'mdi:linkedin', label: 'LinkedIn' },
                 { href: 'https://github.com/zkhan023761-create', icon: 'mdi:github', label: 'GitHub' },
                 { href: 'https://www.instagram.com/khan.zaxid/', fa: 'fab fa-instagram', label: 'Instagram' },
-                { href: 'mailto:zaidkhan023761@gmail.com', icon: 'mdi:email', label: 'Email' },
+                { href: 'mailto:zkhan023761@gmail.com', icon: 'mdi:email', label: 'Email' },
                 { href: 'https://wa.me/919082775122', icon: 'mdi:whatsapp', label: 'WhatsApp' },
               ].map((s, i) => (
                 <a key={i} href={s.href} target="_blank" rel="noopener noreferrer"

@@ -60,7 +60,7 @@ export default function Footer() {
                 { href: 'https://www.linkedin.com/in/zaid-khan-943376379', icon: 'mdi:linkedin', color: 'hover:bg-blue-600/20 hover:border-blue-500/40 hover:text-blue-400' },
                 { href: 'https://github.com/zkhan023761-create', icon: 'mdi:github', color: 'hover:bg-white/10 hover:border-white/20 hover:text-white' },
                 { href: 'https://www.instagram.com/khan.zaxid/', fa: 'fab fa-instagram', color: 'hover:bg-pink-600/20 hover:border-pink-500/40 hover:text-pink-400' },
-                { href: 'mailto:zaidkhan023761@gmail.com', icon: 'mdi:email', color: 'hover:bg-red-600/20 hover:border-red-500/40 hover:text-red-400' },
+                { href: 'mailto:zkhan023761@gmail.com', icon: 'mdi:email', color: 'hover:bg-red-600/20 hover:border-red-500/40 hover:text-red-400' },
                 { href: 'https://wa.me/919082775122', icon: 'mdi:whatsapp', color: 'hover:bg-green-600/20 hover:border-green-500/40 hover:text-green-400' },
               ].map((s, i) => (
                 <a key={i} href={s.href} target="_blank" rel="noopener noreferrer"
@@ -70,7 +70,7 @@ export default function Footer() {
               ))}
             </div>
             <div className="space-y-2 text-xs text-neutral-400">
-              <p className="flex items-center gap-2"><span className="iconify text-cyan-500" data-icon="mdi:email"></span>zaidkhan023761@gmail.com</p>
+              <p className="flex items-center gap-2"><span className="iconify text-cyan-500" data-icon="mdi:email"></span>zkhan023761@gmail.com</p>
               <p className="flex items-center gap-2"><span className="iconify text-cyan-500" data-icon="mdi:phone"></span>+91 9082775122</p>
             </div>
           </div>
