@@ -51,14 +51,15 @@ export default function Hero() {
         scene = new THREE.Scene();
         scene.background = null;
         
-        // 6 Orbiting skills - expanded to full-screen Hero layout
+        // 7 Orbiting skills - expanded to full-screen Hero layout
         const planetsData = [
           { name: 'React', radius: 2.2, speed: 0.008, color: 0x6366f1, size: 0.16, phase: 0 },
           { name: 'Next.js', radius: 3.0, speed: 0.006, color: 0x3b82f6, size: 0.14, phase: Math.PI / 3 },
           { name: 'Figma', radius: 3.8, speed: 0.005, color: 0xec4899, size: 0.13, phase: (2 * Math.PI) / 3 },
           { name: 'Node.js', radius: 4.6, speed: 0.004, color: 0x22c55e, size: 0.14, phase: Math.PI },
           { name: 'JavaScript', radius: 5.4, speed: 0.003, color: 0xeab308, size: 0.12, phase: (4 * Math.PI) / 3 },
-          { name: 'Python', radius: 6.2, speed: 0.0025, color: 0x06b6d4, size: 0.13, phase: (5 * Math.PI) / 3 },
+          { name: 'MongoDB', radius: 6.2, speed: 0.0025, color: 0x47a248, size: 0.13, phase: (5 * Math.PI) / 3 },
+          { name: 'Tailwind', radius: 7.0, speed: 0.002, color: 0x38bdf8, size: 0.12, phase: Math.PI / 6 },
         ];
 
         const planets = [];
@@ -146,15 +147,7 @@ export default function Hero() {
           mouseY = -((e.clientY - rect.top) / height) * 2 + 1;
         };
 
-        const handleTouchMove = (e) => {
-          if (!e.touches.length) return;
-          const rect = container.getBoundingClientRect();
-          mouseX = ((e.touches[0].clientX - rect.left) / width) * 2 - 1;
-          mouseY = -((e.touches[0].clientY - rect.top) / height) * 2 + 1;
-        };
-
         window.addEventListener('mousemove', handleMouseMove);
-        window.addEventListener('touchmove', handleTouchMove, { passive: true });
 
         let animationId;
         const animate = () => {
@@ -206,7 +199,6 @@ export default function Hero() {
 
         cleanupThree = () => {
           window.removeEventListener('mousemove', handleMouseMove);
-          window.removeEventListener('touchmove', handleTouchMove);
           window.removeEventListener('resize', handleResize);
           cancelAnimationFrame(animationId);
           if (renderer) renderer.dispose();

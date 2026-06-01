@@ -126,19 +126,12 @@ export default function ThreeBackground() {
         targetMouseY = -(event.clientY - windowHalfY) / windowHalfY;
       };
 
-      const onTouchMove = (event) => {
-        if (!event.touches.length) return;
-        targetMouseX = (event.touches[0].clientX - windowHalfX) / windowHalfX;
-        targetMouseY = -(event.touches[0].clientY - windowHalfY) / windowHalfY;
-      };
-
       const onScroll = () => {
         scrollY = window.scrollY;
       };
 
       window.addEventListener('resize', onWindowResize);
       window.addEventListener('mousemove', onMouseMove);
-      window.addEventListener('touchmove', onTouchMove, { passive: true });
       window.addEventListener('scroll', onScroll);
 
       const animate = () => {
@@ -263,7 +256,6 @@ export default function ThreeBackground() {
       return () => {
         window.removeEventListener('resize', onWindowResize);
         window.removeEventListener('mousemove', onMouseMove);
-        window.removeEventListener('touchmove', onTouchMove);
         window.removeEventListener('scroll', onScroll);
         if (animationId) cancelAnimationFrame(animationId);
         if (renderer) {
