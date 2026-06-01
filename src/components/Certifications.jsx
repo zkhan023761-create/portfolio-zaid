@@ -1,124 +1,82 @@
+'use client';
+import { useEffect, useRef } from 'react';
+import { gsap } from 'gsap';
+import { ScrollTrigger } from 'gsap/ScrollTrigger';
+
+gsap.registerPlugin(ScrollTrigger);
+
 const certifications = [
-  {
-    title: 'AI For All - AI Appreciate',
-    issuer: 'Intel & Digital India',
-    date: 'January 2026',
-    link: 'https://www.linkedin.com/in/zaid-khan-943376379',
-    bgColor: 'bg-primary-100',
-    textColor: 'text-primary-600'
-  },
-  {
-    title: 'Yuva AI For All - English',
-    issuer: 'AISECT Learn',
-    date: 'January 2026',
-    link: 'https://www.linkedin.com/in/zaid-khan-943376379',
-    bgColor: 'bg-accent-100',
-    textColor: 'text-accent-600'
-  },
-  {
-    title: 'AI Fluency: Framework & Foundations',
-    issuer: 'ANTHROPIC',
-    date: 'January 2026',
-    link: 'https://www.linkedin.com/in/zaid-khan-943376379',
-    bgColor: 'bg-primary-100',
-    textColor: 'text-primary-600'
-  },
-  {
-    title: 'Claude 101',
-    issuer: 'ANTHROPIC',
-    date: 'January 2026',
-    link: 'https://www.linkedin.com/in/zaid-khan-943376379',
-    bgColor: 'bg-accent-100',
-    textColor: 'text-accent-600'
-  },
-  {
-    title: 'AI Fluency for Students',
-    issuer: 'ANTHROPIC',
-    date: 'January 2026',
-    link: 'https://www.linkedin.com/in/zaid-khan-943376379',
-    bgColor: 'bg-primary-100',
-    textColor: 'text-primary-600'
-  },
-  {
-    title: 'AI Fluency for Nonprofits',
-    issuer: 'ANTHROPIC',
-    date: 'January 2026',
-    link: 'https://www.linkedin.com/in/zaid-khan-943376379',
-    bgColor: 'bg-accent-100',
-    textColor: 'text-accent-600'
-  }
+  { title: 'AI For All - AI Appreciate', issuer: 'Intel & Digital India', date: 'January 2026', link: 'https://www.linkedin.com/in/zaid-khan-943376379', color: 'cyan' },
+  { title: 'Yuva AI For All - English', issuer: 'AISECT Learn', date: 'January 2026', link: 'https://www.linkedin.com/in/zaid-khan-943376379', color: 'violet' },
+  { title: 'AI Fluency: Framework & Foundations', issuer: 'ANTHROPIC', date: 'January 2026', link: 'https://www.linkedin.com/in/zaid-khan-943376379', color: 'pink' },
+  { title: 'Claude 101', issuer: 'ANTHROPIC', date: 'January 2026', link: 'https://www.linkedin.com/in/zaid-khan-943376379', color: 'cyan' },
+  { title: 'AI Fluency for Students', issuer: 'ANTHROPIC', date: 'January 2026', link: 'https://www.linkedin.com/in/zaid-khan-943376379', color: 'violet' },
+  { title: 'AI Fluency for Nonprofits', issuer: 'ANTHROPIC', date: 'January 2026', link: 'https://www.linkedin.com/in/zaid-khan-943376379', color: 'pink' },
 ];
 
+const colorMap = {
+  cyan: { border: 'border-cyan-500/20', bg: 'bg-cyan-500/5', text: 'text-cyan-400', hover: 'hover:border-cyan-500/40 hover:shadow-cyan-500/10' },
+  violet: { border: 'border-violet-500/20', bg: 'bg-violet-500/5', text: 'text-violet-400', hover: 'hover:border-violet-500/40 hover:shadow-violet-500/10' },
+  pink: { border: 'border-pink-500/20', bg: 'bg-pink-500/5', text: 'text-pink-400', hover: 'hover:border-pink-500/40 hover:shadow-pink-500/10' },
+};
+
 export default function Certifications() {
+  const sectionRef = useRef(null);
+
+  useEffect(() => {
+    const ctx = gsap.context(() => {
+      gsap.utils.toArray('.cert-card').forEach((card, i) => {
+        gsap.fromTo(card,
+          { y: 50, opacity: 0, scale: 0.95 },
+          { y: 0, opacity: 1, scale: 1, duration: 0.7, ease: 'power3.out', delay: i * 0.08,
+            scrollTrigger: { trigger: card, start: 'top 88%' } }
+        );
+      });
+    }, sectionRef);
+    return () => ctx.revert();
+  }, []);
+
   return (
-    <section id="certifications" className="py-16 px-6 lg:px-8 bg-white relative overflow-hidden">
-      {/* Animated Background Elements */}
-      <div className="absolute top-10 right-10 w-64 h-64 bg-primary-200 rounded-full mix-blend-multiply filter blur-3xl opacity-15 animate-float"></div>
-      <div className="absolute bottom-10 left-10 w-56 h-56 bg-accent-200 rounded-full mix-blend-multiply filter blur-3xl opacity-15 animate-float" style={{animationDelay: '2s'}}></div>
-      
-      {/* Animated Particles */}
-      <div className="absolute top-1/3 left-1/4 w-2 h-2 bg-primary-400 rounded-full animate-ping opacity-30"></div>
-      <div className="absolute bottom-1/4 right-1/3 w-2 h-2 bg-accent-400 rounded-full animate-ping opacity-30" style={{animationDelay: '1s'}}></div>
-      
+    <section ref={sectionRef} id="certifications" className="py-24 px-6 lg:px-8 bg-[#030712] relative overflow-hidden">
+      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-violet-600 rounded-full filter blur-[200px] opacity-5"></div>
+      <div className="absolute inset-0 grid-pattern"></div>
+
       <div className="max-w-7xl mx-auto relative z-10">
-        <div className="text-center" data-aos="fade-up" data-aos-duration="1000">
-          <div className="inline-block animate-float mb-4">
-            <span className="text-primary-600 font-mono font-semibold text-sm tracking-wider uppercase bg-primary-100 px-6 py-2 rounded-full hover:scale-110 transition-all duration-300 animate-pulse">
-              Achievements
-            </span>
-          </div>
-          <h2 className="text-3xl lg:text-4xl font-bold mt-3 mb-3 text-neutral-900">
+        <div className="text-center mb-16 cert-card">
+          <span className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full border border-violet-500/20 bg-violet-500/5 text-violet-400 text-xs font-mono tracking-widest uppercase mb-4">
+            <span className="w-1 h-1 bg-violet-400 rounded-full"></span>
+            Achievements
+          </span>
+          <h2 className="text-4xl lg:text-6xl font-black text-white mt-3">
             <span className="gradient-text">Certifications</span>
           </h2>
-          <p className="text-neutral-800 text-base max-w-2xl mx-auto mb-12 font-medium">
-            Validated skills and professional achievements
-          </p>
+          <p className="text-neutral-500 text-lg max-w-2xl mx-auto mt-4">Validated skills and professional achievements</p>
         </div>
 
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 max-w-7xl mx-auto">
-          {certifications.map((cert, index) => (
-            <div 
-              key={cert.title}
-              className="bg-white p-6 rounded-2xl shadow-lg hover-lift border-2 border-neutral-200 hover:border-primary-300 transition-all duration-500 group relative overflow-hidden animate-zoomIn"
-              data-aos="fade-up"
-              data-aos-duration="1000"
-              data-aos-delay={100 + index * 100}
-            >
-              {/* Animated Glow Effect */}
-              <div className="absolute -inset-0.5 bg-gradient-to-r from-primary-500 to-accent-500 rounded-2xl opacity-0 group-hover:opacity-20 blur transition-opacity duration-500"></div>
-              
-              {/* Animated Background Pattern */}
-              <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500">
-                <div className="absolute top-0 right-0 w-20 h-20 bg-primary-100 rounded-full blur-2xl animate-float"></div>
-                <div className="absolute bottom-0 left-0 w-16 h-16 bg-accent-100 rounded-full blur-2xl animate-float" style={{animationDelay: '1s'}}></div>
-              </div>
-              
-              <div className="flex items-start gap-4 relative z-10">
-                <div className={`w-14 h-14 ${cert.bgColor} rounded-xl flex items-center justify-center flex-shrink-0 group-hover:scale-125 group-hover:rotate-[360deg] transition-all duration-500 shadow-lg group-hover:shadow-2xl`}>
-                  <span className={`iconify text-2xl ${cert.textColor} group-hover:animate-bounce`} data-icon="mdi:certificate"></span>
+        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-5 max-w-6xl mx-auto">
+          {certifications.map((cert, i) => {
+            const c = colorMap[cert.color];
+            return (
+              <div key={i} className={`cert-card group p-5 rounded-2xl border ${c.border} ${c.bg} bg-[#0a0f1e] ${c.hover} hover:shadow-xl transition-all duration-300 hover:scale-[1.02] hover:-translate-y-1`}>
+                <div className="flex items-start gap-4">
+                  <div className={`w-12 h-12 rounded-xl border ${c.border} flex items-center justify-center flex-shrink-0 group-hover:scale-110 group-hover:rotate-6 transition-all duration-300`}>
+                    <span className={`iconify text-xl ${c.text}`} data-icon="mdi:certificate"></span>
+                  </div>
+                  <div className="flex-1 min-w-0">
+                    <h3 className="text-white font-bold text-sm mb-1 group-hover:text-white transition-colors leading-tight">{cert.title}</h3>
+                    <p className={`${c.text} text-xs font-mono mb-1`}>{cert.issuer}</p>
+                    <p className="text-neutral-600 text-xs mb-3">{cert.date}</p>
+                    <a href={cert.link} target="_blank" rel="noopener noreferrer"
+                      className={`inline-flex items-center gap-1 ${c.text} text-xs font-semibold hover:underline`}>
+                      View Certificate
+                      <span className="iconify text-sm group-hover:translate-x-1 transition-transform" data-icon="mdi:arrow-right"></span>
+                    </a>
+                  </div>
                 </div>
-                <div className="flex-1">
-                  <h3 className="text-lg font-bold mb-1 text-neutral-900 group-hover:text-primary-600 transition-colors duration-300 group-hover:translate-x-1">{cert.title}</h3>
-                  <p className="text-neutral-800 mb-1 font-semibold text-sm group-hover:text-neutral-900 transition-colors">{cert.issuer}</p>
-                  <p className="text-xs text-neutral-700 mb-3 font-medium">{cert.date}</p>
-                  <a 
-                    href={cert.link} 
-                    target="_blank" 
-                    rel="noopener noreferrer"
-                    className="inline-flex items-center gap-2 text-primary-600 hover:text-primary-700 font-semibold transition-all duration-300 text-sm group/link hover:translate-x-1"
-                  >
-                    View Certificate
-                    <span className="iconify text-base group-hover/link:translate-x-1 transition-transform" data-icon="mdi:arrow-right"></span>
-                  </a>
-                </div>
+                <div className={`mt-4 h-px bg-gradient-to-r from-transparent via-${cert.color}-500/30 to-transparent transform scale-x-0 group-hover:scale-x-100 transition-transform duration-500`}></div>
               </div>
-              
-              {/* Hover Indicator */}
-              <div className="mt-3 opacity-0 group-hover:opacity-100 transition-all duration-300 transform translate-y-2 group-hover:translate-y-0 relative z-10">
-                <div className="h-1 bg-gradient-to-r from-primary-500 via-accent-500 to-primary-600 rounded-full transform scale-x-0 group-hover:scale-x-100 transition-transform duration-500"></div>
-              </div>
-            </div>
-          ))}
+            );
+          })}
         </div>
       </div>
     </section>

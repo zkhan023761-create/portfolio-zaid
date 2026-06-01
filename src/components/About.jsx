@@ -1,195 +1,153 @@
+'use client';
+import { useEffect, useRef } from 'react';
+import { gsap } from 'gsap';
+import { ScrollTrigger } from 'gsap/ScrollTrigger';
+
+gsap.registerPlugin(ScrollTrigger);
+
 export default function About() {
+  const sectionRef = useRef(null);
+  const headRef = useRef(null);
+  const leftRef = useRef(null);
+  const rightRef = useRef(null);
+
+  useEffect(() => {
+    const ctx = gsap.context(() => {
+      gsap.fromTo(headRef.current,
+        { y: 60, opacity: 0 },
+        { y: 0, opacity: 1, duration: 0.9, ease: 'power3.out',
+          scrollTrigger: { trigger: headRef.current, start: 'top 85%' } }
+      );
+      gsap.fromTo(leftRef.current,
+        { x: -60, opacity: 0 },
+        { x: 0, opacity: 1, duration: 1, ease: 'power3.out',
+          scrollTrigger: { trigger: leftRef.current, start: 'top 80%' } }
+      );
+      gsap.fromTo(rightRef.current,
+        { x: 60, opacity: 0 },
+        { x: 0, opacity: 1, duration: 1, ease: 'power3.out',
+          scrollTrigger: { trigger: rightRef.current, start: 'top 80%' } }
+      );
+    }, sectionRef);
+    return () => ctx.revert();
+  }, []);
+
+  const cards = [
+    { icon: 'mdi:school', color: 'cyan', title: 'Education', sub1: 'Nexcore Institute', sub2: 'AI & Machine Learning' },
+    { fa: 'fab fa-figma', color: 'violet', title: 'Specialization', sub1: 'Frontend Development', sub2: 'UI Design with Figma' },
+    { icon: 'mdi:target', color: 'pink', title: 'Mission', sub1: 'Creating Impact', sub2: 'Through Technology' },
+  ];
+
+  const colorMap = {
+    cyan: { border: 'border-cyan-500/20', bg: 'bg-cyan-500/5', icon: 'text-cyan-400', glow: 'group-hover:shadow-cyan-500/20' },
+    violet: { border: 'border-violet-500/20', bg: 'bg-violet-500/5', icon: 'text-violet-400', glow: 'group-hover:shadow-violet-500/20' },
+    pink: { border: 'border-pink-500/20', bg: 'bg-pink-500/5', icon: 'text-pink-400', glow: 'group-hover:shadow-pink-500/20' },
+  };
+
+  const comps = [
+    { icon: 'mdi:react', color: 'text-cyan-400', title: 'React & Next.js', desc: 'Frontend Frameworks' },
+    { icon: 'mdi:nodejs', color: 'text-green-400', title: 'Node & Express', desc: 'Backend Development' },
+    { icon: 'mdi:language-javascript', color: 'text-yellow-400', title: 'JavaScript', desc: 'Programming Language' },
+    { icon: 'mdi:tailwind', color: 'text-cyan-300', title: 'Tailwind CSS', desc: 'Styling Framework' },
+    { fa: 'fab fa-figma', color: 'text-pink-400', title: 'Figma', desc: 'UI/UX Design' },
+    { icon: 'mdi:language-c', color: 'text-indigo-400', title: 'C Programming', desc: 'Core Programming' },
+  ];
+
   return (
-    <section id="about" className="py-16 px-6 lg:px-8 relative overflow-hidden bg-white">
-      {/* Animated Background */}
-      <div className="absolute top-0 right-0 w-72 h-72 bg-accent-200 rounded-full mix-blend-multiply filter blur-3xl opacity-10 animate-float"></div>
-      
+    <section ref={sectionRef} id="about" className="py-24 px-6 lg:px-8 bg-[#030712] relative overflow-hidden">
+      <div className="absolute top-0 right-0 w-[600px] h-[600px] bg-violet-600 rounded-full filter blur-[180px] opacity-5"></div>
+      <div className="absolute inset-0 grid-pattern"></div>
+
       <div className="max-w-7xl mx-auto relative z-10">
-        <div className="grid lg:grid-cols-2 gap-8 lg:gap-16 items-start">
-          {/* Left Side - Info Cards */}
-          <div className="order-2 lg:order-1 space-y-8" data-aos="fade-right" data-aos-duration="1000">
-            {/* Education Cards Container */}
-            <div className="relative group/container h-[400px]">
-              {/* Animated Glow Effect */}
-              <div className="absolute -inset-0.5 bg-gradient-to-r from-primary-500 via-accent-500 to-pink-500 rounded-3xl blur opacity-20 group-hover/container:opacity-40 transition duration-500 animate-pulse"></div>
-              
-              <div className="relative bg-gradient-to-br from-primary-500 to-accent-500 rounded-3xl p-1 hover:shadow-2xl transition-all duration-500 h-full">
-                <div className="bg-white rounded-3xl overflow-hidden h-full flex flex-col">
-                  {/* Education Card */}
-                  <div className="flex items-center gap-5 p-6 bg-gradient-to-r from-primary-50 to-primary-100 hover:from-primary-100 hover:to-primary-200 transition-all duration-500 group/item cursor-pointer relative overflow-hidden flex-1">
-                    {/* Animated Background Wave */}
-                    <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/30 to-transparent -translate-x-full group-hover/item:translate-x-full transition-transform duration-1000"></div>
-                    
-                    {/* Floating Particles */}
-                    <div className="absolute top-2 right-2 w-2 h-2 bg-primary-400 rounded-full opacity-0 group-hover/item:opacity-100 animate-ping"></div>
-                    <div className="absolute bottom-2 left-2 w-1.5 h-1.5 bg-primary-500 rounded-full opacity-0 group-hover/item:opacity-100 animate-ping" style={{animationDelay: '0.2s'}}></div>
-                    
-                    <div className="relative w-16 h-16 bg-gradient-to-br from-primary-400 to-primary-600 rounded-2xl flex items-center justify-center flex-shrink-0 group-hover/item:scale-125 group-hover/item:rotate-[360deg] transition-all duration-700 shadow-lg group-hover/item:shadow-2xl group-hover/item:shadow-primary-500/50">
-                      <span className="iconify text-3xl text-white group-hover/item:animate-bounce" data-icon="mdi:school"></span>
-                    </div>
-                    <div className="relative z-10 flex-1">
-                      <h4 className="font-bold text-lg text-neutral-900 group-hover/item:text-primary-600 transition-colors mb-1">Education</h4>
-                      <p className="text-neutral-900 font-semibold text-base mb-0.5">Nexcore Institute</p>
-                      <p className="text-sm text-neutral-800 font-medium">AI & Machine Learning</p>
-                    </div>
-                    
-                    {/* Arrow Indicator */}
-                    <div className="opacity-0 group-hover/item:opacity-100 transition-opacity duration-300">
-                      <span className="iconify text-2xl text-primary-600 animate-bounce" data-icon="mdi:arrow-right"></span>
-                    </div>
-                  </div>
 
-                  {/* Specialization Card */}
-                  <div className="flex items-center gap-5 p-6 bg-gradient-to-r from-accent-50 to-accent-100 hover:from-accent-100 hover:to-accent-200 transition-all duration-500 group/item cursor-pointer relative overflow-hidden flex-1">
-                    {/* Animated Background Wave */}
-                    <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/30 to-transparent -translate-x-full group-hover/item:translate-x-full transition-transform duration-1000"></div>
-                    
-                    {/* Floating Particles */}
-                    <div className="absolute top-2 left-2 w-2 h-2 bg-accent-400 rounded-full opacity-0 group-hover/item:opacity-100 animate-ping"></div>
-                    <div className="absolute bottom-2 right-2 w-1.5 h-1.5 bg-pink-500 rounded-full opacity-0 group-hover/item:opacity-100 animate-ping" style={{animationDelay: '0.2s'}}></div>
-                    
-                    <div className="relative w-16 h-16 bg-gradient-to-br from-accent-400 to-pink-600 rounded-2xl flex items-center justify-center flex-shrink-0 group-hover/item:scale-125 group-hover/item:rotate-[360deg] transition-all duration-700 shadow-lg group-hover/item:shadow-2xl group-hover/item:shadow-accent-500/50">
-                      <i className="fab fa-figma text-3xl text-white group-hover/item:animate-bounce"></i>
-                    </div>
-                    <div className="relative z-10 flex-1">
-                      <h4 className="font-bold text-lg text-neutral-900 group-hover/item:text-accent-600 transition-colors mb-1">Specialization</h4>
-                      <p className="text-neutral-900 font-semibold text-base mb-0.5">Frontend Development</p>
-                      <p className="text-sm text-neutral-800 font-medium">UI Design with Figma</p>
-                    </div>
-                    
-                    {/* Arrow Indicator */}
-                    <div className="opacity-0 group-hover/item:opacity-100 transition-opacity duration-300">
-                      <span className="iconify text-2xl text-accent-600 animate-bounce" data-icon="mdi:arrow-right"></span>
-                    </div>
-                  </div>
+        {/* Header */}
+        <div ref={headRef} className="text-center mb-16">
+          <span className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full border border-violet-500/20 bg-violet-500/5 text-violet-400 text-xs font-mono tracking-widest uppercase mb-4">
+            <span className="w-1 h-1 bg-violet-400 rounded-full"></span>
+            About Me
+          </span>
+          <h2 className="text-4xl lg:text-6xl font-black text-white mt-3">
+            Passionate About <span className="gradient-text">Creating</span>
+          </h2>
+        </div>
 
-                  {/* Mission Card */}
-                  <div className="flex items-center gap-5 p-6 bg-gradient-to-r from-blue-50 to-blue-100 hover:from-blue-100 hover:to-blue-200 transition-all duration-500 group/item cursor-pointer relative overflow-hidden flex-1">
-                    {/* Animated Background Wave */}
-                    <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/30 to-transparent -translate-x-full group-hover/item:translate-x-full transition-transform duration-1000"></div>
-                    
-                    {/* Floating Particles */}
-                    <div className="absolute top-2 right-2 w-2 h-2 bg-blue-400 rounded-full opacity-0 group-hover/item:opacity-100 animate-ping"></div>
-                    <div className="absolute bottom-2 left-2 w-1.5 h-1.5 bg-cyan-500 rounded-full opacity-0 group-hover/item:opacity-100 animate-ping" style={{animationDelay: '0.2s'}}></div>
-                    
-                    <div className="relative w-16 h-16 bg-gradient-to-br from-blue-400 to-cyan-600 rounded-2xl flex items-center justify-center flex-shrink-0 group-hover/item:scale-125 group-hover/item:rotate-[360deg] transition-all duration-700 shadow-lg group-hover/item:shadow-2xl group-hover/item:shadow-blue-500/50">
-                      <span className="iconify text-3xl text-white group-hover/item:animate-bounce" data-icon="mdi:target"></span>
+        <div className="grid lg:grid-cols-2 gap-12 items-start">
+
+          {/* Left */}
+          <div ref={leftRef} className="space-y-6">
+            {/* Info cards */}
+            <div className="space-y-3">
+              {cards.map((card, i) => {
+                const c = colorMap[card.color];
+                return (
+                  <div key={i} className={`flex items-center gap-4 p-4 rounded-2xl border ${c.border} ${c.bg} group hover:scale-[1.02] transition-all duration-300 cursor-default hover:shadow-xl ${c.glow}`}>
+                    <div className={`w-12 h-12 rounded-xl border ${c.border} flex items-center justify-center flex-shrink-0 group-hover:scale-110 transition-transform duration-300`}>
+                      {card.fa ? <i className={`${card.fa} text-xl ${c.icon}`}></i> : <span className={`iconify text-xl ${c.icon}`} data-icon={card.icon}></span>}
                     </div>
-                    <div className="relative z-10 flex-1">
-                      <h4 className="font-bold text-lg text-neutral-900 group-hover/item:text-blue-600 transition-colors mb-1">Mission</h4>
-                      <p className="text-neutral-900 font-semibold text-base mb-0.5">Creating Impact</p>
-                      <p className="text-sm text-neutral-800 font-medium">Through Technology</p>
+                    <div>
+                      <p className="text-white font-semibold text-sm">{card.title}</p>
+                      <p className="text-neutral-400 text-xs">{card.sub1}</p>
+                      <p className="text-neutral-600 text-xs">{card.sub2}</p>
                     </div>
-                    
-                    {/* Arrow Indicator */}
-                    <div className="opacity-0 group-hover/item:opacity-100 transition-opacity duration-300">
-                      <span className="iconify text-2xl text-blue-600 animate-bounce" data-icon="mdi:arrow-right"></span>
-                    </div>
+                    <span className={`iconify ml-auto ${c.icon} opacity-0 group-hover:opacity-100 transition-opacity`} data-icon="mdi:arrow-right"></span>
                   </div>
-                </div>
-              </div>
-              
-              {/* Floating Corner Orbs */}
-              <div className="absolute -top-3 -left-3 w-6 h-6 bg-primary-400 rounded-full opacity-0 group-hover/container:opacity-70 blur-sm animate-bounce"></div>
-              <div className="absolute -bottom-3 -right-3 w-5 h-5 bg-accent-400 rounded-full opacity-0 group-hover/container:opacity-70 blur-sm animate-bounce" style={{animationDelay: '0.3s'}}></div>
+                );
+              })}
             </div>
 
-            {/* Core Competencies Box */}
-            <div className="relative h-[400px]" data-aos="fade-up" data-aos-delay="200">
-              <div className="bg-gradient-to-br from-purple-500 to-pink-500 rounded-3xl p-1 hover:shadow-2xl transition-all duration-500 group h-full">
-                <div className="bg-white rounded-3xl p-4 sm:p-6 h-full flex flex-col">
-                  <h3 className="font-bold text-base sm:text-lg mb-4 sm:mb-5 text-neutral-900 flex items-center gap-2 group-hover:scale-105 transition-transform flex-shrink-0">
-                    <span className="w-1.5 h-6 bg-gradient-to-b from-purple-500 to-pink-500 rounded-full group-hover:h-8 transition-all duration-300"></span>
-                    Core Competencies
-                  </h3>
-                  <div className="grid grid-cols-2 gap-2 sm:gap-3 md:gap-4 flex-1">
-                    <div className="flex flex-col justify-center p-2 sm:p-3 md:p-4 bg-gradient-to-br from-primary-50 to-primary-100 rounded-lg sm:rounded-xl hover:from-primary-100 hover:to-primary-200 transition-all duration-300 cursor-pointer group/comp border-2 border-transparent hover:border-primary-300 hover:scale-105 hover:-translate-y-1">
-                      <div className="flex items-center gap-1 sm:gap-2 mb-1 sm:mb-2">
-                        <span className="iconify text-blue-500 text-base sm:text-lg md:text-xl group-hover/comp:scale-125 group-hover/comp:rotate-12 transition-all duration-300" data-icon="mdi:react"></span>
-                        <p className="font-bold text-xs sm:text-sm text-neutral-900 leading-tight">React & Next.js</p>
-                      </div>
-                      <p className="text-[10px] sm:text-xs text-neutral-700">Frontend Frameworks</p>
-                    </div>
-                    
-                    <div className="flex flex-col justify-center p-2 sm:p-3 md:p-4 bg-gradient-to-br from-green-50 to-green-100 rounded-lg sm:rounded-xl hover:from-green-100 hover:to-green-200 transition-all duration-300 cursor-pointer group/comp border-2 border-transparent hover:border-green-300 hover:scale-105 hover:-translate-y-1">
-                      <div className="flex items-center gap-1 sm:gap-2 mb-1 sm:mb-2">
-                        <span className="iconify text-green-600 text-base sm:text-lg md:text-xl group-hover/comp:scale-125 group-hover/comp:rotate-12 transition-all duration-300" data-icon="mdi:nodejs"></span>
-                        <p className="font-bold text-xs sm:text-sm text-neutral-900 leading-tight">Node & Express</p>
-                      </div>
-                      <p className="text-[10px] sm:text-xs text-neutral-700">Backend Development</p>
-                    </div>
-                    
-                    <div className="flex flex-col justify-center p-2 sm:p-3 md:p-4 bg-gradient-to-br from-yellow-50 to-yellow-100 rounded-lg sm:rounded-xl hover:from-yellow-100 hover:to-yellow-200 transition-all duration-300 cursor-pointer group/comp border-2 border-transparent hover:border-yellow-300 hover:scale-105 hover:-translate-y-1">
-                      <div className="flex items-center gap-1 sm:gap-2 mb-1 sm:mb-2">
-                        <span className="iconify text-yellow-600 text-base sm:text-lg md:text-xl group-hover/comp:scale-125 group-hover/comp:rotate-12 transition-all duration-300" data-icon="mdi:language-javascript"></span>
-                        <p className="font-bold text-xs sm:text-sm text-neutral-900 leading-tight">JavaScript</p>
-                      </div>
-                      <p className="text-[10px] sm:text-xs text-neutral-700">Programming Language</p>
-                    </div>
-                    
-                    <div className="flex flex-col justify-center p-2 sm:p-3 md:p-4 bg-gradient-to-br from-cyan-50 to-cyan-100 rounded-lg sm:rounded-xl hover:from-cyan-100 hover:to-cyan-200 transition-all duration-300 cursor-pointer group/comp border-2 border-transparent hover:border-cyan-300 hover:scale-105 hover:-translate-y-1">
-                      <div className="flex items-center gap-1 sm:gap-2 mb-1 sm:mb-2">
-                        <span className="iconify text-cyan-600 text-base sm:text-lg md:text-xl group-hover/comp:scale-125 group-hover/comp:rotate-12 transition-all duration-300" data-icon="mdi:tailwind"></span>
-                        <p className="font-bold text-xs sm:text-sm text-neutral-900 leading-tight">Tailwind CSS</p>
-                      </div>
-                      <p className="text-[10px] sm:text-xs text-neutral-700">Styling Framework</p>
-                    </div>
-                    
-                    <div className="flex flex-col justify-center p-2 sm:p-3 md:p-4 bg-gradient-to-br from-purple-50 to-purple-100 rounded-lg sm:rounded-xl hover:from-purple-100 hover:to-purple-200 transition-all duration-300 cursor-pointer group/comp border-2 border-transparent hover:border-purple-300 hover:scale-105 hover:-translate-y-1">
-                      <div className="flex items-center gap-1 sm:gap-2 mb-1 sm:mb-2">
-                        <i className="fab fa-figma text-purple-600 text-base sm:text-lg md:text-xl group-hover/comp:scale-125 group-hover/comp:rotate-12 transition-all duration-300"></i>
-                        <p className="font-bold text-xs sm:text-sm text-neutral-900 leading-tight">Figma</p>
-                      </div>
-                      <p className="text-[10px] sm:text-xs text-neutral-700">UI/UX Design</p>
-                    </div>
-                    
-                    <div className="flex flex-col justify-center p-2 sm:p-3 md:p-4 bg-gradient-to-br from-indigo-50 to-indigo-100 rounded-lg sm:rounded-xl hover:from-indigo-100 hover:to-indigo-200 transition-all duration-300 cursor-pointer group/comp border-2 border-transparent hover:border-indigo-300 hover:scale-105 hover:-translate-y-1">
-                      <div className="flex items-center gap-1 sm:gap-2 mb-1 sm:mb-2">
-                        <span className="iconify text-indigo-600 text-base sm:text-lg md:text-xl group-hover/comp:scale-125 group-hover/comp:rotate-12 transition-all duration-300" data-icon="mdi:language-c"></span>
-                        <p className="font-bold text-xs sm:text-sm text-neutral-900 leading-tight">C Programming</p>
-                      </div>
-                      <p className="text-[10px] sm:text-xs text-neutral-700">Core Programming</p>
+            {/* Core Competencies */}
+            <div className="p-5 rounded-2xl border border-white/5 bg-white/[0.02]">
+              <h3 className="text-white font-bold text-sm mb-4 flex items-center gap-2">
+                <span className="w-1 h-4 bg-gradient-to-b from-cyan-400 to-violet-500 rounded-full"></span>
+                Core Competencies
+              </h3>
+              <div className="grid grid-cols-2 gap-2">
+                {comps.map((c, i) => (
+                  <div key={i} className="flex items-center gap-2 p-2.5 rounded-xl border border-white/5 hover:border-white/10 hover:bg-white/5 transition-all duration-300 cursor-default group">
+                    {c.fa ? <i className={`${c.fa} ${c.color} text-base group-hover:scale-110 transition-transform`}></i>
+                      : <span className={`iconify ${c.color} text-base group-hover:scale-110 transition-transform`} data-icon={c.icon}></span>}
+                    <div>
+                      <p className="text-white text-xs font-semibold">{c.title}</p>
+                      <p className="text-neutral-600 text-[10px]">{c.desc}</p>
                     </div>
                   </div>
-                </div>
+                ))}
               </div>
             </div>
           </div>
 
-          {/* Right Side - Content */}
-          <div className="order-1 lg:order-2 space-y-6" data-aos="fade-left" data-aos-duration="1000">
-            <div className="text-center lg:text-left" data-aos="fade-up" data-aos-delay="200">
-              <div className="inline-block animate-float mb-4">
-                <span className="text-primary-600 font-mono font-semibold text-sm tracking-wider uppercase bg-primary-100 px-6 py-2 rounded-full hover:scale-110 transition-all duration-300 animate-pulse">
-                  About Me
-                </span>
-              </div>
-              <h2 className="text-3xl lg:text-4xl font-bold mt-3 mb-4 text-neutral-900">
-                <span className="gradient-text">Passionate About Creating</span>
-              </h2>
-            </div>
-
-            <p className="text-base text-neutral-900 leading-relaxed font-medium" data-aos="fade-up" data-aos-delay="300">
-              I'm a driven full-stack developer and UI/UX designer currently pursuing Artificial Intelligence & Machine Learning at Nexcore Institute of Technology. My journey in tech is fueled by a deep passion for creating digital experiences that are both beautiful and functional.
+          {/* Right */}
+          <div ref={rightRef} className="space-y-6">
+            <p className="text-neutral-400 text-base leading-relaxed">
+              I'm a driven full-stack developer and UI/UX designer currently pursuing <span className="text-cyan-400 font-medium">Artificial Intelligence & Machine Learning</span> at Nexcore Institute of Technology. My journey in tech is fueled by a deep passion for creating digital experiences that are both beautiful and functional.
             </p>
-
-            <p className="text-base text-neutral-900 leading-relaxed font-medium" data-aos="fade-up" data-aos-delay="400">
+            <p className="text-neutral-500 text-base leading-relaxed">
               With expertise spanning from front-end development using React.js and Next.js to back-end technologies like Node.js and Express.js, I bridge the gap between code and creativity.
             </p>
 
-            <div className="pt-2" data-aos="fade-up" data-aos-delay="500">
-              <h3 className="font-bold text-lg mb-3 text-neutral-900 flex items-center gap-2">
-                <span className="w-1.5 h-6 bg-gradient-to-b from-primary-500 to-accent-500 rounded-full"></span>
+            <div>
+              <h3 className="text-white font-bold text-sm mb-4 flex items-center gap-2">
+                <span className="w-1 h-4 bg-gradient-to-b from-cyan-400 to-violet-500 rounded-full"></span>
                 What I Bring
               </h3>
-              <ul className="info-list text-neutral-900 font-medium text-sm space-y-2">
-                <li className="hover:translate-x-2 transition-transform duration-300">Clean, maintainable code architecture</li>
-                <li className="hover:translate-x-2 transition-transform duration-300">User-centered design thinking</li>
-                <li className="hover:translate-x-2 transition-transform duration-300">Responsive, mobile-first development</li>
-                <li className="hover:translate-x-2 transition-transform duration-300">Modern JavaScript frameworks expertise</li>
-                <li className="hover:translate-x-2 transition-transform duration-300">RESTful API development</li>
-                <li className="hover:translate-x-2 transition-transform duration-300">Version control with Git</li>
-              </ul>
+              <div className="space-y-2">
+                {['Clean, maintainable code architecture','User-centered design thinking','Responsive, mobile-first development','Modern JavaScript frameworks expertise','RESTful API development','Version control with Git'].map((item, i) => (
+                  <div key={i} className="flex items-center gap-3 group cursor-default">
+                    <span className="w-1.5 h-1.5 bg-cyan-500 rounded-full flex-shrink-0 group-hover:scale-150 transition-transform" style={{boxShadow:'0 0 6px rgba(6,182,212,0.6)'}}></span>
+                    <span className="text-neutral-500 text-sm group-hover:text-neutral-300 transition-colors">{item}</span>
+                  </div>
+                ))}
+              </div>
+            </div>
+
+            {/* Stats row */}
+            <div className="grid grid-cols-3 gap-3 pt-4">
+              {[['15+','Projects','cyan'],['14+','Skills','violet'],['100%','Passion','pink']].map(([val, label, color], i) => (
+                <div key={i} className={`text-center p-4 rounded-2xl border border-${color}-500/10 bg-${color}-500/5 hover:border-${color}-500/30 transition-all duration-300 hover:scale-105 cursor-default`}>
+                  <div className="text-2xl font-black gradient-text">{val}</div>
+                  <div className="text-xs text-neutral-600 mt-1">{label}</div>
+                </div>
+              ))}
             </div>
           </div>
         </div>

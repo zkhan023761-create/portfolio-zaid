@@ -51,8 +51,8 @@ export default function ThreeBackground() {
         const material = new THREE.ShaderMaterial({
           uniforms: {
             time: { value: 0 },
-            color1: { value: new THREE.Color(0x0ea5e9) }, // Sky Blue
-            color2: { value: new THREE.Color(0xd946ef) }, // Purple
+            color1: { value: new THREE.Color(0x06b6d4) }, // Cyan
+            color2: { value: new THREE.Color(0x8b5cf6) }, // Violet
             cameraNear: { value: camera.near },
             cameraFar: { value: camera.far },
           },
@@ -239,7 +239,7 @@ export default function ThreeBackground() {
     <div 
       ref={containerRef} 
       className="fixed inset-0 pointer-events-none z-0"
-      style={{ opacity: 0.4 }}
+      style={{ opacity: 0.25 }}
     />
   );
 }

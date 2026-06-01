@@ -1,171 +1,248 @@
-export default function Hero() {
-  return (
-    <section id="home" className="min-h-screen flex flex-row items-center justify-center pt-20 pb-16 px-6 lg:px-8 bg-pattern relative overflow-hidden">
-      {/* Floating Decorative Elements with Enhanced Animation */}
-      <div className="absolute top-20 right-10 w-72 h-72 bg-primary-300 rounded-full mix-blend-multiply filter blur-3xl opacity-20 animate-float"></div>
-      <div className="absolute bottom-20 left-10 w-72 h-72 bg-accent-300 rounded-full mix-blend-multiply filter blur-3xl opacity-20 animate-float" style={{animationDelay: '1s'}}></div>
-      <div className="absolute top-1/2 left-1/4 w-48 h-48 bg-blue-300 rounded-full mix-blend-multiply filter blur-3xl opacity-15 animate-float" style={{animationDelay: '2s'}}></div>
-      <div className="absolute bottom-1/3 right-1/4 w-56 h-56 bg-pink-300 rounded-full mix-blend-multiply filter blur-3xl opacity-15 animate-float" style={{animationDelay: '3s'}}></div>
-      
-      {/* Animated Particles */}
-      <div className="absolute top-1/4 left-1/3 w-2 h-2 bg-primary-400 rounded-full animate-ping opacity-40"></div>
-      <div className="absolute top-2/3 right-1/3 w-3 h-3 bg-accent-400 rounded-full animate-ping opacity-40" style={{animationDelay: '1s'}}></div>
-      <div className="absolute bottom-1/4 left-1/2 w-2 h-2 bg-blue-400 rounded-full animate-ping opacity-40" style={{animationDelay: '2s'}}></div>
+'use client';
+import { useEffect, useRef } from 'react';
+import { gsap } from 'gsap';
+import { ScrollTrigger } from 'gsap/ScrollTrigger';
+import { SplitText } from 'gsap/SplitText';
 
-      <div className="max-w-7xl mx-auto w-full">
-        <div className="grid lg:grid-cols-2 gap-16 items-center">
-          {/* Left Content */}
-          <div className="space-y-8" data-aos="fade-up" data-aos-duration="1000">
-            <div data-aos="zoom-in" data-aos-delay="200">
-              <div className="inline-block animate-float mb-4">
-                <span className="px-4 py-2 bg-primary-100 text-primary-700 rounded-full text-sm font-medium font-mono hover:bg-primary-200 hover:scale-110 transition-all duration-300 cursor-default animate-borderGlow border-2 border-primary-200 shadow-lg hover:shadow-xl">
-                  <span className="inline-block animate-wiggle">👋</span> Welcome to my portfolio
-                </span>
-              </div>
+gsap.registerPlugin(ScrollTrigger);
+
+export default function Hero() {
+  const sectionRef = useRef(null);
+  const tagRef = useRef(null);
+  const nameRef = useRef(null);
+  const roleRef = useRef(null);
+  const descRef = useRef(null);
+  const btnsRef = useRef(null);
+  const socialsRef = useRef(null);
+  const photoRef = useRef(null);
+  const orb1 = useRef(null);
+  const orb2 = useRef(null);
+  const orb3 = useRef(null);
+  const lineRef = useRef(null);
+
+  useEffect(() => {
+    // Orb animations
+    gsap.to(orb1.current, { y: -40, x: 20, duration: 4, repeat: -1, yoyo: true, ease: 'sine.inOut' });
+    gsap.to(orb2.current, { y: 30, x: -30, duration: 5, repeat: -1, yoyo: true, ease: 'sine.inOut', delay: 1 });
+    gsap.to(orb3.current, { y: -25, x: 15, duration: 3.5, repeat: -1, yoyo: true, ease: 'sine.inOut', delay: 2 });
+
+    // Main timeline
+    const tl = gsap.timeline({ delay: 0.8 });
+
+    tl.fromTo(tagRef.current,
+      { y: 30, opacity: 0 },
+      { y: 0, opacity: 1, duration: 0.7, ease: 'power3.out' }
+    )
+    .fromTo(nameRef.current,
+      { y: 80, opacity: 0, skewY: 5 },
+      { y: 0, opacity: 1, skewY: 0, duration: 1, ease: 'power4.out' }, '-=0.3'
+    )
+    .fromTo(roleRef.current,
+      { y: 40, opacity: 0 },
+      { y: 0, opacity: 1, duration: 0.7, ease: 'power3.out' }, '-=0.5'
+    )
+    .fromTo(descRef.current,
+      { y: 30, opacity: 0 },
+      { y: 0, opacity: 1, duration: 0.7, ease: 'power2.out' }, '-=0.4'
+    )
+    .fromTo(btnsRef.current,
+      { y: 20, opacity: 0 },
+      { y: 0, opacity: 1, duration: 0.6, ease: 'power2.out' }, '-=0.3'
+    )
+    .fromTo(socialsRef.current.children,
+      { scale: 0, opacity: 0 },
+      { scale: 1, opacity: 1, stagger: 0.08, duration: 0.4, ease: 'back.out(1.7)' }, '-=0.2'
+    )
+    .fromTo(photoRef.current,
+      { x: 100, opacity: 0, rotation: 8 },
+      { x: 0, opacity: 1, rotation: 3, duration: 1.2, ease: 'power4.out' }, '-=1.2'
+    );
+
+    // Scroll parallax on photo
+    gsap.to(photoRef.current, {
+      y: -60,
+      scrollTrigger: {
+        trigger: sectionRef.current,
+        start: 'top top',
+        end: 'bottom top',
+        scrub: 1.5,
+      }
+    });
+
+    // Line draw
+    gsap.fromTo(lineRef.current,
+      { scaleX: 0 },
+      { scaleX: 1, duration: 1.5, ease: 'power3.inOut', delay: 1.5 }
+    );
+
+  }, []);
+
+  return (
+    <section ref={sectionRef} id="home" className="min-h-screen flex items-center justify-center pt-20 pb-16 px-4 sm:px-6 lg:px-8 bg-[#030712] relative overflow-hidden">
+
+      {/* Grid */}
+      <div className="absolute inset-0 grid-pattern opacity-100"></div>
+
+      {/* Orbs */}
+      <div ref={orb1} className="absolute top-20 right-[10%] w-[500px] h-[500px] bg-cyan-500 rounded-full filter blur-[140px] opacity-10 pointer-events-none"></div>
+      <div ref={orb2} className="absolute bottom-20 left-[5%] w-[400px] h-[400px] bg-violet-600 rounded-full filter blur-[120px] opacity-10 pointer-events-none"></div>
+      <div ref={orb3} className="absolute top-1/2 left-1/3 w-[300px] h-[300px] bg-pink-500 rounded-full filter blur-[100px] opacity-8 pointer-events-none"></div>
+
+      <div className="max-w-7xl mx-auto w-full relative z-10">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-20 items-center">
+
+          {/* Left */}
+          <div className="space-y-7 text-center lg:text-left">
+
+            <div ref={tagRef} className="inline-flex items-center gap-3 px-4 py-2 rounded-full border border-cyan-500/20 bg-cyan-500/5 backdrop-blur-sm">
+              <span className="flex gap-1">
+                <span className="w-1.5 h-1.5 bg-cyan-400 rounded-full animate-pulse"></span>
+                <span className="w-1.5 h-1.5 bg-cyan-400 rounded-full animate-pulse" style={{animationDelay:'0.2s'}}></span>
+                <span className="w-1.5 h-1.5 bg-cyan-400 rounded-full animate-pulse" style={{animationDelay:'0.4s'}}></span>
+              </span>
+              <span className="text-cyan-400 text-xs font-mono tracking-widest uppercase">Available for work</span>
             </div>
 
-            <h1 className="text-5xl lg:text-7xl font-bold leading-tight text-neutral-900 animate-slideUp" data-aos="fade-right" data-aos-delay="300">
-              Hi, I'm<br />
-              <span className="gradient-text  relative inline-block">
-                Zaid Khan
-                <span className="absolute -inset-1 bg-gradient-to-r from-primary-500/20 to-accent-500/20 blur-xl animate-pulse"></span>
-              </span>
-            </h1>
+            <div ref={nameRef} className="overflow-hidden">
+              <h1 className="text-5xl sm:text-6xl lg:text-8xl font-black leading-none tracking-tight">
+                <span className="block text-white">Hi, I'm</span>
+                <span className="block gradient-text-animated">Zaid Khan</span>
+              </h1>
+            </div>
 
-            <h2 className="text-2xl lg:text-3xl text-neutral-900 font-semibold animate-slideUp" data-aos="fade-right" data-aos-delay="400" style={{animationDelay: '0.2s'}}>
-              <span className="inline-block hover:scale-110 transition-transform duration-300">Frontend Developer</span> & <span className="inline-block hover:scale-110 transition-transform duration-300">UI/UX Designer</span>
-            </h2>
+            <div ref={lineRef} className="h-px bg-gradient-to-r from-cyan-500 via-violet-500 to-transparent origin-left"></div>
 
-            <p className="text-lg text-neutral-900 leading-relaxed max-w-xl font-medium" data-aos="fade-up" data-aos-delay="500">
-              Crafting beautiful, user-centered digital experiences with expertise in modern web technologies. 
-              Currently pursuing AI & Machine Learning at Nexcore Institute of Technology.
+            <div ref={roleRef}>
+              <h2 className="text-xl sm:text-2xl text-neutral-400 font-light">
+                <span className="text-white font-semibold">Frontend Developer</span>
+                <span className="text-cyan-500 mx-3">×</span>
+                <span className="text-white font-semibold">UI/UX Designer</span>
+              </h2>
+            </div>
+
+            <p ref={descRef} className="text-neutral-500 text-base leading-relaxed max-w-lg">
+              Crafting immersive digital experiences with modern web technologies.
+              Currently pursuing <span className="text-cyan-400">AI & Machine Learning</span> at Nexcore Institute of Technology.
             </p>
 
-            <div className="flex flex-wrap gap-6 pt-6 animate-slideUp" data-aos="fade-up" data-aos-delay="600" style={{animationDelay: '0.4s'}}>
-              <a href="#projects" className="btn-hover-glow px-8 py-3 bg-primary-600 text-white rounded-lg font-medium hover:bg-primary-700 transition-all duration-300 hover:shadow-2xl hover:shadow-primary-600/50 hover:scale-110 transform relative overflow-hidden group">
+            <div ref={btnsRef} className="flex flex-wrap justify-center lg:justify-start gap-4">
+              <a href="#projects"
+                className="group relative px-8 py-3.5 bg-gradient-to-r from-cyan-500 to-violet-600 text-white rounded-full font-semibold text-sm overflow-hidden hover:shadow-2xl hover:shadow-cyan-500/30 transition-all duration-300 hover:scale-105">
                 <span className="relative z-10 flex items-center gap-2">
                   View My Work
                   <span className="iconify group-hover:translate-x-1 transition-transform" data-icon="mdi:arrow-right"></span>
                 </span>
-                <span className="absolute inset-0 bg-gradient-to-r from-accent-600 to-primary-600 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></span>
+                <span className="absolute inset-0 bg-gradient-to-r from-violet-600 to-cyan-500 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></span>
               </a>
-              <a href="#contact" className="btn-hover-glow px-8 py-3 border-2 border-primary-600 text-primary-600 rounded-lg font-medium hover:bg-primary-600 hover:text-white transition-all duration-300 hover:shadow-2xl hover:shadow-primary-600/50 hover:scale-110 transform relative overflow-hidden group">
-                <span className="relative z-10 flex items-center gap-2">
-                  Contact Me
-                  <span className="iconify group-hover:rotate-45 transition-transform" data-icon="mdi:send"></span>
-                </span>
+              <a href="#contact"
+                className="group px-8 py-3.5 rounded-full border border-white/10 text-white font-semibold text-sm hover:border-cyan-500/50 hover:bg-cyan-500/5 transition-all duration-300 hover:scale-105 flex items-center gap-2">
+                Contact Me
+                <span className="iconify group-hover:rotate-45 transition-transform" data-icon="mdi:send"></span>
               </a>
             </div>
 
-            {/* Social Links with Enhanced Animations */}
-            <div className="flex gap-6 pt-6 animate-slideUp" data-aos="fade-up" data-aos-delay="700" style={{animationDelay: '0.5s'}}>
-              <a href="https://www.linkedin.com/in/zaid-khan-943376379" target="_blank" rel="noopener noreferrer" className="w-12 h-12 flex items-center justify-center bg-white border-2 border-neutral-200 rounded-lg hover:border-blue-600 hover:text-blue-600 hover:bg-blue-50 transition-all duration-300 hover:scale-125 hover:shadow-2xl shadow-sm hover:rotate-12 relative group animate-zoomIn">
-                <span className="iconify text-2xl group-hover:animate-bounce" data-icon="mdi:linkedin"></span>
-                <span className="absolute inset-0 rounded-lg bg-blue-600 opacity-0 group-hover:opacity-10 transition-opacity"></span>
-              </a>
-              <a href="https://github.com/zkhan023761-create" target="_blank" rel="noopener noreferrer" className="w-12 h-12 flex items-center justify-center bg-white border-2 border-neutral-200 rounded-lg hover:border-neutral-800 hover:text-neutral-800 hover:bg-neutral-50 transition-all duration-300 hover:scale-125 hover:shadow-2xl shadow-sm hover:rotate-12 relative group animate-zoomIn" style={{animationDelay: '0.1s'}}>
-                <span className="iconify text-2xl group-hover:animate-bounce" data-icon="mdi:github"></span>
-                <span className="absolute inset-0 rounded-lg bg-neutral-800 opacity-0 group-hover:opacity-10 transition-opacity"></span>
-              </a>
-              <a href="https://www.instagram.com/khan.zaxid/" target="_blank" rel="noopener noreferrer" className="w-12 h-12 flex items-center justify-center bg-white border-2 border-neutral-200 rounded-lg hover:border-pink-600 hover:text-pink-600 hover:bg-pink-50 transition-all duration-300 hover:scale-125 hover:shadow-2xl shadow-sm hover:rotate-12 relative group animate-zoomIn" style={{animationDelay: '0.2s'}}>
-                <i className="fab fa-instagram text-2xl group-hover:animate-bounce"></i>
-                <span className="absolute inset-0 rounded-lg bg-pink-600 opacity-0 group-hover:opacity-10 transition-opacity"></span>
-              </a>
-              <a href="mailto:zaidkhan023761@gmail.com" className="w-12 h-12 flex items-center justify-center bg-white border-2 border-neutral-200 rounded-lg hover:border-red-600 hover:text-red-600 hover:bg-red-50 transition-all duration-300 hover:scale-125 hover:shadow-2xl shadow-sm hover:rotate-12 relative group animate-zoomIn" style={{animationDelay: '0.3s'}}>
-                <span className="iconify text-2xl group-hover:animate-bounce" data-icon="mdi:email"></span>
-                <span className="absolute inset-0 rounded-lg bg-red-600 opacity-0 group-hover:opacity-10 transition-opacity"></span>
-              </a>
-              <a href="https://wa.me/919082775122" target="_blank" rel="noopener noreferrer" className="w-12 h-12 flex items-center justify-center bg-white border-2 border-neutral-200 rounded-lg hover:border-green-600 hover:text-green-600 hover:bg-green-50 transition-all duration-300 hover:scale-125 hover:shadow-2xl shadow-sm hover:rotate-12 relative group animate-zoomIn" style={{animationDelay: '0.4s'}}>
-                <span className="iconify text-2xl group-hover:animate-bounce" data-icon="mdi:whatsapp"></span>
-                <span className="absolute inset-0 rounded-lg bg-green-600 opacity-0 group-hover:opacity-10 transition-opacity"></span>
-              </a>
+            <div ref={socialsRef} className="flex flex-wrap justify-center lg:justify-start gap-3">
+              {[
+                { href: 'https://www.linkedin.com/in/zaid-khan-943376379', icon: 'mdi:linkedin', label: 'LinkedIn' },
+                { href: 'https://github.com/zkhan023761-create', icon: 'mdi:github', label: 'GitHub' },
+                { href: 'https://www.instagram.com/khan.zaxid/', fa: 'fab fa-instagram', label: 'Instagram' },
+                { href: 'mailto:zaidkhan023761@gmail.com', icon: 'mdi:email', label: 'Email' },
+                { href: 'https://wa.me/919082775122', icon: 'mdi:whatsapp', label: 'WhatsApp' },
+              ].map((s, i) => (
+                <a key={i} href={s.href} target="_blank" rel="noopener noreferrer"
+                  className="w-10 h-10 flex items-center justify-center rounded-xl border border-white/10 text-neutral-500 hover:text-cyan-400 hover:border-cyan-500/40 hover:bg-cyan-500/5 transition-all duration-300 hover:scale-110 hover:-translate-y-1">
+                  {s.fa ? <i className={`${s.fa} text-lg`}></i> : <span className="iconify text-lg" data-icon={s.icon}></span>}
+                </a>
+              ))}
             </div>
           </div>
 
-          {/* Right Content - Photo & Info */}
-          <div className="w-full max-w-md mx-auto lg:max-w-none lg:w-[480px] lg:ml-auto lg:mr-0" data-aos="fade-left" data-aos-duration="1000" data-aos-delay="200">
-            <div className="flex flex-col items-center lg:items-end">
-              {/* Profile Photo Card with Enhanced Animations */}
-              <div className="bg-white rounded-3xl p-6 sm:p-8 shadow-2xl transform rotate-3 hover:rotate-0 transition-all duration-500 hover-lift hover:shadow-primary-500/30 animate-zoomIn relative group w-full">
-                {/* Animated Border Glow */}
-                <div className="absolute -inset-0.5 bg-gradient-to-r from-primary-500 via-accent-500 to-primary-500 rounded-3xl opacity-0 group-hover:opacity-20 blur transition-opacity duration-500 animate-pulse"></div>
-                
-                {/* Photo Container */}
-                <div className="relative mb-6 z-10" data-aos="zoom-in" data-aos-delay="400">
-                  <div className="aspect-square rounded-2xl overflow-hidden bg-gradient-to-br from-primary-500 to-accent-500 p-1 animate-glow relative group/photo">
-                    <div className="w-full h-full bg-neutral-200 rounded-2xl flex items-center justify-center hover:scale-110 transition-transform duration-500 relative overflow-hidden">
-                      {/* Animated Shine Effect */}
-                      <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/40 to-transparent -translate-x-full group-hover/photo:translate-x-full transition-transform duration-1000"></div>
-                      {/* Placeholder for photo - replace with actual image */}
-                      <div className="text-center">
-                        <span className="iconify text-8xl text-neutral-400 animate-pulse" data-icon="mdi:account-circle"></span>
-                        <p className="text-sm text-neutral-500 mt-2">Your Photo Here</p>
-                      </div>
-                      {/* Uncomment and use this when you have a photo:
-                      <img src="your-photo.jpg" alt="Zaid Khan" className="w-full h-full object-cover rounded-2xl" />
-                      */}
-                    </div>
-                  </div>
-                  {/* Decorative Badge with Enhanced Animation */}
-                  <div className="absolute -bottom-4 -right-4 bg-white rounded-2xl p-4 shadow-xl hover:scale-125 transition-all duration-300 animate-zoomIn group/badge cursor-pointer" data-aos="flip-left" data-aos-delay="600" style={{animationDelay: '0.8s'}}>
-                    <div className="flex items-center gap-2">
-                      <div className="w-3 h-3 bg-green-500 rounded-full animate-ping"></div>
-                      <div className="w-3 h-3 bg-green-500 rounded-full absolute animate-pulse"></div>
-                      <span className="text-sm font-semibold group-hover/badge:text-green-600 transition-colors">Available</span>
-                    </div>
-                  </div>
+          {/* Right - Photo Card */}
+          <div className="flex justify-center lg:justify-end">
+            <div ref={photoRef} className="relative w-full max-w-sm">
+
+              {/* Glow */}
+              <div className="absolute -inset-6 bg-gradient-to-br from-cyan-500/20 to-violet-600/20 rounded-3xl blur-3xl"></div>
+
+              {/* Card */}
+              <div className="relative bg-[#0a0f1e] border border-white/10 rounded-3xl overflow-hidden hover:border-cyan-500/30 transition-all duration-500 group">
+
+                {/* Top bar */}
+                <div className="flex items-center gap-2 px-4 py-3 border-b border-white/5">
+                  <div className="w-3 h-3 rounded-full bg-red-500/70"></div>
+                  <div className="w-3 h-3 rounded-full bg-yellow-500/70"></div>
+                  <div className="w-3 h-3 rounded-full bg-green-500/70"></div>
+                  <span className="ml-2 text-xs text-neutral-600 font-mono">zaid-khan.dev</span>
                 </div>
 
-                <div className="bg-gradient-to-br from-primary-500 to-accent-500 rounded-2xl p-6 text-white hover:shadow-2xl transition-all duration-500 relative overflow-hidden group/card z-10" data-aos="fade-up" data-aos-delay="500">
-                  {/* Animated Background Pattern */}
-                  <div className="absolute inset-0 opacity-10">
-                    <div className="absolute top-0 right-0 w-20 h-20 bg-white rounded-full blur-2xl animate-float"></div>
-                    <div className="absolute bottom-0 left-0 w-16 h-16 bg-white rounded-full blur-2xl animate-float" style={{animationDelay: '1s'}}></div>
-                  </div>
-                  
-                  <div className="space-y-4 sm:space-y-5 relative z-10">
-                    <div className="flex flex-col items-center text-center hover:scale-105 transition-all duration-300 group/item cursor-pointer">
-                      <div className="w-12 h-12 sm:w-14 sm:h-14 bg-white/20 rounded-full flex items-center justify-center backdrop-blur-sm shrink-0 group-hover/item:rotate-[360deg] group-hover/item:scale-125 transition-all duration-500 shadow-lg mb-3">
-                        <span className="iconify text-xl sm:text-2xl group-hover/item:animate-bounce" data-icon="mdi:code-braces"></span>
-                      </div>
-                      <div>
-                        <h3 className="text-lg sm:text-xl font-bold">Frontend Developer</h3>
-                        <p className="text-xs sm:text-sm text-primary-100">Modern Web Applications</p>
-                      </div>
-                    </div>
-                    <div className="flex flex-col items-center text-center hover:scale-105 transition-all duration-300 group/item cursor-pointer">
-                      <div className="w-12 h-12 sm:w-14 sm:h-14 bg-white/20 rounded-full flex items-center justify-center backdrop-blur-sm shrink-0 group-hover/item:rotate-[360deg] group-hover/item:scale-125 transition-all duration-500 shadow-lg mb-3">
-                        <i className="fab fa-figma text-xl sm:text-2xl group-hover/item:animate-bounce"></i>
-                      </div>
-                      <div>
-                        <h3 className="text-lg sm:text-xl font-bold">UI/UX Designer</h3>
-                        <p className="text-xs sm:text-sm text-primary-100">User-Centered Design</p>
-                      </div>
-                    </div>
-                  </div>
+                {/* Photo */}
+                <div className="relative overflow-hidden">
+                  <div className="absolute inset-0 bg-gradient-to-t from-[#0a0f1e] via-transparent to-transparent z-10"></div>
+                  <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/5 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-1000 z-20"></div>
+                  <img src="/Zaid.png" alt="Zaid Khan" className="w-full object-cover brightness-75 contrast-90" />
                 </div>
 
-                {/* Stats with Enhanced Animations */}
-                <div className="grid grid-cols-3 gap-3 sm:gap-5 mt-6 sm:mt-8 z-10 relative" data-aos="fade-up" data-aos-delay="700">
-                  <div className="text-center p-3 sm:p-5 bg-primary-50 rounded-xl hover:bg-primary-100 hover:scale-110 transition-all duration-300 cursor-default group relative overflow-hidden animate-zoomIn">
-                    <div className="absolute inset-0 bg-gradient-to-br from-primary-200 to-transparent opacity-0 group-hover:opacity-50 transition-opacity"></div>
-                    <div className="text-2xl sm:text-3xl font-bold text-primary-600 group-hover:scale-125 transition-transform relative z-10 animate-heartbeat">15+</div>
-                    <div className="text-sm sm:text-base text-neutral-900 font-semibold relative z-10">Projects</div>
+                {/* Info */}
+                <div className="p-5 space-y-4">
+                  <div className="flex items-center justify-between">
+                    <div>
+                      <h3 className="text-white font-bold text-lg">Zaid Khan</h3>
+                      <p className="text-cyan-400 text-xs font-mono">Frontend Dev & UI/UX Designer</p>
+                    </div>
+                    <div className="flex items-center gap-1.5 px-3 py-1.5 bg-green-500/10 border border-green-500/20 rounded-full">
+                      <span className="w-1.5 h-1.5 bg-green-400 rounded-full animate-pulse"></span>
+                      <span className="text-green-400 text-xs font-medium">Open</span>
+                    </div>
                   </div>
-                  <div className="text-center p-3 sm:p-5 bg-primary-50 rounded-xl hover:bg-primary-100 hover:scale-110 transition-all duration-300 cursor-default group relative overflow-hidden animate-zoomIn" style={{animationDelay: '0.1s'}}>
-                    <div className="absolute inset-0 bg-gradient-to-br from-accent-200 to-transparent opacity-0 group-hover:opacity-50 transition-opacity"></div>
-                    <div className="text-2xl sm:text-3xl font-bold text-primary-600 group-hover:scale-125 transition-transform relative z-10 animate-heartbeat" style={{animationDelay: '0.3s'}}>9+</div>
-                    <div className="text-sm sm:text-base text-neutral-900 font-semibold relative z-10">Skills</div>
+
+                  {/* Skill bars */}
+                  <div className="space-y-2.5">
+                    {[
+                      { label: 'React & Next.js', pct: 65, color: 'from-cyan-500 to-blue-500' },
+                      { label: 'UI/UX & Figma', pct: 90, color: 'from-violet-500 to-pink-500' },
+                      { label: 'JavaScript', pct: 75, color: 'from-yellow-500 to-orange-500' },
+                      { label: 'Node & MongoDB', pct: 50, color: 'from-green-500 to-emerald-500' },
+                    ].map((s, i) => (
+                      <div key={i}>
+                        <div className="flex justify-between mb-1">
+                          <span className="text-[11px] text-neutral-500 font-mono">{s.label}</span>
+                          <span className="text-[11px] text-neutral-600">{s.pct}%</span>
+                        </div>
+                        <div className="h-1 bg-white/5 rounded-full overflow-hidden">
+                          <div className={`h-full bg-gradient-to-r ${s.color} rounded-full`} style={{width:`${s.pct}%`}}></div>
+                        </div>
+                      </div>
+                    ))}
                   </div>
-                  <div className="text-center p-3 sm:p-5 bg-primary-50 rounded-xl hover:bg-primary-100 hover:scale-110 transition-all duration-300 cursor-default group relative overflow-hidden animate-zoomIn" style={{animationDelay: '0.2s'}}>
-                    <div className="absolute inset-0 bg-gradient-to-br from-blue-200 to-transparent opacity-0 group-hover:opacity-50 transition-opacity"></div>
-                    <div className="text-2xl sm:text-3xl font-bold text-primary-600 group-hover:scale-125 transition-transform relative z-10 animate-heartbeat" style={{animationDelay: '0.6s'}}>100%</div>
-                    <div className="text-sm sm:text-base text-neutral-900 font-semibold relative z-10">Passion</div>
+
+                  {/* Stats */}
+                  <div className="grid grid-cols-3 gap-2 pt-2 border-t border-white/5">
+                    {[['15+','Projects'],['14+','Skills'],['100%','Passion']].map(([val, label], i) => (
+                      <div key={i} className="text-center">
+                        <div className="text-base font-bold gradient-text">{val}</div>
+                        <div className="text-[10px] text-neutral-600">{label}</div>
+                      </div>
+                    ))}
                   </div>
+                </div>
+              </div>
+
+              {/* Floating badges */}
+              <div className="absolute -top-4 -right-4 bg-[#0a0f1e] border border-violet-500/30 rounded-2xl px-3 py-2 shadow-xl animate-float">
+                <div className="flex items-center gap-2">
+                  <span className="iconify text-violet-400 text-lg" data-icon="mdi:react"></span>
+                  <span className="text-xs text-white font-mono">React.js</span>
+                </div>
+              </div>
+              <div className="absolute -bottom-4 -left-4 bg-[#0a0f1e] border border-cyan-500/30 rounded-2xl px-3 py-2 shadow-xl animate-float" style={{animationDelay:'1s'}}>
+                <div className="flex items-center gap-2">
+                  <i className="fab fa-figma text-pink-400 text-lg"></i>
+                  <span className="text-xs text-white font-mono">Figma</span>
                 </div>
               </div>
             </div>
           </div>
+
         </div>
       </div>
     </section>

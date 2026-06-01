@@ -1,123 +1,79 @@
+'use client';
+import { useEffect, useRef } from 'react';
+import { gsap } from 'gsap';
+import { ScrollTrigger } from 'gsap/ScrollTrigger';
+
+gsap.registerPlugin(ScrollTrigger);
+
 const contactInfo = [
-  {
-    icon: 'mdi:email',
-    title: 'Email',
-    value: 'zaidkhan023761@gmail.com',
-    link: 'mailto:zaidkhan023761@gmail.com',
-    bgColor: 'bg-orange-100',
-    textColor: 'text-orange-600',
-    hoverColor: 'hover:text-orange-600'
-  },
-  {
-    icon: 'mdi:phone',
-    title: 'Phone',
-    value: '+91 9082775122',
-    link: 'tel:+919082775122',
-    bgColor: 'bg-blue-100',
-    textColor: 'text-blue-600',
-    hoverColor: 'hover:text-primary-600'
-  },
-  {
-    icon: 'mdi:linkedin',
-    title: 'LinkedIn',
-    value: 'Connect on LinkedIn',
-    link: 'https://www.linkedin.com/in/zaid-khan-943376379',
-    bgColor: 'bg-blue-100',
-    textColor: 'text-blue-700',
-    hoverColor: 'hover:text-blue-700'
-  },
-  {
-    icon: 'mdi:whatsapp',
-    title: 'WhatsApp',
-    value: 'Chat on WhatsApp',
-    link: 'https://wa.me/919082775122',
-    bgColor: 'bg-green-100',
-    textColor: 'text-green-600',
-    hoverColor: 'hover:text-green-600'
-  },
-  {
-    icon: 'mdi:instagram',
-    title: 'Instagram',
-    value: 'Follow on Instagram',
-    link: 'https://www.instagram.com/khan.zaxid/',
-    bgColor: 'bg-pink-100',
-    textColor: 'text-pink-600',
-    hoverColor: 'hover:text-pink-600'
-  }
+  { icon: 'mdi:email', title: 'Email', value: 'zaidkhan023761@gmail.com', link: 'mailto:zaidkhan023761@gmail.com', color: 'orange' },
+  { icon: 'mdi:phone', title: 'Phone', value: '+91 9082775122', link: 'tel:+919082775122', color: 'blue' },
+  { icon: 'mdi:linkedin', title: 'LinkedIn', value: 'Connect on LinkedIn', link: 'https://www.linkedin.com/in/zaid-khan-943376379', color: 'cyan' },
+  { icon: 'mdi:whatsapp', title: 'WhatsApp', value: 'Chat on WhatsApp', link: 'https://wa.me/919082775122', color: 'green' },
+  { icon: 'mdi:instagram', title: 'Instagram', value: 'Follow on Instagram', link: 'https://www.instagram.com/khan.zaxid/', color: 'pink' },
 ];
 
+const colorMap = {
+  orange: 'border-orange-500/20 bg-orange-500/5 text-orange-400 hover:border-orange-500/40',
+  blue: 'border-blue-500/20 bg-blue-500/5 text-blue-400 hover:border-blue-500/40',
+  cyan: 'border-cyan-500/20 bg-cyan-500/5 text-cyan-400 hover:border-cyan-500/40',
+  green: 'border-green-500/20 bg-green-500/5 text-green-400 hover:border-green-500/40',
+  pink: 'border-pink-500/20 bg-pink-500/5 text-pink-400 hover:border-pink-500/40',
+};
+
 export default function Contact() {
+  const sectionRef = useRef(null);
+
+  useEffect(() => {
+    const ctx = gsap.context(() => {
+      gsap.utils.toArray('.contact-card').forEach((card, i) => {
+        gsap.fromTo(card,
+          { y: 50, opacity: 0 },
+          { y: 0, opacity: 1, duration: 0.7, ease: 'power3.out', delay: i * 0.1,
+            scrollTrigger: { trigger: card, start: 'top 88%' } }
+        );
+      });
+    }, sectionRef);
+    return () => ctx.revert();
+  }, []);
+
   return (
-    <section id="contact" className="py-24 px-6 lg:px-8 bg-pattern relative overflow-hidden">
-      {/* Animated Background Elements with More Particles */}
-      <div className="absolute top-10 left-10 w-72 h-72 bg-primary-200 rounded-full mix-blend-multiply filter blur-3xl opacity-20 animate-float"></div>
-      <div className="absolute bottom-10 right-10 w-72 h-72 bg-accent-200 rounded-full mix-blend-multiply filter blur-3xl opacity-20 animate-float" style={{animationDelay: '1.5s'}}></div>
-      <div className="absolute top-1/2 left-1/2 w-56 h-56 bg-blue-200 rounded-full mix-blend-multiply filter blur-3xl opacity-15 animate-float" style={{animationDelay: '3s'}}></div>
-      
-      {/* Animated Particles */}
-      <div className="absolute top-1/3 right-1/4 w-3 h-3 bg-primary-400 rounded-full animate-ping opacity-30"></div>
-      <div className="absolute bottom-1/4 left-1/3 w-2 h-2 bg-accent-400 rounded-full animate-ping opacity-30" style={{animationDelay: '1s'}}></div>
-      <div className="absolute top-2/3 right-1/2 w-2 h-2 bg-blue-400 rounded-full animate-ping opacity-30" style={{animationDelay: '2s'}}></div>
+    <section ref={sectionRef} id="contact" className="py-24 px-6 lg:px-8 bg-[#050b18] relative overflow-hidden">
+      <div className="absolute bottom-0 right-0 w-[500px] h-[500px] bg-cyan-500 rounded-full filter blur-[180px] opacity-5"></div>
+      <div className="absolute inset-0 grid-pattern"></div>
 
       <div className="max-w-7xl mx-auto relative z-10">
-        <div className="text-center" data-aos="fade-up" data-aos-duration="1000">
-          <div className="inline-block animate-float mb-4">
-            <span className="text-primary-600 font-mono font-semibold text-sm tracking-wider uppercase bg-primary-100 px-6 py-2 rounded-full hover:scale-110 transition-all duration-300 animate-pulse">
-              Get In Touch
-            </span>
-          </div>
-          <h2 className="text-4xl lg:text-5xl font-bold mt-3 mb-4 text-neutral-900">
-            <span className="gradient-text">Let's Connect</span>
+        <div className="text-center mb-16 contact-card">
+          <span className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full border border-cyan-500/20 bg-cyan-500/5 text-cyan-400 text-xs font-mono tracking-widest uppercase mb-4">
+            <span className="w-1 h-1 bg-cyan-400 rounded-full"></span>
+            Get In Touch
+          </span>
+          <h2 className="text-4xl lg:text-6xl font-black text-white mt-3">
+            Let's <span className="gradient-text">Connect</span>
           </h2>
-          <p className="text-neutral-800 text-lg max-w-2xl mx-auto mb-16 font-medium">
-            Have a project in mind or want to collaborate? I'd love to hear from you!
-          </p>
+          <p className="text-neutral-500 text-lg max-w-2xl mx-auto mt-4">Have a project in mind? I'd love to hear from you!</p>
         </div>
 
-        <div className="grid md:grid-cols-2 lg:grid-cols-5 gap-8 max-w-7xl mx-auto">
-          {contactInfo.map((contact, index) => (
-            <div 
-              key={contact.title}
-              className="bg-white p-6 rounded-2xl shadow-lg hover-lift border-2 border-neutral-200 hover:border-primary-300 transition-all duration-500 group relative overflow-hidden animate-zoomIn"
-              data-aos="fade-up"
-              data-aos-duration="1000"
-              data-aos-delay={100 + index * 50}
-            >
-              {/* Animated Glow Effect */}
-              <div className="absolute -inset-0.5 bg-gradient-to-r from-primary-500 to-accent-500 rounded-2xl opacity-0 group-hover:opacity-20 blur transition-opacity duration-500"></div>
-              
-              {/* Animated Background Pattern */}
-              <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500">
-                <div className="absolute top-0 right-0 w-16 h-16 bg-primary-100 rounded-full blur-2xl animate-float"></div>
-                <div className="absolute bottom-0 left-0 w-12 h-12 bg-accent-100 rounded-full blur-2xl animate-float" style={{animationDelay: '1s'}}></div>
-              </div>
-              
-              <div className={`w-14 h-14 ${contact.bgColor} rounded-xl flex items-center justify-center mb-4 group-hover:scale-125 group-hover:rotate-[360deg] transition-all duration-500 relative z-10 shadow-lg group-hover:shadow-2xl`}>
-                {contact.isFontAwesome ? (
-                  <i className={`${contact.icon} text-2xl ${contact.textColor} group-hover:animate-bounce`}></i>
-                ) : (
-                  <span className={`iconify text-2xl ${contact.textColor} group-hover:animate-bounce`} data-icon={contact.icon}></span>
-                )}
-              </div>
-              <h3 className="font-bold text-lg mb-2 text-neutral-900 group-hover:text-primary-600 transition-colors duration-300 relative z-10 group-hover:translate-x-1">{contact.title}</h3>
-              <a 
-                href={contact.link}
+        <div className="grid md:grid-cols-2 lg:grid-cols-5 gap-4 max-w-6xl mx-auto">
+          {contactInfo.map((contact, i) => {
+            const c = colorMap[contact.color];
+            return (
+              <a key={i} href={contact.link}
                 target={contact.link.startsWith('http') ? '_blank' : undefined}
                 rel={contact.link.startsWith('http') ? 'noopener noreferrer' : undefined}
-                className={`text-neutral-800 ${contact.hoverColor} transition-all duration-300 break-all text-sm font-semibold relative z-10 hover:underline hover:translate-x-1 inline-block`}
-              >
-                {contact.value}
+                className={`contact-card group p-5 rounded-2xl border ${c} transition-all duration-300 hover:scale-105 hover:-translate-y-1 hover:shadow-xl bg-[#0a0f1e] block`}>
+                <div className={`w-12 h-12 rounded-xl border ${c.split(' ')[0]} flex items-center justify-center mb-4 group-hover:scale-110 group-hover:rotate-6 transition-all duration-300`}>
+                  <span className={`iconify text-xl ${c.split(' ')[3]}`} data-icon={contact.icon}></span>
+                </div>
+                <h3 className="text-white font-bold text-sm mb-1">{contact.title}</h3>
+                <p className={`text-xs ${c.split(' ')[3]} font-mono break-all`}>{contact.value}</p>
+                <div className="mt-3 flex items-center gap-1 opacity-0 group-hover:opacity-100 transition-opacity">
+                  <span className={`text-xs ${c.split(' ')[3]}`}>Connect</span>
+                  <span className={`iconify text-sm ${c.split(' ')[3]}`} data-icon="mdi:arrow-right"></span>
+                </div>
               </a>
-              
-              {/* Hover Indicator */}
-              <div className="mt-3 opacity-0 group-hover:opacity-100 transition-all duration-300 transform translate-y-2 group-hover:translate-y-0 relative z-10">
-                <span className="text-xs text-primary-600 font-semibold flex items-center gap-1">
-                  <span className="iconify animate-bounce" data-icon="mdi:arrow-right"></span>
-                  Click to connect
-                </span>
-              </div>
-            </div>
-          ))}
+            );
+          })}
         </div>
       </div>
     </section>

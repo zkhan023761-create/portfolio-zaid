@@ -51,7 +51,7 @@ const skills = [
     icon: 'mdi:react', 
     bgColor: 'bg-gradient-to-br from-blue-400 to-blue-600', 
     textColor: 'text-white', 
-    progress: 30, 
+    progress: 65, 
     description: 'Component-based UI library',
     category: 'Frontend',
     glowColor: 'shadow-blue-500/50',
@@ -62,7 +62,7 @@ const skills = [
     icon: 'simple-icons:nextdotjs', 
     bgColor: 'bg-gradient-to-br from-neutral-700 to-neutral-900', 
     textColor: 'text-white', 
-    progress: 40, 
+    progress: 60, 
     description: 'React framework for production',
     category: 'Frontend',
     glowColor: 'shadow-neutral-700/50',
@@ -73,7 +73,7 @@ const skills = [
     icon: 'mdi:nodejs', 
     bgColor: 'bg-gradient-to-br from-green-500 to-green-700', 
     textColor: 'text-white', 
-    progress: 10, 
+    progress: 50, 
     description: 'JavaScript runtime environment',
     category: 'Backend',
     glowColor: 'shadow-green-500/50',
@@ -84,11 +84,33 @@ const skills = [
     icon: 'simple-icons:express', 
     bgColor: 'bg-gradient-to-br from-neutral-600 to-neutral-800', 
     textColor: 'text-white', 
-    progress: 30, 
+    progress: 55, 
     description: 'Fast Node.js web framework',
     category: 'Backend',
     glowColor: 'shadow-neutral-600/50',
     link: 'https://expressjs.com/'
+  },
+  { 
+    name: 'MongoDB', 
+    icon: 'simple-icons:mongodb', 
+    bgColor: 'bg-gradient-to-br from-green-600 to-green-800', 
+    textColor: 'text-white', 
+    progress: 45, 
+    description: 'NoSQL database management',
+    category: 'Backend',
+    glowColor: 'shadow-green-600/50',
+    link: 'https://www.mongodb.com/'
+  },
+  { 
+    name: 'Nginx', 
+    icon: 'simple-icons:nginx', 
+    bgColor: 'bg-gradient-to-br from-emerald-500 to-teal-700', 
+    textColor: 'text-white', 
+    progress: 35, 
+    description: 'Web server & reverse proxy',
+    category: 'Backend',
+    glowColor: 'shadow-emerald-500/50',
+    link: 'https://nginx.org/'
   },
   { 
     name: 'C Programming', 
@@ -129,7 +151,7 @@ const skills = [
     icon: 'mdi:github', 
     bgColor: 'bg-gradient-to-br from-neutral-700 to-neutral-900', 
     textColor: 'text-white', 
-    progress: 10, 
+    progress: 65, 
     description: 'Version control & collaboration',
     category: 'Tools',
     glowColor: 'shadow-neutral-700/50',
@@ -146,33 +168,33 @@ export default function Skills() {
     : skills.filter(skill => skill.category === activeCategory);
 
   return (
-    <section id="skills" className="py-24 px-6 lg:px-8 bg-white relative overflow-hidden">
+    <section id="skills" className="py-24 px-6 lg:px-8 bg-[#030712] relative overflow-hidden">
+      <div className="absolute top-0 right-0 w-[500px] h-[500px] bg-violet-600 rounded-full filter blur-[180px] opacity-5 animate-float"></div>
+      <div className="absolute bottom-0 left-0 w-[400px] h-[400px] bg-cyan-500 rounded-full filter blur-[150px] opacity-5 animate-float" style={{animationDelay:'2s'}}></div>
+      <div className="absolute inset-0 grid-pattern"></div>
       <div className="max-w-7xl mx-auto relative z-10">
-        {/* Header with Floating Animation */}
         <div className="text-center mb-16" data-aos="fade-up" data-aos-duration="1000">
-          <div className="inline-block animate-float mb-4">
-            <span className="text-primary-600 font-mono font-semibold text-sm tracking-wider uppercase bg-primary-100 px-6 py-2 rounded-full">
-              My Expertise
-            </span>
-          </div>
-          <h2 className="text-4xl lg:text-6xl font-bold mt-2 mb-6 text-neutral-900 animate-fadeInUp">
-            Skills & <span className="gradient-text ">Technologies</span>
+          <span className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full border border-violet-500/20 bg-violet-500/5 text-violet-400 text-xs font-mono tracking-widest uppercase mb-4">
+            <span className="w-1 h-1 bg-violet-400 rounded-full"></span>
+            My Expertise
+          </span>
+          <h2 className="text-4xl lg:text-6xl font-black text-white mt-3 mb-4">
+            Skills & <span className="gradient-text">Technologies</span>
           </h2>
-          <p className="text-neutral-800 text-lg max-w-2xl mx-auto font-medium animate-fadeInUp stagger-1">
+          <p className="text-neutral-500 text-lg max-w-2xl mx-auto">
             A comprehensive toolkit combining modern development frameworks with advanced design capabilities
           </p>
         </div>
 
-        {/* Category Filter with Slide Animation */}
-        <div className="flex flex-wrap justify-center gap-4 mb-16" data-aos="fade-up" data-aos-delay="200">
+        <div className="flex flex-wrap justify-center gap-3 mb-16" data-aos="fade-up" data-aos-delay="200">
           {categories.map((category, index) => (
             <button
               key={category}
               onClick={() => setActiveCategory(category)}
-              className={`px-6 py-3 rounded-xl font-semibold transition-all duration-500 transform hover:scale-110 hover:-translate-y-1 ${
+              className={`px-5 py-2 rounded-full text-sm font-medium transition-all duration-300 ${
                 activeCategory === category
-                  ? 'bg-gradient-to-r from-primary-600 to-accent-600 text-white shadow-2xl shadow-primary-600/50 scale-105'
-                  : 'bg-white text-neutral-700 border-2 border-neutral-200 hover:border-primary-600 hover:text-primary-600 hover:shadow-xl'
+                  ? 'bg-gradient-to-r from-cyan-500 to-violet-600 text-white shadow-lg shadow-cyan-500/20 scale-105'
+                  : 'bg-white/5 text-neutral-500 border border-white/10 hover:border-cyan-500/30 hover:text-white'
               }`}
               data-aos="zoom-in"
               data-aos-delay={100 + index * 50}
@@ -182,8 +204,8 @@ export default function Skills() {
           ))}
         </div>
 
-        {/* Skills Grid with Advanced Animations */}
-        <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8 lg:gap-10">
+        {/* Skills Grid */}
+        <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-5">
           {filteredSkills.map((skill, index) => (
             <a
               key={skill.name}
@@ -192,87 +214,46 @@ export default function Skills() {
               rel="noopener noreferrer"
               className="group relative block cursor-pointer"
               data-aos="zoom-in"
-              data-aos-duration="800"
-              data-aos-delay={100 + (index % 4) * 100}
+              data-aos-duration="600"
+              data-aos-delay={100 + (index % 4) * 80}
             >
-              {/* Glowing Background Effect */}
-              <div className={`absolute inset-0 ${skill.bgColor} rounded-3xl blur-xl opacity-0 group-hover:opacity-30 transition-all duration-500 animate-pulse`}></div>
+              {/* Glow */}
+              <div className={`absolute inset-0 ${skill.bgColor} rounded-3xl blur-xl opacity-0 group-hover:opacity-20 transition-all duration-500`}></div>
               
               {/* Main Card */}
-              <div className="relative bg-white rounded-3xl p-8 border-2 border-neutral-200 hover:border-transparent transition-all duration-500 transform hover:scale-105 hover:-translate-y-3 hover:shadow-2xl group-hover:shadow-primary-500/20">
-                
-                {/* Animated Corner Accent */}
-                <div className="absolute top-0 right-0 w-20 h-20 bg-gradient-to-bl from-primary-100 to-transparent rounded-tr-3xl opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
-                
-                {/* Icon with Rotation Animation */}
-                <div className="relative mb-6">
-                  <div className={`w-20 h-20 ${skill.bgColor} rounded-2xl flex items-center justify-center transform transition-all duration-500 group-hover:rotate-12 group-hover:scale-110 shadow-lg ${skill.glowColor} group-hover:shadow-2xl`}>
+              <div className="relative bg-[#0a0f1e] rounded-3xl p-6 border border-white/5 hover:border-cyan-500/20 transition-all duration-500 transform hover:scale-105 hover:-translate-y-3 hover:shadow-2xl hover:shadow-cyan-500/10">
+                <div className="absolute top-0 right-0 w-20 h-20 bg-gradient-to-bl from-cyan-500/5 to-transparent rounded-tr-3xl opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+                <div className="relative mb-5">
+                  <div className={`w-16 h-16 ${skill.bgColor} rounded-2xl flex items-center justify-center transform transition-all duration-500 group-hover:rotate-12 group-hover:scale-110 shadow-lg`}>
                     {skill.isFontAwesome ? (
-                      <i className={`${skill.icon} text-4xl ${skill.textColor} animate-pulse`}></i>
+                      <i className={`${skill.icon} text-3xl ${skill.textColor}`}></i>
                     ) : (
-                      <span className={`iconify text-4xl ${skill.textColor} animate-pulse`} data-icon={skill.icon}></span>
+                      <span className={`iconify text-3xl ${skill.textColor}`} data-icon={skill.icon}></span>
                     )}
                   </div>
-                  
-                  {/* Orbiting Dots */}
-                  <div className="absolute -top-1 -right-1 w-4 h-4 bg-primary-500 rounded-full opacity-0 group-hover:opacity-100 group-hover:animate-ping"></div>
-                  <div className="absolute -bottom-1 -left-1 w-3 h-3 bg-accent-500 rounded-full opacity-0 group-hover:opacity-100 group-hover:animate-ping" style={{animationDelay: '0.2s'}}></div>
+                  <div className="absolute -top-1 -right-1 w-3 h-3 bg-cyan-500 rounded-full opacity-0 group-hover:opacity-100 group-hover:animate-ping"></div>
                 </div>
-
-                {/* Category Badge */}
                 <div className="absolute top-4 right-4 opacity-0 group-hover:opacity-100 transition-all duration-500 transform translate-x-4 group-hover:translate-x-0">
-                  <span className="px-3 py-1 bg-gradient-to-r from-primary-500 to-accent-500 text-white text-xs font-bold rounded-full shadow-lg">
-                    {skill.category}
-                  </span>
+                  <span className="px-2 py-1 bg-gradient-to-r from-cyan-500 to-violet-600 text-white text-[10px] font-mono rounded-full">{skill.category}</span>
                 </div>
-
-                {/* Content */}
-                <h3 className="text-2xl font-bold mb-3 text-neutral-900 group-hover:text-primary-600 transition-colors duration-300">
-                  {skill.name}
-                </h3>
-                <p className="text-neutral-700 text-sm mb-6 font-medium leading-relaxed group-hover:text-neutral-900 transition-colors">
-                  {skill.description}
-                </p>
-
-                {/* Animated Progress Bar */}
+                <h3 className="text-lg font-bold mb-2 text-white group-hover:text-cyan-400 transition-colors duration-300">{skill.name}</h3>
+                <p className="text-neutral-600 text-xs mb-5 leading-relaxed">{skill.description}</p>
                 <div className="relative">
-                  <div className="flex justify-between items-center mb-2">
-                    <span className="text-xs font-bold text-neutral-600 group-hover:text-primary-600 transition-colors">Proficiency</span>
-                    <span className="text-xs font-mono font-bold text-primary-600 bg-primary-100 px-2 py-1 rounded-full group-hover:scale-110 transition-transform">
-                      {skill.progress}%
-                    </span>
+                  <div className="flex justify-between items-center mb-1.5">
+                    <span className="text-[10px] font-mono text-neutral-600 group-hover:text-cyan-500 transition-colors">Proficiency</span>
+                    <span className="text-[10px] font-mono text-cyan-400 bg-cyan-500/10 border border-cyan-500/20 px-2 py-0.5 rounded-full">{skill.progress}%</span>
                   </div>
-                  
-                  {/* Progress Bar Container */}
-                  <div className="relative h-3 bg-neutral-200 rounded-full overflow-hidden shadow-inner">
-                    {/* Animated Background Shimmer */}
-                    <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white to-transparent opacity-20 animate-shimmer"></div>
-                    
-                    {/* Progress Fill with Gradient */}
-                    <div 
-                      className="skill-progress h-full bg-gradient-to-r from-primary-500 via-accent-500 to-primary-600 rounded-full relative overflow-hidden shadow-lg transition-all duration-1000 group-hover:shadow-primary-500/50"
-                      style={{width: `${skill.progress}%`}} 
-                      data-progress={skill.progress}
-                    >
-                      {/* Animated Shine Effect */}
-                      <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white to-transparent opacity-30 animate-shimmer"></div>
-                    </div>
+                  <div className="h-1.5 bg-white/5 rounded-full overflow-hidden">
+                    <div className="skill-progress h-full bg-gradient-to-r from-cyan-500 to-violet-600 rounded-full" style={{width: `${skill.progress}%`}}></div>
                   </div>
                 </div>
-
-                {/* Hover Reveal: Additional Info */}
                 <div className="mt-4 opacity-0 group-hover:opacity-100 transition-all duration-500 transform translate-y-2 group-hover:translate-y-0">
-                  <div className="flex items-center justify-between text-xs text-primary-600 font-semibold">
-                    <span className="flex items-center gap-2">
-                      <span className="iconify animate-bounce" data-icon="mdi:open-in-new"></span>
-                      <span>Learn more</span>
-                    </span>
-                    <span className="iconify text-lg" data-icon="mdi:arrow-right"></span>
+                  <div className="flex items-center justify-between text-xs text-cyan-400 font-mono">
+                    <span className="flex items-center gap-1"><span className="iconify text-sm" data-icon="mdi:open-in-new"></span>Learn more</span>
+                    <span className="iconify" data-icon="mdi:arrow-right"></span>
                   </div>
                 </div>
-
-                {/* Bottom Decorative Line */}
-                <div className="absolute bottom-0 left-0 right-0 h-1 bg-gradient-to-r from-primary-500 via-accent-500 to-primary-600 transform scale-x-0 group-hover:scale-x-100 transition-transform duration-500 rounded-b-3xl"></div>
+                <div className="absolute bottom-0 left-0 right-0 h-px bg-gradient-to-r from-cyan-500 to-violet-600 transform scale-x-0 group-hover:scale-x-100 transition-transform duration-500 rounded-b-3xl"></div>
               </div>
             </a>
           ))}
