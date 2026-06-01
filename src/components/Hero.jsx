@@ -146,7 +146,15 @@ export default function Hero() {
           mouseY = -((e.clientY - rect.top) / height) * 2 + 1;
         };
 
+        const handleTouchMove = (e) => {
+          if (!e.touches.length) return;
+          const rect = container.getBoundingClientRect();
+          mouseX = ((e.touches[0].clientX - rect.left) / width) * 2 - 1;
+          mouseY = -((e.touches[0].clientY - rect.top) / height) * 2 + 1;
+        };
+
         window.addEventListener('mousemove', handleMouseMove);
+        window.addEventListener('touchmove', handleTouchMove, { passive: true });
 
         let animationId;
         const animate = () => {
@@ -198,6 +206,7 @@ export default function Hero() {
 
         cleanupThree = () => {
           window.removeEventListener('mousemove', handleMouseMove);
+          window.removeEventListener('touchmove', handleTouchMove);
           window.removeEventListener('resize', handleResize);
           cancelAnimationFrame(animationId);
           if (renderer) renderer.dispose();
