@@ -9,11 +9,19 @@ export default function ThreeBackground() {
 
     let camera, scene, renderer;
     let mouseX = 0, mouseY = 0;
+    let targetMouseX = 0, targetMouseY = 0;
     let scrollY = 0;
     let windowHalfX = window.innerWidth / 2;
     let windowHalfY = window.innerHeight / 2;
     let animationId;
-    let meshes = [];
+    
+    let particleGeometry, particleMaterial, particles;
+    let lineGeometry, lineMaterial, lines;
+
+    const particleCount = 100;
+    const maxDistance = 1.3;
+    const particlePositions = new Float32Array(particleCount * 3);
+    const particleSpeeds = [];
 
     const init = async () => {
       const THREE = await import('three');
@@ -22,146 +30,90 @@ export default function ThreeBackground() {
       if (!container) return;
 
       // Camera setup
-      camera = new THREE.PerspectiveCamera(70, window.innerWidth / window.innerHeight, 1, 20);
-      camera.position.z = 4;
+      camera = new THREE.PerspectiveCamera(60, window.innerWidth / window.innerHeight, 0.1, 100);
+      camera.position.z = 4.5;
 
       scene = new THREE.Scene();
-      scene.background = null; // Transparent for light theme
+      scene.background = null;
 
-      // Create multiple geometric shapes
-      const geometries = [
-        new THREE.TorusKnotGeometry(0.4, 0.15, 100, 16),
-        new THREE.OctahedronGeometry(0.5),
-        new THREE.IcosahedronGeometry(0.5),
-        new THREE.TetrahedronGeometry(0.6),
-        new THREE.BoxGeometry(0.6, 0.6, 0.6),
-      ];
+      // Initialize particles positions & speeds
+      const areaRange = 8;
+      for (let i = 0; i < particleCount; i++) {
+        // Position
+        const x = (Math.random() - 0.5) * areaRange;
+        const y = (Math.random() - 0.5) * areaRange;
+        const z = (Math.random() - 0.5) * areaRange;
 
-      const count = 50;
-      const scale = 5;
+        particlePositions[i * 3] = x;
+        particlePositions[i * 3 + 1] = y;
+        particlePositions[i * 3 + 2] = z;
 
-      for (let i = 0; i < count; i++) {
-        const r = Math.random() * 2.0 * Math.PI;
-        const z = (Math.random() * 2.0) - 1.0;
-        const zScale = Math.sqrt(1.0 - z * z) * scale;
-
-        const geometry = geometries[Math.floor(Math.random() * geometries.length)];
-
-        // Create material with depth-based coloring
-        const material = new THREE.ShaderMaterial({
-          uniforms: {
-            time: { value: 0 },
-            color1: { value: new THREE.Color(0x06b6d4) }, // Cyan
-            color2: { value: new THREE.Color(0x8b5cf6) }, // Violet
-            cameraNear: { value: camera.near },
-            cameraFar: { value: camera.far },
-          },
-          vertexShader: `
-            varying vec3 vPosition;
-            varying float vDepth;
-            uniform float time;
-            
-            void main() {
-              vPosition = position;
-              vec4 mvPosition = modelViewMatrix * vec4(position, 1.0);
-              vDepth = -mvPosition.z;
-              gl_Position = projectionMatrix * mvPosition;
-            }
-          `,
-          fragmentShader: `
-            uniform vec3 color1;
-            uniform vec3 color2;
-            uniform float time;
-            uniform float cameraNear;
-            uniform float cameraFar;
-            varying vec3 vPosition;
-            varying float vDepth;
-            
-            void main() {
-              // Normalize depth
-              float depth = (vDepth - cameraNear) / (cameraFar - cameraNear);
-              depth = clamp(depth, 0.0, 1.0);
-              
-              // Mix colors based on depth
-              vec3 color = mix(color1, color2, depth);
-              
-              // Add some variation based on position
-              float variation = sin(vPosition.x * 3.0 + time) * 0.1 + 0.9;
-              color *= variation;
-              
-              // Fade based on depth
-              float alpha = 1.0 - depth * 0.5;
-              
-              gl_FragColor = vec4(color, alpha * 0.6);
-            }
-          `,
-          transparent: true,
-          side: THREE.DoubleSide,
+        // Speed
+        particleSpeeds.push({
+          x: (Math.random() - 0.5) * 0.005,
+          y: (Math.random() - 0.5) * 0.005,
+          z: (Math.random() - 0.5) * 0.005,
         });
-
-        const mesh = new THREE.Mesh(geometry, material);
-        mesh.position.set(
-          Math.cos(r) * zScale,
-          Math.sin(r) * zScale,
-          z * scale
-        );
-        mesh.rotation.set(Math.random(), Math.random(), Math.random());
-
-        // Store rotation speeds
-        mesh.userData.rotationSpeed = {
-          x: (Math.random() - 0.5) * 0.02,
-          y: (Math.random() - 0.5) * 0.02,
-          z: (Math.random() - 0.5) * 0.02,
-        };
-
-        scene.add(mesh);
-        meshes.push(mesh);
       }
 
-      // Add wireframe overlay for some meshes
-      for (let i = 0; i < count / 3; i++) {
-        const r = Math.random() * 2.0 * Math.PI;
-        const z = (Math.random() * 2.0) - 1.0;
-        const zScale = Math.sqrt(1.0 - z * z) * scale;
+      // Create Particle Points
+      particleGeometry = new THREE.BufferGeometry();
+      particleGeometry.setAttribute('position', new THREE.BufferAttribute(particlePositions, 3));
 
-        const geometry = geometries[Math.floor(Math.random() * geometries.length)];
-        const wireframeGeometry = new THREE.WireframeGeometry(geometry);
+      // Draw circular texture on HTML5 Canvas
+      const canvas = document.createElement('canvas');
+      canvas.width = 16;
+      canvas.height = 16;
+      const ctx = canvas.getContext('2d');
+      const gradient = ctx.createRadialGradient(8, 8, 0, 8, 8, 8);
+      gradient.addColorStop(0, 'rgba(255,255,255,1)');
+      gradient.addColorStop(1, 'rgba(255,255,255,0)');
+      ctx.fillStyle = gradient;
+      ctx.fillRect(0, 0, 16, 16);
+      const texture = new THREE.CanvasTexture(canvas);
 
-        const hue = 0.55 + Math.random() * 0.15;
-        const color = new THREE.Color().setHSL(hue, 0.7, 0.5);
+      particleMaterial = new THREE.PointsMaterial({
+        size: 0.12,
+        map: texture,
+        transparent: true,
+        opacity: 0.5,
+        blending: THREE.AdditiveBlending,
+        depthWrite: false,
+      });
 
-        const material = new THREE.LineBasicMaterial({
-          color: color,
-          transparent: true,
-          opacity: 0.3,
-        });
+      particles = new THREE.Points(particleGeometry, particleMaterial);
+      scene.add(particles);
 
-        const wireframe = new THREE.LineSegments(wireframeGeometry, material);
-        wireframe.position.set(
-          Math.cos(r) * zScale,
-          Math.sin(r) * zScale,
-          z * scale
-        );
-        wireframe.rotation.set(Math.random(), Math.random(), Math.random());
+      // Create Line segments
+      // Allocate positions & colors buffer for rendering connections
+      lineGeometry = new THREE.BufferGeometry();
+      // Max possible lines for 100 particles is 100 * 99 / 2 = 4950. Allocating 3000 segments (6000 vertices) is safe.
+      const maxLineSegments = 3000;
+      const linePositions = new Float32Array(maxLineSegments * 2 * 3); 
+      const lineColors = new Float32Array(maxLineSegments * 2 * 3);
+      lineGeometry.setAttribute('position', new THREE.BufferAttribute(linePositions, 3));
+      lineGeometry.setAttribute('color', new THREE.BufferAttribute(lineColors, 3));
 
-        wireframe.userData.rotationSpeed = {
-          x: (Math.random() - 0.5) * 0.015,
-          y: (Math.random() - 0.5) * 0.015,
-          z: (Math.random() - 0.5) * 0.015,
-        };
+      lineMaterial = new THREE.LineBasicMaterial({
+        vertexColors: true,
+        transparent: true,
+        opacity: 0.25,
+        blending: THREE.AdditiveBlending,
+        depthWrite: false,
+      });
 
-        scene.add(wireframe);
-        meshes.push(wireframe);
-      }
+      lines = new THREE.LineSegments(lineGeometry, lineMaterial);
+      scene.add(lines);
 
       // Renderer setup
       renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true });
-      renderer.setPixelRatio(window.devicePixelRatio);
+      renderer.setPixelRatio(Math.min(typeof window !== 'undefined' ? window.devicePixelRatio : 1, 2));
       renderer.setSize(window.innerWidth, window.innerHeight);
-      renderer.setClearColor(0x000000, 0); // Transparent
+      renderer.setClearColor(0x000000, 0);
       container.appendChild(renderer.domElement);
 
       const onWindowResize = () => {
+        if (!camera || !renderer) return;
         windowHalfX = window.innerWidth / 2;
         windowHalfY = window.innerHeight / 2;
         camera.aspect = window.innerWidth / window.innerHeight;
@@ -170,8 +122,8 @@ export default function ThreeBackground() {
       };
 
       const onMouseMove = (event) => {
-        mouseX = event.clientX - windowHalfX;
-        mouseY = event.clientY - windowHalfY;
+        targetMouseX = (event.clientX - windowHalfX) / windowHalfX;
+        targetMouseY = -(event.clientY - windowHalfY) / windowHalfY;
       };
 
       const onScroll = () => {
@@ -182,33 +134,118 @@ export default function ThreeBackground() {
       window.addEventListener('mousemove', onMouseMove);
       window.addEventListener('scroll', onScroll);
 
-      const clock = new THREE.Clock();
-
       const animate = () => {
         animationId = requestAnimationFrame(animate);
-        render(clock.getElapsedTime());
+        render();
       };
 
-      const render = (time) => {
-        // Update all meshes
-        meshes.forEach((mesh) => {
-          // Rotate meshes
-          mesh.rotation.x += mesh.userData.rotationSpeed.x;
-          mesh.rotation.y += mesh.userData.rotationSpeed.y;
-          mesh.rotation.z += mesh.userData.rotationSpeed.z;
+      const render = () => {
+        if (!particleGeometry || !lineGeometry) return;
+        
+        // Smoothly interpolate mouse coords
+        mouseX += (targetMouseX - mouseX) * 0.05;
+        mouseY += (targetMouseY - mouseY) * 0.05;
 
-          // Update shader time for solid meshes
-          if (mesh.material.uniforms && mesh.material.uniforms.time) {
-            mesh.material.uniforms.time.value = time;
+        const positions = particleGeometry.attributes.position.array;
+        const linePos = lineGeometry.attributes.position.array;
+        const lineCol = lineGeometry.attributes.color.array;
+
+        let lineIndex = 0;
+
+        // Approximate mouse vector in 3D scene space
+        const mouseVector = new THREE.Vector3(mouseX * 3.5, mouseY * 2.5, 0);
+
+        // Update particle positions & cursor repulsion
+        for (let i = 0; i < particleCount; i++) {
+          let x = positions[i * 3];
+          let y = positions[i * 3 + 1];
+          let z = positions[i * 3 + 2];
+
+          // Natural movement drift
+          x += particleSpeeds[i].x;
+          y += particleSpeeds[i].y;
+          z += particleSpeeds[i].z;
+
+          // Boundary bouncing
+          if (x < -areaRange / 2 || x > areaRange / 2) particleSpeeds[i].x *= -1;
+          if (y < -areaRange / 2 || y > areaRange / 2) particleSpeeds[i].y *= -1;
+          if (z < -areaRange / 2 || z > areaRange / 2) particleSpeeds[i].z *= -1;
+
+          // Cursor Repulsion Effect
+          const particleVec = new THREE.Vector3(x, y, z);
+          const distToMouse = particleVec.distanceTo(mouseVector);
+          if (distToMouse < 1.8) {
+            const dir = new THREE.Vector3().subVectors(particleVec, mouseVector).normalize();
+            // The closer, the stronger the push force
+            const force = (1.8 - distToMouse) * 0.015;
+            x += dir.x * force;
+            y += dir.y * force;
+            z += dir.z * force;
           }
-        });
 
-        // Camera follows mouse with smooth parallax
-        camera.position.x += (mouseX * 0.0005 - camera.position.x) * 0.05;
-        camera.position.y += (-mouseY * 0.0005 - camera.position.y) * 0.05;
+          positions[i * 3] = x;
+          positions[i * 3 + 1] = y;
+          positions[i * 3 + 2] = z;
+        }
 
-        // Rotate scene based on scroll
-        scene.rotation.y = scrollY * 0.0002;
+        particleGeometry.attributes.position.needsUpdate = true;
+
+        // Connect nearby particles with lines
+        for (let i = 0; i < particleCount; i++) {
+          const x1 = positions[i * 3];
+          const y1 = positions[i * 3 + 1];
+          const z1 = positions[i * 3 + 2];
+
+          for (let j = i + 1; j < particleCount; j++) {
+            const x2 = positions[j * 3];
+            const y2 = positions[j * 3 + 1];
+            const z2 = positions[j * 3 + 2];
+
+            const dx = x1 - x2;
+            const dy = y1 - y2;
+            const dz = z1 - z2;
+            const dist = Math.sqrt(dx * dx + dy * dy + dz * dz);
+
+            if (dist < maxDistance && lineIndex < maxLineSegments * 2 * 3 - 6) {
+              // Add vertices for this line segment
+              linePos[lineIndex] = x1;
+              linePos[lineIndex + 1] = y1;
+              linePos[lineIndex + 2] = z1;
+
+              linePos[lineIndex + 3] = x2;
+              linePos[lineIndex + 4] = y2;
+              linePos[lineIndex + 5] = z2;
+
+              // Color gradient fade based on distance
+              const alpha = 1.0 - (dist / maxDistance);
+              
+              // Vertex 1: Indigo (0x6366f1)
+              lineCol[lineIndex] = 0.39 * alpha;
+              lineCol[lineIndex + 1] = 0.40 * alpha;
+              lineCol[lineIndex + 2] = 0.95 * alpha;
+
+              // Vertex 2: Slate Blue (0x3b82f6)
+              lineCol[lineIndex + 3] = 0.23 * alpha;
+              lineCol[lineIndex + 4] = 0.51 * alpha;
+              lineCol[lineIndex + 5] = 0.96 * alpha;
+
+              lineIndex += 6;
+            }
+          }
+        }
+
+        // Fill remaining buffer entries with zero to hide them
+        for (let i = lineIndex; i < linePos.length; i++) {
+          linePos[i] = 0;
+          lineCol[i] = 0;
+        }
+
+        lineGeometry.attributes.position.needsUpdate = true;
+        lineGeometry.attributes.color.needsUpdate = true;
+
+        // Dynamic scene rotations based on scroll and mouse position
+        scene.rotation.y = scrollY * 0.0002 + mouseX * 0.1;
+        scene.rotation.x = mouseY * 0.1;
 
         camera.lookAt(scene.position);
         renderer.render(scene, camera);
@@ -223,7 +260,9 @@ export default function ThreeBackground() {
         if (animationId) cancelAnimationFrame(animationId);
         if (renderer) {
           renderer.dispose();
-          container.removeChild(renderer.domElement);
+          try {
+            container.removeChild(renderer.domElement);
+          } catch(e) {}
         }
       };
     };
@@ -238,8 +277,8 @@ export default function ThreeBackground() {
   return (
     <div 
       ref={containerRef} 
-      className="fixed inset-0 pointer-events-none z-0"
-      style={{ opacity: 0.25 }}
+      className="fixed inset-0 pointer-events-none z-20"
+      style={{ opacity: 0.85 }}
     />
   );
 }

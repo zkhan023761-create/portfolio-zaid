@@ -1,5 +1,9 @@
 'use client';
-import { useState } from 'react';
+import { useState, useEffect, useRef } from 'react';
+import { gsap } from 'gsap';
+import { ScrollTrigger } from 'gsap/ScrollTrigger';
+
+gsap.registerPlugin(ScrollTrigger);
 
 const skills = [
   { 
@@ -161,19 +165,88 @@ const skills = [
 
 export default function Skills() {
   const [activeCategory, setActiveCategory] = useState('All');
+  const sectionRef = useRef(null);
   const categories = ['All', 'Frontend', 'Backend', 'Design', 'Programming', 'CMS', 'Tools'];
   
   const filteredSkills = activeCategory === 'All' 
     ? skills 
     : skills.filter(skill => skill.category === activeCategory);
 
+  useEffect(() => {
+    const ctx = gsap.context(() => {
+      // Header reveal
+      gsap.fromTo('.skills-header',
+        { y: 50, opacity: 0 },
+        { y: 0, opacity: 1, duration: 0.8, ease: 'power3.out',
+          scrollTrigger: { trigger: '.skills-header', start: 'top 85%' } }
+      );
+
+      // Buttons row reveal
+      gsap.fromTo('.skills-filter-btn',
+        { scale: 0.9, opacity: 0 },
+        { scale: 1, opacity: 1, stagger: 0.05, duration: 0.5, ease: 'back.out(1.5)',
+          scrollTrigger: { trigger: '.skills-filter-btn', start: 'top 90%' } }
+      );
+
+      // Skill cards reveal on scroll
+      gsap.fromTo('.skill-card-anim',
+        { y: 40, opacity: 0, scale: 0.95 },
+        { y: 0, opacity: 1, scale: 1, stagger: 0.05, duration: 0.6, ease: 'power3.out',
+          scrollTrigger: { trigger: '.skills-grid-container', start: 'top 82%' } }
+      );
+
+      // Progress bars fill reveal
+      gsap.utils.toArray('.skill-progress-bar').forEach((bar) => {
+        const pct = bar.getAttribute('data-progress') + '%';
+        gsap.fromTo(bar,
+          { width: '0%' },
+          { 
+            width: pct, 
+            duration: 1.2, 
+            ease: 'power3.out',
+            scrollTrigger: {
+              trigger: bar,
+              start: 'top 92%',
+              toggleActions: 'play none none none'
+            }
+          }
+        );
+      });
+
+
+    }, sectionRef);
+
+    return () => ctx.revert();
+  }, [activeCategory]); // Re-run triggers & tilt binds whenever filtered card list updates!
+
+  const handleCategoryChange = (category) => {
+    if (category === activeCategory) return;
+    
+    // Staggered fade out
+    gsap.to('.skill-card-anim', {
+      scale: 0.9,
+      opacity: 0,
+      y: 20,
+      duration: 0.25,
+      stagger: 0.02,
+      ease: 'power2.in',
+      onComplete: () => {
+        setActiveCategory(category);
+        // Fade in is handled by useEffect when activeCategory changes
+      }
+    });
+  };
+
   return (
-    <section id="skills" className="py-24 px-6 lg:px-8 bg-[#030712] relative overflow-hidden">
-      <div className="absolute top-0 right-0 w-[500px] h-[500px] bg-violet-600 rounded-full filter blur-[180px] opacity-5 animate-float"></div>
-      <div className="absolute bottom-0 left-0 w-[400px] h-[400px] bg-cyan-500 rounded-full filter blur-[150px] opacity-5 animate-float" style={{animationDelay:'2s'}}></div>
-      <div className="absolute inset-0 grid-pattern"></div>
+    <section ref={sectionRef} id="skills" className="py-24 px-6 lg:px-8 bg-[#030712] relative overflow-hidden">
+      <div className="absolute top-0 right-0 w-[500px] h-[500px] bg-violet-600 rounded-full filter blur-[180px] opacity-5 pointer-events-none"></div>
+      <div className="absolute bottom-0 left-0 w-[400px] h-[400px] bg-cyan-500 rounded-full filter blur-[150px] opacity-5 pointer-events-none"></div>
+      <div className="absolute inset-0 grid-pattern pointer-events-none"></div>
+      
       <div className="max-w-7xl mx-auto relative z-10">
-        <div className="text-center mb-16" data-aos="fade-up" data-aos-duration="1000">
+        
+        {/* Header */}
+        <div className="text-center mb-16 skills-header">
           <span className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full border border-violet-500/20 bg-violet-500/5 text-violet-400 text-xs font-mono tracking-widest uppercase mb-4">
             <span className="w-1 h-1 bg-violet-400 rounded-full"></span>
             My Expertise
@@ -186,18 +259,17 @@ export default function Skills() {
           </p>
         </div>
 
-        <div className="flex flex-wrap justify-center gap-3 mb-16" data-aos="fade-up" data-aos-delay="200">
-          {categories.map((category, index) => (
+        {/* Categories Tab Filters */}
+        <div className="flex flex-wrap justify-center gap-3 mb-16">
+          {categories.map((category) => (
             <button
               key={category}
-              onClick={() => setActiveCategory(category)}
-              className={`px-5 py-2 rounded-full text-sm font-medium transition-all duration-300 ${
+              onClick={() => handleCategoryChange(category)}
+              className={`skills-filter-btn px-5 py-2 rounded-full text-sm font-medium transition-all duration-300 ${
                 activeCategory === category
                   ? 'bg-gradient-to-r from-cyan-500 to-violet-600 text-white shadow-lg shadow-cyan-500/20 scale-105'
                   : 'bg-white/5 text-neutral-500 border border-white/10 hover:border-cyan-500/30 hover:text-white'
               }`}
-              data-aos="zoom-in"
-              data-aos-delay={100 + index * 50}
             >
               {category}
             </button>
@@ -205,54 +277,64 @@ export default function Skills() {
         </div>
 
         {/* Skills Grid */}
-        <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-5">
-          {filteredSkills.map((skill, index) => (
+        <div className="skills-grid-container grid md:grid-cols-2 lg:grid-cols-4 gap-5 min-h-[300px]">
+          {filteredSkills.map((skill) => (
             <a
               key={skill.name}
               href={skill.link}
               target="_blank"
               rel="noopener noreferrer"
-              className="group relative block cursor-pointer"
-              data-aos="zoom-in"
-              data-aos-duration="600"
-              data-aos-delay={100 + (index % 4) * 80}
+              className="skill-card-anim group relative block cursor-pointer"
             >
-              {/* Glow */}
-              <div className={`absolute inset-0 ${skill.bgColor} rounded-3xl blur-xl opacity-0 group-hover:opacity-20 transition-all duration-500`}></div>
+              {/* Glow effect on hover */}
+              <div className={`absolute inset-0 ${skill.bgColor} rounded-3xl blur-xl opacity-0 group-hover:opacity-15 transition-opacity duration-550 pointer-events-none`}></div>
               
-              {/* Main Card */}
-              <div className="relative bg-[#0a0f1e] rounded-3xl p-6 border border-white/5 hover:border-cyan-500/20 transition-all duration-500 transform hover:scale-105 hover:-translate-y-3 hover:shadow-2xl hover:shadow-cyan-500/10">
-                <div className="absolute top-0 right-0 w-20 h-20 bg-gradient-to-bl from-cyan-500/5 to-transparent rounded-tr-3xl opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+              {/* Card content */}
+              <div className="tilt-card-skill relative bg-[#0a0f1e] rounded-3xl p-6 border border-white/5 hover:border-cyan-500/20 transition-colors duration-500 hover:shadow-2xl hover:shadow-cyan-500/5">
+                <div className="absolute top-0 right-0 w-20 h-20 bg-gradient-to-bl from-cyan-500/5 to-transparent rounded-tr-3xl opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none"></div>
+                
                 <div className="relative mb-5">
-                  <div className={`w-16 h-16 ${skill.bgColor} rounded-2xl flex items-center justify-center transform transition-all duration-500 group-hover:rotate-12 group-hover:scale-110 shadow-lg`}>
+                  <div className={`w-16 h-16 ${skill.bgColor} rounded-2xl flex items-center justify-center transform transition-transform duration-500 group-hover:rotate-6 shadow-lg`}>
                     {skill.isFontAwesome ? (
                       <i className={`${skill.icon} text-3xl ${skill.textColor}`}></i>
                     ) : (
                       <span className={`iconify text-3xl ${skill.textColor}`} data-icon={skill.icon}></span>
                     )}
                   </div>
-                  <div className="absolute -top-1 -right-1 w-3 h-3 bg-cyan-500 rounded-full opacity-0 group-hover:opacity-100 group-hover:animate-ping"></div>
+                  <div className="absolute -top-1 -right-1 w-3 h-3 bg-cyan-500 rounded-full opacity-0 group-hover:opacity-100 group-hover:animate-ping pointer-events-none"></div>
                 </div>
-                <div className="absolute top-4 right-4 opacity-0 group-hover:opacity-100 transition-all duration-500 transform translate-x-4 group-hover:translate-x-0">
+
+                <div className="absolute top-4 right-4 opacity-0 group-hover:opacity-100 transition-all duration-500 transform translate-x-3 group-hover:translate-x-0">
                   <span className="px-2 py-1 bg-gradient-to-r from-cyan-500 to-violet-600 text-white text-[10px] font-mono rounded-full">{skill.category}</span>
                 </div>
+                
                 <h3 className="text-lg font-bold mb-2 text-white group-hover:text-cyan-400 transition-colors duration-300">{skill.name}</h3>
-                <p className="text-neutral-600 text-xs mb-5 leading-relaxed">{skill.description}</p>
+                <p className="text-neutral-400 text-xs mb-5 leading-relaxed">{skill.description}</p>
+                
+                {/* Progress bar */}
                 <div className="relative">
                   <div className="flex justify-between items-center mb-1.5">
-                    <span className="text-[10px] font-mono text-neutral-600 group-hover:text-cyan-500 transition-colors">Proficiency</span>
+                    <span className="text-[10px] font-mono text-neutral-400 group-hover:text-cyan-500 transition-colors">Proficiency</span>
                     <span className="text-[10px] font-mono text-cyan-400 bg-cyan-500/10 border border-cyan-500/20 px-2 py-0.5 rounded-full">{skill.progress}%</span>
                   </div>
                   <div className="h-1.5 bg-white/5 rounded-full overflow-hidden">
-                    <div className="skill-progress h-full bg-gradient-to-r from-cyan-500 to-violet-600 rounded-full" style={{width: `${skill.progress}%`}}></div>
+                    <div 
+                      className="skill-progress-bar h-full bg-gradient-to-r from-cyan-500 to-violet-600 rounded-full" 
+                      data-progress={skill.progress}
+                      style={{ width: '0%' }}
+                    ></div>
                   </div>
                 </div>
+
+                {/* Hover metadata link reveal */}
                 <div className="mt-4 opacity-0 group-hover:opacity-100 transition-all duration-500 transform translate-y-2 group-hover:translate-y-0">
                   <div className="flex items-center justify-between text-xs text-cyan-400 font-mono">
                     <span className="flex items-center gap-1"><span className="iconify text-sm" data-icon="mdi:open-in-new"></span>Learn more</span>
                     <span className="iconify" data-icon="mdi:arrow-right"></span>
                   </div>
                 </div>
+                
+                {/* Underline gradient divider */}
                 <div className="absolute bottom-0 left-0 right-0 h-px bg-gradient-to-r from-cyan-500 to-violet-600 transform scale-x-0 group-hover:scale-x-100 transition-transform duration-500 rounded-b-3xl"></div>
               </div>
             </a>

@@ -1,5 +1,9 @@
 'use client';
-import { useState } from 'react';
+import { useState, useEffect, useRef } from 'react';
+import { gsap } from 'gsap';
+import { ScrollTrigger } from 'gsap/ScrollTrigger';
+
+gsap.registerPlugin(ScrollTrigger);
 
 const projects = [
   {
@@ -277,25 +281,73 @@ const projects = [
 
 export default function Projects() {
   const [filter, setFilter] = useState('all');
+  const sectionRef = useRef(null);
 
   const filteredProjects = filter === 'all' 
     ? projects 
     : projects.filter(project => project.category === filter);
 
+  useEffect(() => {
+    const ctx = gsap.context(() => {
+      // Header reveal
+      gsap.fromTo('.projects-header',
+        { y: 50, opacity: 0 },
+        { y: 0, opacity: 1, duration: 0.8, ease: 'power3.out',
+          scrollTrigger: { trigger: '.projects-header', start: 'top 85%' } }
+      );
+
+      // Category tab row reveal
+      gsap.fromTo('.projects-filter-btn',
+        { scale: 0.9, opacity: 0 },
+        { scale: 1, opacity: 1, stagger: 0.05, duration: 0.5, ease: 'back.out(1.5)',
+          scrollTrigger: { trigger: '.projects-filter-btn', start: 'top 90%' } }
+      );
+
+      // Card reveals on scroll
+      gsap.fromTo('.project-card-anim',
+        { y: 50, opacity: 0, scale: 0.95 },
+        { y: 0, opacity: 1, scale: 1, stagger: 0.05, duration: 0.6, ease: 'power3.out',
+          scrollTrigger: { trigger: '.projects-grid-container', start: 'top 85%' } }
+      );
+
+
+    }, sectionRef);
+
+    return () => ctx.revert();
+  }, [filter]); // Re-bind triggers on filter changes
+
+  const handleFilterChange = (newFilter) => {
+    if (newFilter === filter) return;
+    
+    // Staggered exit transition
+    gsap.to('.project-card-anim', {
+      scale: 0.9,
+      opacity: 0,
+      y: 20,
+      duration: 0.25,
+      stagger: 0.02,
+      ease: 'power2.in',
+      onComplete: () => {
+        setFilter(newFilter);
+        // Entrance is triggered in useEffect when filter changes
+      }
+    });
+  };
+
   return (
-    <section id="projects" className="py-24 px-6 lg:px-8 bg-[#050b18] relative overflow-hidden">
-      <div className="absolute top-20 left-20 w-[500px] h-[500px] bg-cyan-500 rounded-full filter blur-[180px] opacity-5 animate-float"></div>
-      <div className="absolute bottom-20 right-20 w-[400px] h-[400px] bg-violet-600 rounded-full filter blur-[150px] opacity-5 animate-float" style={{animationDelay: '2s'}}></div>
-      <div className="absolute inset-0 grid-pattern"></div>
+    <section ref={sectionRef} id="projects" className="py-24 px-6 lg:px-8 bg-[#050b18] relative overflow-hidden">
+      <div className="absolute top-20 left-20 w-[500px] h-[500px] bg-cyan-500 rounded-full filter blur-[180px] opacity-5 pointer-events-none animate-float"></div>
+      <div className="absolute bottom-20 right-20 w-[400px] h-[400px] bg-violet-600 rounded-full filter blur-[150px] opacity-5 pointer-events-none animate-float" style={{animationDelay: '2s'}}></div>
+      <div className="absolute inset-0 grid-pattern pointer-events-none"></div>
 
       <div className="max-w-7xl mx-auto relative z-10">
-        <div className="text-center" data-aos="fade-up" data-aos-duration="1000">
-          <div className="inline-block animate-float mb-4">
-            <span className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full border border-cyan-500/20 bg-cyan-500/5 text-cyan-400 text-xs font-mono tracking-widest uppercase mb-4">
-              <span className="w-1 h-1 bg-cyan-400 rounded-full"></span>
-              Portfolio
-            </span>
-          </div>
+        
+        {/* Header */}
+        <div className="text-center projects-header">
+          <span className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full border border-cyan-500/20 bg-cyan-500/5 text-cyan-400 text-xs font-mono tracking-widest uppercase mb-4">
+            <span className="w-1 h-1 bg-cyan-400 rounded-full"></span>
+            Portfolio
+          </span>
           <h2 className="text-4xl lg:text-6xl font-black text-white mt-3 mb-4">
             Featured <span className="gradient-text">Projects</span>
           </h2>
@@ -304,26 +356,27 @@ export default function Projects() {
           </p>
         </div>
 
-        <div className="flex flex-wrap justify-center gap-6 mb-16 animate-zoomIn" data-aos="fade-up" data-aos-duration="1000">
+        {/* Tab Filters Row */}
+        <div className="flex flex-wrap justify-center gap-6 mb-16">
           <button 
-            onClick={() => setFilter('all')}
-            className={`px-5 py-2 rounded-full text-sm font-medium transition-all duration-300 ${
+            onClick={() => handleFilterChange('all')}
+            className={`projects-filter-btn px-5 py-2 rounded-full text-sm font-medium transition-all duration-300 ${
               filter === 'all' 
                 ? 'bg-gradient-to-r from-cyan-500 to-violet-600 text-white shadow-lg shadow-cyan-500/20 scale-105' 
                 : 'bg-white/5 border border-white/10 text-neutral-500 hover:border-cyan-500/30 hover:text-white'
             }`}
           >All Projects</button>
           <button 
-            onClick={() => setFilter('coding')}
-            className={`px-5 py-2 rounded-full text-sm font-medium transition-all duration-300 ${
+            onClick={() => handleFilterChange('coding')}
+            className={`projects-filter-btn px-5 py-2 rounded-full text-sm font-medium transition-all duration-300 ${
               filter === 'coding' 
                 ? 'bg-gradient-to-r from-cyan-500 to-violet-600 text-white shadow-lg shadow-cyan-500/20 scale-105' 
                 : 'bg-white/5 border border-white/10 text-neutral-500 hover:border-cyan-500/30 hover:text-white'
             }`}
           >Coding</button>
           <button 
-            onClick={() => setFilter('design')}
-            className={`px-5 py-2 rounded-full text-sm font-medium transition-all duration-300 ${
+            onClick={() => handleFilterChange('design')}
+            className={`projects-filter-btn px-5 py-2 rounded-full text-sm font-medium transition-all duration-300 ${
               filter === 'design' 
                 ? 'bg-gradient-to-r from-violet-600 to-pink-600 text-white shadow-lg shadow-violet-500/20 scale-105' 
                 : 'bg-white/5 border border-white/10 text-neutral-500 hover:border-violet-500/30 hover:text-white'
@@ -331,80 +384,82 @@ export default function Projects() {
           >UI/UX Design</button>
         </div>
 
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8 lg:gap-10">
-          {filteredProjects.map((project, index) => (
+        {/* Grid Container */}
+        <div className="projects-grid-container grid md:grid-cols-2 lg:grid-cols-3 gap-8 lg:gap-10 min-h-[400px]">
+          {filteredProjects.map((project) => (
             <div 
               key={project.name}
-              className="project-card bg-[#0a0f1e] rounded-2xl overflow-hidden border border-white/5 hover:border-cyan-500/20 transition-all duration-500 group relative hover:shadow-2xl hover:shadow-cyan-500/10 hover:-translate-y-2"
-              data-aos="fade-up"
-              data-aos-duration="1000"
-              data-aos-delay={100 + (index % 3) * 50}
+              data-cursor-text="OPEN"
+              className="project-card-anim bg-[#0a0f1e] rounded-2xl overflow-hidden border border-white/5 hover:border-cyan-500/20 transition-colors duration-500 group relative hover:shadow-2xl hover:shadow-cyan-500/10 cursor-none"
             >
-              {/* Animated Glow Effect */}
-              <div className="absolute -inset-0.5 bg-gradient-to-r from-primary-500 via-accent-500 to-primary-500 rounded-2xl opacity-0 group-hover:opacity-20 blur transition-opacity duration-500 animate-pulse"></div>
+              {/* Glow border ring */}
+              <div className="absolute -inset-0.5 bg-gradient-to-r from-cyan-500 to-violet-500 rounded-2xl opacity-0 group-hover:opacity-10 blur transition-opacity duration-500 pointer-events-none"></div>
               
-              {/* Animated Corner Accents */}
-              <div className="absolute top-0 left-0 w-20 h-20 bg-gradient-to-br from-primary-400/20 to-transparent rounded-br-full opacity-0 group-hover:opacity-100 transition-opacity duration-500 animate-pulse"></div>
-              <div className="absolute bottom-0 right-0 w-20 h-20 bg-gradient-to-tl from-accent-400/20 to-transparent rounded-tl-full opacity-0 group-hover:opacity-100 transition-opacity duration-500 animate-pulse" style={{animationDelay: '0.2s'}}></div>
+              {/* Corner accents */}
+              <div className="absolute top-0 left-0 w-20 h-20 bg-gradient-to-br from-cyan-400/10 to-transparent rounded-br-full opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none"></div>
               
-              <div className={`project-image h-48 bg-gradient-to-br ${project.gradient} relative overflow-hidden`}>
-                {project.hasGallery ? (
-                  <div className={`absolute inset-0 grid ${project.galleryImages.length === 1 ? 'grid-cols-1' : 'grid-cols-1 md:grid-cols-2'} gap-0`}>
-                    {project.galleryImages.map((imgSrc, idx) => (
-                      <div key={idx} className={`relative overflow-hidden ${project.galleryImages.length === 1 ? 'h-full' : 'h-24 md:h-full'} bg-white`}>
-                        <img 
-                          src={imgSrc} 
-                          alt=""
-                          className="w-full h-full object-contain group-hover:scale-105 transition-transform duration-700"
-                          onError={(e) => {
-                            e.target.style.display = 'none';
-                            e.target.parentElement.innerHTML = `<div class="w-full h-full flex items-center justify-center bg-gradient-to-br ${project.gradient}"><span class="iconify text-white text-3xl" data-icon="${project.icon}"></span></div>`;
-                          }}
-                        />
-                      </div>
-                    ))}
+              {/* 3D Tilt Card content wrapper */}
+              <div className="tilt-card-project h-full flex flex-col">
+                <div className={`project-image h-48 bg-gradient-to-br ${project.gradient} relative overflow-hidden flex-shrink-0`}>
+                  {project.hasGallery ? (
+                    <div className={`absolute inset-0 grid ${project.galleryImages.length === 1 ? 'grid-cols-1' : 'grid-cols-1 md:grid-cols-2'} gap-0`}>
+                      {project.galleryImages.map((imgSrc, idx) => (
+                        <div key={idx} className={`relative overflow-hidden ${project.galleryImages.length === 1 ? 'h-full' : 'h-24 md:h-full'} bg-white`}>
+                          <img 
+                            src={imgSrc} 
+                            alt=""
+                            className="w-full h-full object-contain group-hover:scale-105 transition-transform duration-700"
+                            onError={(e) => {
+                              e.target.style.display = 'none';
+                              e.target.parentElement.innerHTML = `<div class="w-full h-full flex items-center justify-center bg-gradient-to-br ${project.gradient}"><span class="iconify text-white text-3xl" data-icon="${project.icon}"></span></div>`;
+                            }}
+                          />
+                        </div>
+                      ))}
+                    </div>
+                  ) : (
+                    <span className="iconify text-white text-6xl group-hover:scale-120 transition-transform duration-500 relative z-10" data-icon={project.icon}></span>
+                  )}
+                  <div className="absolute inset-0 bg-black/20 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                  <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/10 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-1000"></div>
+                </div>
+
+                <div className="p-5 flex-1 flex flex-col justify-between">
+                  <div>
+                    <div className="flex items-center justify-between mb-3">
+                      <span className={`px-3 py-1 ${project.category === 'design' ? 'bg-violet-500/10 text-violet-400 border border-violet-500/20' : 'bg-cyan-500/10 text-cyan-400 border border-cyan-500/20'} rounded-full text-xs font-mono`}>
+                        {project.badge}
+                      </span>
+                      {project.category === 'design'
+                        ? <i className="fab fa-figma text-neutral-400 text-lg group-hover:text-violet-400 transition-colors"></i>
+                        : <span className="iconify text-neutral-400 text-lg group-hover:text-cyan-400 transition-colors" data-icon="mdi:code-tags"></span>
+                      }
+                    </div>
+                    <h3 className="text-base font-bold text-white mb-2 group-hover:text-cyan-400 transition-colors">{project.name}</h3>
+                    <p className="text-neutral-500 mb-3 text-xs leading-relaxed">{project.description}</p>
+                    <ul className="info-list text-xs text-neutral-400 mb-4">
+                      {project.features.map((feature, idx) => (
+                        <li key={idx} className="group-hover:text-neutral-400 transition-colors">{feature}</li>
+                      ))}
+                    </ul>
                   </div>
-                ) : (
-                  <span className="iconify text-white text-6xl group-hover:scale-150 group-hover:rotate-12 transition-all duration-500 relative z-10" data-icon={project.icon}></span>
-                )}
-                {/* Overlay on hover with Animation */}
-                <div className="absolute inset-0 bg-black/20 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
-                {/* Animated Shine Effect */}
-                <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/30 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-1000"></div>
-                {/* Floating Particles */}
-                <div className="absolute top-4 right-4 w-2 h-2 bg-white rounded-full opacity-0 group-hover:opacity-100 animate-ping"></div>
-                <div className="absolute bottom-4 left-4 w-1.5 h-1.5 bg-white rounded-full opacity-0 group-hover:opacity-100 animate-ping" style={{animationDelay: '0.3s'}}></div>
-              </div>
-              <div className="p-5 relative z-10">
-                <div className="flex items-center justify-between mb-3">
-                  <span className={`px-3 py-1 ${project.category === 'design' ? 'bg-violet-500/10 text-violet-400 border border-violet-500/20' : 'bg-cyan-500/10 text-cyan-400 border border-cyan-500/20'} rounded-full text-xs font-mono`}>
-                    {project.badge}
-                  </span>
-                  {project.category === 'design'
-                    ? <i className="fab fa-figma text-neutral-600 text-lg group-hover:text-violet-400 transition-colors"></i>
-                    : <span className="iconify text-neutral-600 text-lg group-hover:text-cyan-400 transition-colors" data-icon="mdi:code-tags"></span>
-                  }
+
+                  <div>
+                    <div className="flex flex-wrap gap-1.5 mb-5">
+                      {project.tags.map((tag, idx) => (
+                        <span key={idx} className="px-2 py-0.5 bg-white/5 text-neutral-400 border border-white/5 rounded-full text-[10px] font-mono hover:text-cyan-400 hover:border-cyan-500/20 transition-colors cursor-default">
+                          {tag}
+                        </span>
+                      ))}
+                    </div>
+                    <a href={project.link} target="_blank" rel="noopener noreferrer"
+                      className="w-full flex items-center justify-center gap-2 px-4 py-2.5 bg-gradient-to-r from-cyan-500 to-violet-600 text-white rounded-xl text-sm font-semibold hover:shadow-lg hover:shadow-cyan-500/20 transition-all duration-300 group/btn relative overflow-hidden">
+                      <span className="relative z-10">See Project</span>
+                      <span className="iconify text-base group-hover/btn:translate-x-1 transition-transform relative z-10" data-icon="mdi:arrow-right"></span>
+                      <span className="absolute inset-0 bg-gradient-to-r from-violet-600 to-cyan-500 opacity-0 group-hover/btn:opacity-100 transition-opacity duration-300"></span>
+                    </a>
+                  </div>
                 </div>
-                <h3 className="text-base font-bold text-white mb-2 group-hover:text-cyan-400 transition-colors">{project.name}</h3>
-                <p className="text-neutral-600 mb-3 text-xs leading-relaxed">{project.description}</p>
-                <ul className="info-list text-xs text-neutral-600 mb-3">
-                  {project.features.map((feature, idx) => (
-                    <li key={idx} className="group-hover:text-neutral-400 transition-colors">{feature}</li>
-                  ))}
-                </ul>
-                <div className="flex flex-wrap gap-1.5 mb-4">
-                  {project.tags.map((tag, idx) => (
-                    <span key={idx} className="px-2 py-0.5 bg-white/5 text-neutral-600 border border-white/5 rounded-full text-[10px] font-mono hover:text-cyan-400 hover:border-cyan-500/20 transition-colors cursor-default">
-                      {tag}
-                    </span>
-                  ))}
-                </div>
-                <a href={project.link} target="_blank" rel="noopener noreferrer"
-                  className="w-full flex items-center justify-center gap-2 px-4 py-2.5 bg-gradient-to-r from-cyan-500 to-violet-600 text-white rounded-xl text-sm font-semibold hover:shadow-lg hover:shadow-cyan-500/20 hover:scale-[1.02] transition-all duration-300 group/btn relative overflow-hidden">
-                  <span className="relative z-10">See Project</span>
-                  <span className="iconify text-base group-hover/btn:translate-x-1 transition-transform relative z-10" data-icon="mdi:arrow-right"></span>
-                  <span className="absolute inset-0 bg-gradient-to-r from-violet-600 to-cyan-500 opacity-0 group-hover/btn:opacity-100 transition-opacity duration-300"></span>
-                </a>
               </div>
             </div>
           ))}

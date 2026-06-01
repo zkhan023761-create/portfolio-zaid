@@ -13,49 +13,37 @@ import Contact from '@/components/Contact';
 import Footer from '@/components/Footer';
 import WhatsAppFloat from '@/components/WhatsAppFloat';
 import ThreeBackground from '@/components/ThreeBackground';
+import SmoothScroll from '@/components/SmoothScroll';
+import CustomCursor from '@/components/CustomCursor';
 
 gsap.registerPlugin(ScrollTrigger);
 
 export default function Home() {
   useEffect(() => {
-    // AOS
-    if (typeof window !== 'undefined') {
-      import('aos').then((AOS) => {
-        AOS.init({ duration: 800, once: true, offset: 80 });
-      });
-    }
-
-    // Iconify
+    // Iconify Script Loader
     const iconifyScript = document.createElement('script');
     iconifyScript.src = 'https://code.iconify.design/3/3.1.0/iconify.min.js';
     document.head.appendChild(iconifyScript);
 
-    // Smooth scroll
+    // Smooth scroll anchor handler using Lenis
     const handleClick = (e) => {
       const target = e.target.closest('a[href^="#"]');
       if (target) {
+        const href = target.getAttribute('href');
+        if (href === '#') return;
+        
         e.preventDefault();
-        const el = document.querySelector(target.getAttribute('href'));
-        if (el) window.scrollTo({ top: el.offsetTop - 80, behavior: 'smooth' });
+        const el = document.querySelector(href);
+        if (el) {
+          if (window.lenis) {
+            window.lenis.scrollTo(el, { offset: -80 });
+          } else {
+            window.scrollTo({ top: el.offsetTop - 80, behavior: 'smooth' });
+          }
+        }
       }
     };
     document.addEventListener('click', handleClick);
-
-    // Skill progress bars
-    const skillObserver = new IntersectionObserver((entries) => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting) {
-          const width = entry.target.getAttribute('data-progress') + '%';
-          entry.target.style.width = '0%';
-          setTimeout(() => { entry.target.style.width = width; }, 100);
-          skillObserver.unobserve(entry.target);
-        }
-      });
-    }, { threshold: 0.5 });
-
-    setTimeout(() => {
-      document.querySelectorAll('.skill-progress').forEach(bar => skillObserver.observe(bar));
-    }, 1000);
 
     return () => {
       document.removeEventListener('click', handleClick);
@@ -64,18 +52,22 @@ export default function Home() {
   }, []);
 
   return (
-    <>
+    <SmoothScroll>
+      <CustomCursor />
       <ThreeBackground />
       <Navigation />
-      <Hero />
-      <About />
-      <Education />
-      <Skills />
-      <Projects />
-      <Certifications />
-      <Contact />
-      <Footer />
+      <div className="relative z-10">
+        <Hero />
+        <About />
+        <Education />
+        <Skills />
+        <Projects />
+        <Certifications />
+        <Contact />
+        <Footer />
+      </div>
       <WhatsAppFloat />
-    </>
+    </SmoothScroll>
   );
 }
+

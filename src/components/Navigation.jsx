@@ -11,15 +11,68 @@ export default function Navigation() {
   const btnRef = useRef(null);
 
   useEffect(() => {
+    // Intro animation
     const tl = gsap.timeline();
     tl.fromTo(navRef.current, { y: -100, opacity: 0 }, { y: 0, opacity: 1, duration: 1, ease: 'power4.out' })
       .fromTo(logoRef.current, { x: -30, opacity: 0 }, { x: 0, opacity: 1, duration: 0.6, ease: 'power3.out' }, '-=0.5')
       .fromTo(linksRef.current, { y: -20, opacity: 0 }, { y: 0, opacity: 1, stagger: 0.07, duration: 0.5, ease: 'power2.out' }, '-=0.4')
       .fromTo(btnRef.current, { scale: 0, opacity: 0 }, { scale: 1, opacity: 1, duration: 0.5, ease: 'back.out(1.7)' }, '-=0.3');
 
-    const handleScroll = () => setScrolled(window.pageYOffset > 50);
+    // Magnetic effect helper
+    const makeMagnetic = (element, strength = 0.25) => {
+      if (!element) return;
+      
+      const handleMouseMove = (e) => {
+        const bound = element.getBoundingClientRect();
+        const x = e.clientX - (bound.left + bound.width / 2);
+        const y = e.clientY - (bound.top + bound.height / 2);
+        
+        gsap.to(element, {
+          x: x * strength,
+          y: y * strength,
+          duration: 0.3,
+          ease: 'power2.out'
+        });
+      };
+      
+      const handleMouseLeave = () => {
+        gsap.to(element, {
+          x: 0,
+          y: 0,
+          duration: 0.5,
+          ease: 'elastic.out(1.1, 0.4)'
+        });
+      };
+      
+      element.addEventListener('mousemove', handleMouseMove);
+      element.addEventListener('mouseleave', handleMouseLeave);
+      
+      return () => {
+        element.removeEventListener('mousemove', handleMouseMove);
+        element.removeEventListener('mouseleave', handleMouseLeave);
+      };
+    };
+
+    // Make elements magnetic
+    const cleanups = [];
+    if (logoRef.current) cleanups.push(makeMagnetic(logoRef.current, 0.2));
+    if (btnRef.current) cleanups.push(makeMagnetic(btnRef.current, 0.25));
+    
+    // Slight delay to ensure refs are fully populated
+    const timeoutId = setTimeout(() => {
+      linksRef.current.forEach(link => {
+        if (link) cleanups.push(makeMagnetic(link, 0.3));
+      });
+    }, 100);
+
+    const handleScroll = () => setScrolled(window.scrollY > 50);
     window.addEventListener('scroll', handleScroll);
-    return () => window.removeEventListener('scroll', handleScroll);
+    
+    return () => {
+      clearTimeout(timeoutId);
+      window.removeEventListener('scroll', handleScroll);
+      cleanups.forEach(cleanup => cleanup && cleanup());
+    };
   }, []);
 
   const navLinks = ['Home', 'About', 'Education', 'Skills', 'Projects', 'Certifications', 'Contact'];
@@ -49,7 +102,7 @@ export default function Navigation() {
           <a ref={btnRef} href="#contact"
             className="hidden md:flex items-center gap-2 px-5 py-2 rounded-full border border-cyan-500/40 text-cyan-400 text-sm font-medium hover:bg-cyan-500/10 hover:border-cyan-400 transition-all duration-300 hover:shadow-lg hover:shadow-cyan-500/20">
             <span className="w-1.5 h-1.5 bg-cyan-400 rounded-full animate-pulse"></span>
-            Let's Talk
+            Let&apos;s Talk
           </a>
 
           <button onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
@@ -70,7 +123,7 @@ export default function Navigation() {
             ))}
             <a href="#contact" onClick={() => setMobileMenuOpen(false)}
               className="block py-2 px-4 bg-gradient-to-r from-cyan-500 to-violet-600 text-white rounded-full font-medium text-center text-sm">
-              Let's Talk
+              Let&apos;s Talk
             </a>
           </div>
         </div>
