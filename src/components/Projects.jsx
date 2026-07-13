@@ -362,7 +362,7 @@ export default function Projects() {
             onClick={() => handleFilterChange('all')}
             className={`projects-filter-btn px-5 py-2 rounded-full text-sm font-medium transition-all duration-300 ${
               filter === 'all' 
-                ? 'bg-gradient-to-r from-cyan-500 to-violet-600 text-white shadow-lg shadow-cyan-500/20 scale-105' 
+                ? 'bg-linear-to-r from-cyan-500 to-violet-600 text-white shadow-lg shadow-cyan-500/20 scale-105' 
                 : 'bg-white/5 border border-white/10 text-neutral-500 hover:border-cyan-500/30 hover:text-white'
             }`}
           >All Projects</button>
@@ -370,7 +370,7 @@ export default function Projects() {
             onClick={() => handleFilterChange('coding')}
             className={`projects-filter-btn px-5 py-2 rounded-full text-sm font-medium transition-all duration-300 ${
               filter === 'coding' 
-                ? 'bg-gradient-to-r from-cyan-500 to-violet-600 text-white shadow-lg shadow-cyan-500/20 scale-105' 
+                ? 'bg-linear-to-r from-cyan-500 to-violet-600 text-white shadow-lg shadow-cyan-500/20 scale-105' 
                 : 'bg-white/5 border border-white/10 text-neutral-500 hover:border-cyan-500/30 hover:text-white'
             }`}
           >Coding</button>
@@ -378,7 +378,7 @@ export default function Projects() {
             onClick={() => handleFilterChange('design')}
             className={`projects-filter-btn px-5 py-2 rounded-full text-sm font-medium transition-all duration-300 ${
               filter === 'design' 
-                ? 'bg-gradient-to-r from-violet-600 to-pink-600 text-white shadow-lg shadow-violet-500/20 scale-105' 
+                ? 'bg-linear-to-r from-violet-600 to-pink-600 text-white shadow-lg shadow-violet-500/20 scale-105' 
                 : 'bg-white/5 border border-white/10 text-neutral-500 hover:border-violet-500/30 hover:text-white'
             }`}
           >UI/UX Design</button>
@@ -393,14 +393,14 @@ export default function Projects() {
               className="project-card-anim bg-[#0a0f1e] rounded-2xl overflow-hidden border border-white/5 hover:border-cyan-500/20 transition-colors duration-500 group relative hover:shadow-2xl hover:shadow-cyan-500/10 cursor-none"
             >
               {/* Glow border ring */}
-              <div className="absolute -inset-0.5 bg-gradient-to-r from-cyan-500 to-violet-500 rounded-2xl opacity-0 group-hover:opacity-10 blur transition-opacity duration-500 pointer-events-none"></div>
+              <div className="absolute -inset-0.5 bg-linear-to-r from-cyan-500 to-violet-500 rounded-2xl opacity-0 group-hover:opacity-10 blur transition-opacity duration-500 pointer-events-none"></div>
               
               {/* Corner accents */}
-              <div className="absolute top-0 left-0 w-20 h-20 bg-gradient-to-br from-cyan-400/10 to-transparent rounded-br-full opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none"></div>
+              <div className="absolute top-0 left-0 w-20 h-20 bg-linear-to-br from-cyan-400/10 to-transparent rounded-br-full opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none"></div>
               
               {/* 3D Tilt Card content wrapper */}
               <div className="tilt-card-project h-full flex flex-col">
-                <div className={`project-image h-48 bg-gradient-to-br ${project.gradient} relative overflow-hidden flex-shrink-0`}>
+                <div className={`project-image h-48 bg-linear-to-br ${project.gradient} relative overflow-hidden shrink-0`}>
                   {project.hasGallery ? (
                     <div className={`absolute inset-0 grid ${project.galleryImages.length === 1 ? 'grid-cols-1' : 'grid-cols-1 md:grid-cols-2'} gap-0`}>
                       {project.galleryImages.map((imgSrc, idx) => (
@@ -411,7 +411,7 @@ export default function Projects() {
                             className="w-full h-full object-contain group-hover:scale-105 transition-transform duration-700"
                             onError={(e) => {
                               e.target.style.display = 'none';
-                              e.target.parentElement.innerHTML = `<div class="w-full h-full flex items-center justify-center bg-gradient-to-br ${project.gradient}"><span class="iconify text-white text-3xl" data-icon="${project.icon}"></span></div>`;
+                              e.target.parentElement.innerHTML = `<div class="w-full h-full flex items-center justify-center bg-linear-to-br ${project.gradient}"><span class="iconify text-white text-3xl" data-icon="${project.icon}"></span></div>`;
                             }}
                           />
                         </div>
@@ -421,7 +421,7 @@ export default function Projects() {
                     <span className="iconify text-white text-6xl group-hover:scale-120 transition-transform duration-500 relative z-10" data-icon={project.icon}></span>
                   )}
                   <div className="absolute inset-0 bg-black/20 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
-                  <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/10 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-1000"></div>
+                  <div className="absolute inset-0 bg-linear-to-r from-transparent via-white/10 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-1000"></div>
                 </div>
 
                 <div className="p-5 flex-1 flex flex-col justify-between">
@@ -453,10 +453,10 @@ export default function Projects() {
                       ))}
                     </div>
                     <a href={project.link} target="_blank" rel="noopener noreferrer"
-                      className="w-full flex items-center justify-center gap-2 px-4 py-2.5 bg-gradient-to-r from-cyan-500 to-violet-600 text-white rounded-xl text-sm font-semibold hover:shadow-lg hover:shadow-cyan-500/20 transition-all duration-300 group/btn relative overflow-hidden">
+                      className="w-full flex items-center justify-center gap-2 px-4 py-2.5 bg-linear-to-r from-cyan-500 to-violet-600 text-white rounded-xl text-sm font-semibold hover:shadow-lg hover:shadow-cyan-500/20 transition-all duration-300 group/btn relative overflow-hidden">
                       <span className="relative z-10">See Project</span>
                       <span className="iconify text-base group-hover/btn:translate-x-1 transition-transform relative z-10" data-icon="mdi:arrow-right"></span>
-                      <span className="absolute inset-0 bg-gradient-to-r from-violet-600 to-cyan-500 opacity-0 group-hover/btn:opacity-100 transition-opacity duration-300"></span>
+                      <span className="absolute inset-0 bg-linear-to-r from-violet-600 to-cyan-500 opacity-0 group-hover/btn:opacity-100 transition-opacity duration-300"></span>
                     </a>
                   </div>
                 </div>

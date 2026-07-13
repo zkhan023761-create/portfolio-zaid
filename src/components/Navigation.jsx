@@ -86,7 +86,7 @@ export default function Navigation() {
           <a ref={logoRef} href="#home" className="font-mono font-bold text-xl relative group">
             <span className="gradient-text">ZK</span>
             <span className="text-white/60">.</span>
-            <span className="absolute -bottom-1 left-0 w-0 h-px bg-gradient-to-r from-cyan-400 to-violet-500 group-hover:w-full transition-all duration-500"></span>
+            <span className="absolute -bottom-1 left-0 w-0 h-px bg-linear-to-r from-cyan-400 to-violet-500 group-hover:w-full transition-all duration-500"></span>
           </a>
 
           <div className="hidden md:flex items-center space-x-8">
@@ -122,7 +122,7 @@ export default function Navigation() {
               </a>
             ))}
             <a href="#contact" onClick={() => setMobileMenuOpen(false)}
-              className="block py-2 px-4 bg-gradient-to-r from-cyan-500 to-violet-600 text-white rounded-full font-medium text-center text-sm">
+              className="block py-2 px-4 bg-linear-to-r from-cyan-500 to-violet-600 text-white rounded-full font-medium text-center text-sm">
               Let&apos;s Talk
             </a>
           </div>

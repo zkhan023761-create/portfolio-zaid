@@ -25,7 +25,7 @@ export default function Footer() {
 
           <div>
             <h3 className="text-white font-bold text-sm mb-4 flex items-center gap-2">
-              <span className="w-1 h-4 bg-gradient-to-b from-cyan-400 to-violet-500 rounded-full"></span>
+              <span className="w-1 h-4 bg-linear-to-b from-cyan-400 to-violet-500 rounded-full"></span>
               Quick Links
             </h3>
             <div className="space-y-2">
@@ -40,7 +40,7 @@ export default function Footer() {
 
           <div>
             <h3 className="text-white font-bold text-sm mb-4 flex items-center gap-2">
-              <span className="w-1 h-4 bg-gradient-to-b from-violet-400 to-pink-500 rounded-full"></span>
+              <span className="w-1 h-4 bg-linear-to-b from-violet-400 to-pink-500 rounded-full"></span>
               Services
             </h3>
             <div className="space-y-2 text-sm">
@@ -52,7 +52,7 @@ export default function Footer() {
 
           <div>
             <h3 className="text-white font-bold text-sm mb-4 flex items-center gap-2">
-              <span className="w-1 h-4 bg-gradient-to-b from-pink-400 to-cyan-500 rounded-full"></span>
+              <span className="w-1 h-4 bg-linear-to-b from-pink-400 to-cyan-500 rounded-full"></span>
               Connect
             </h3>
             <div className="flex flex-wrap gap-2 mb-5">

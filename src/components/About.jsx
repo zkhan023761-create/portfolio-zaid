@@ -104,7 +104,7 @@ export default function About() {
                     key={i} 
                     className={`tilt-card-about about-item flex items-center gap-4 p-4 rounded-2xl border ${c.border} ${c.bg} group cursor-default hover:shadow-xl ${c.glow} transition-shadow duration-300`}
                   >
-                    <div className="w-12 h-12 rounded-xl border border-white/5 bg-[#0a0f1e]/40 flex items-center justify-center flex-shrink-0 group-hover:scale-110 transition-transform duration-300">
+                    <div className="w-12 h-12 rounded-xl border border-white/5 bg-[#0a0f1e]/40 flex items-center justify-center shrink-0 group-hover:scale-110 transition-transform duration-300">
                       {card.fa ? <i className={`${card.fa} text-xl ${c.icon}`}></i> : <span className={`iconify text-xl ${c.icon}`} data-icon={card.icon}></span>}
                     </div>
                     <div>
@@ -119,9 +119,9 @@ export default function About() {
             </div>
 
             {/* Core Competencies */}
-            <div className="about-item p-5 rounded-2xl border border-white/5 bg-white/[0.02]">
+            <div className="about-item p-5 rounded-2xl border border-white/5 bg-white/2">
               <h3 className="text-white font-bold text-sm mb-4 flex items-center gap-2">
-                <span className="w-1 h-4 bg-gradient-to-b from-cyan-400 to-violet-500 rounded-full"></span>
+                <span className="w-1 h-4 bg-linear-to-b from-cyan-400 to-violet-500 rounded-full"></span>
                 Core Competencies
               </h3>
               <div className="grid grid-cols-2 gap-2">
@@ -150,13 +150,13 @@ export default function About() {
 
             <div>
               <h3 className="text-white font-bold text-sm mb-4 flex items-center gap-2">
-                <span className="w-1 h-4 bg-gradient-to-b from-cyan-400 to-violet-500 rounded-full"></span>
+                <span className="w-1 h-4 bg-linear-to-b from-cyan-400 to-violet-500 rounded-full"></span>
                 What I Bring
               </h3>
               <div className="space-y-2">
                 {['Clean, maintainable code architecture','User-centered design thinking','Responsive, mobile-first development','Modern JavaScript frameworks expertise','RESTful API development','Version control with Git'].map((item, i) => (
                   <div key={i} className="flex items-center gap-3 group cursor-default">
-                    <span className="w-1.5 h-1.5 bg-cyan-500 rounded-full flex-shrink-0 group-hover:scale-150 transition-transform" style={{boxShadow:'0 0 6px rgba(6,182,212,0.6)'}}></span>
+                    <span className="w-1.5 h-1.5 bg-cyan-500 rounded-full shrink-0 group-hover:scale-150 transition-transform" style={{boxShadow:'0 0 6px rgba(6,182,212,0.6)'}}></span>
                     <span className="text-neutral-500 group-hover:text-neutral-350 transition-colors text-sm">{item}</span>
                   </div>
                 ))}

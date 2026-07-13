@@ -67,7 +67,7 @@ export default function Certifications() {
                 className={`cert-card-anim tilt-card-cert group p-5 rounded-2xl border ${c.border} ${c.bg} bg-[#0a0f1e] ${c.hover} hover:shadow-xl transition-colors duration-300 cursor-default`}
               >
                 <div className="flex items-start gap-4">
-                  <div className={`w-12 h-12 rounded-xl border ${c.border} flex items-center justify-center flex-shrink-0 group-hover:scale-110 group-hover:rotate-6 transition-all duration-300`}>
+                  <div className={`w-12 h-12 rounded-xl border ${c.border} flex items-center justify-center shrink-0 group-hover:scale-110 group-hover:rotate-6 transition-all duration-300`}>
                     <span className={`iconify text-xl ${c.text}`} data-icon="mdi:certificate"></span>
                   </div>
                   <div className="flex-1 min-w-0">
@@ -82,7 +82,7 @@ export default function Certifications() {
                   </div>
                 </div>
                 {/* Fixed Dynamic Class warning using colorMap configuration */}
-                <div className={`mt-4 h-px bg-gradient-to-r from-transparent ${c.via} to-transparent transform scale-x-0 group-hover:scale-x-100 transition-transform duration-500`}></div>
+                <div className={`mt-4 h-px bg-linear-to-r from-transparent ${c.via} to-transparent transform scale-x-0 group-hover:scale-x-100 transition-transform duration-500`}></div>
               </div>
             );
           })}

@@ -338,7 +338,7 @@ export default function Hero() {
       {/* Interactive 3D Canvas Container (Solar System of Skills covering whole Hero background) */}
       <div 
         ref={heroCanvasRef} 
-        className="absolute inset-0 pointer-events-none z-[1]"
+        className="absolute inset-0 pointer-events-none z-1"
         style={{ opacity: 0.75 }}
       />
 
@@ -368,7 +368,7 @@ export default function Hero() {
               </h1>
             </div>
 
-            <div ref={lineRef} className="h-px bg-gradient-to-r from-cyan-500 via-violet-500 to-transparent origin-left"></div>
+            <div ref={lineRef} className="h-px bg-linear-to-r from-cyan-500 via-violet-500 to-transparent origin-left"></div>
 
             <div ref={roleRef}>
               <h2 className="text-lg sm:text-xl text-neutral-400 font-light">
@@ -384,12 +384,12 @@ export default function Hero() {
 
             <div ref={btnsRef} className="flex flex-wrap justify-center lg:justify-start gap-4">
               <a href="#projects"
-                className="group relative px-8 py-3.5 bg-gradient-to-r from-cyan-500 to-violet-600 text-white rounded-full font-semibold text-sm overflow-hidden hover:shadow-2xl hover:shadow-cyan-500/30 transition-all duration-300 hover:scale-105">
+                className="group relative px-8 py-3.5 bg-linear-to-r from-cyan-500 to-violet-600 text-white rounded-full font-semibold text-sm overflow-hidden hover:shadow-2xl hover:shadow-cyan-500/30 transition-all duration-300 hover:scale-105">
                 <span className="relative z-10 flex items-center gap-2">
                   Explore Projects
                   <span className="iconify group-hover:translate-x-1 transition-transform" data-icon="mdi:arrow-right"></span>
                 </span>
-                <span className="absolute inset-0 bg-gradient-to-r from-violet-600 to-cyan-500 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></span>
+                <span className="absolute inset-0 bg-linear-to-r from-violet-600 to-cyan-500 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></span>
               </a>
               <a href="#contact"
                 className="group px-8 py-3.5 rounded-full border border-white/10 text-white font-semibold text-sm hover:border-cyan-500/50 hover:bg-cyan-500/5 transition-all duration-300 hover:scale-105 flex items-center gap-2">
@@ -419,7 +419,7 @@ export default function Hero() {
             <div ref={photoRef} className="relative w-full max-w-sm">
 
               {/* Glow Behind Card */}
-              <div className="absolute -inset-6 bg-gradient-to-br from-cyan-500/20 to-violet-600/20 rounded-3xl blur-3xl"></div>
+              <div className="absolute -inset-6 bg-linear-to-br from-cyan-500/20 to-violet-600/20 rounded-3xl blur-3xl"></div>
 
               {/* Main Profile Card (HUD-themed with flat top) */}
               <div 
@@ -446,8 +446,8 @@ export default function Hero() {
 
                 {/* Photo Container */}
                 <div className="relative overflow-hidden">
-                  <div className="absolute inset-0 bg-gradient-to-t from-[#0a0f1e] via-transparent to-transparent z-10"></div>
-                  <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/5 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-1000 z-20"></div>
+                  <div className="absolute inset-0 bg-linear-to-t from-[#0a0f1e] via-transparent to-transparent z-10"></div>
+                  <div className="absolute inset-0 bg-linear-to-r from-transparent via-white/5 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-1000 z-20"></div>
                   
                   {/* Holographic Laser scan line */}
                   <div className="animate-scan z-20"></div>
@@ -482,7 +482,7 @@ export default function Hero() {
                           <span className="text-[11px] text-neutral-400">{s.pct}%</span>
                         </div>
                         <div className="h-1 bg-white/5 rounded-full overflow-hidden">
-                          <div className={`h-full bg-gradient-to-r ${s.color} rounded-full`} style={{width:`${s.pct}%`}}></div>
+                          <div className={`h-full bg-linear-to-r ${s.color} rounded-full`} style={{width:`${s.pct}%`}}></div>
                         </div>
                       </div>
                     ))}

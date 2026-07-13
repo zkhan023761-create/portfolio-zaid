@@ -267,7 +267,7 @@ export default function Skills() {
               onClick={() => handleCategoryChange(category)}
               className={`skills-filter-btn px-5 py-2 rounded-full text-sm font-medium transition-all duration-300 ${
                 activeCategory === category
-                  ? 'bg-gradient-to-r from-cyan-500 to-violet-600 text-white shadow-lg shadow-cyan-500/20 scale-105'
+                  ? 'bg-linear-to-r from-cyan-500 to-violet-600 text-white shadow-lg shadow-cyan-500/20 scale-105'
                   : 'bg-white/5 text-neutral-500 border border-white/10 hover:border-cyan-500/30 hover:text-white'
               }`}
             >
@@ -291,7 +291,7 @@ export default function Skills() {
               
               {/* Card content */}
               <div className="tilt-card-skill relative bg-[#0a0f1e] rounded-3xl p-6 border border-white/5 hover:border-cyan-500/20 transition-colors duration-500 hover:shadow-2xl hover:shadow-cyan-500/5">
-                <div className="absolute top-0 right-0 w-20 h-20 bg-gradient-to-bl from-cyan-500/5 to-transparent rounded-tr-3xl opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none"></div>
+                <div className="absolute top-0 right-0 w-20 h-20 bg-linear-to-bl from-cyan-500/5 to-transparent rounded-tr-3xl opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none"></div>
                 
                 <div className="relative mb-5">
                   <div className={`w-16 h-16 ${skill.bgColor} rounded-2xl flex items-center justify-center transform transition-transform duration-500 group-hover:rotate-6 shadow-lg`}>
@@ -305,7 +305,7 @@ export default function Skills() {
                 </div>
 
                 <div className="absolute top-4 right-4 opacity-0 group-hover:opacity-100 transition-all duration-500 transform translate-x-3 group-hover:translate-x-0">
-                  <span className="px-2 py-1 bg-gradient-to-r from-cyan-500 to-violet-600 text-white text-[10px] font-mono rounded-full">{skill.category}</span>
+                  <span className="px-2 py-1 bg-linear-to-r from-cyan-500 to-violet-600 text-white text-[10px] font-mono rounded-full">{skill.category}</span>
                 </div>
                 
                 <h3 className="text-lg font-bold mb-2 text-white group-hover:text-cyan-400 transition-colors duration-300">{skill.name}</h3>
@@ -319,7 +319,7 @@ export default function Skills() {
                   </div>
                   <div className="h-1.5 bg-white/5 rounded-full overflow-hidden">
                     <div 
-                      className="skill-progress-bar h-full bg-gradient-to-r from-cyan-500 to-violet-600 rounded-full" 
+                      className="skill-progress-bar h-full bg-linear-to-r from-cyan-500 to-violet-600 rounded-full" 
                       data-progress={skill.progress}
                       style={{ width: '0%' }}
                     ></div>
@@ -335,7 +335,7 @@ export default function Skills() {
                 </div>
                 
                 {/* Underline gradient divider */}
-                <div className="absolute bottom-0 left-0 right-0 h-px bg-gradient-to-r from-cyan-500 to-violet-600 transform scale-x-0 group-hover:scale-x-100 transition-transform duration-500 rounded-b-3xl"></div>
+                <div className="absolute bottom-0 left-0 right-0 h-px bg-linear-to-r from-cyan-500 to-violet-600 transform scale-x-0 group-hover:scale-x-100 transition-transform duration-500 rounded-b-3xl"></div>
               </div>
             </a>
           ))}

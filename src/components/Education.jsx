@@ -96,7 +96,7 @@ export default function Education() {
             <div className="absolute top-6 right-6">
               <span className="px-3 py-1 bg-green-500/10 border border-green-500/20 text-green-400 text-xs font-mono rounded-full">Currently Pursuing</span>
             </div>
-            <div className="w-14 h-14 rounded-2xl bg-gradient-to-br from-cyan-500 to-blue-600 flex items-center justify-center mb-5 group-hover:scale-110 group-hover:rotate-6 transition-all duration-500 shadow-lg shadow-cyan-500/20">
+            <div className="w-14 h-14 rounded-2xl bg-linear-to-br from-cyan-500 to-blue-600 flex items-center justify-center mb-5 group-hover:scale-110 group-hover:rotate-6 transition-all duration-500 shadow-lg shadow-cyan-500/20">
               <span className="iconify text-2xl text-white" data-icon="mdi:brain"></span>
             </div>
             <h3 className="text-xl font-bold text-white mb-1 group-hover:text-cyan-400 transition-colors">B.Voc in AI, Data Science & Machine Learning</h3>
@@ -108,7 +108,7 @@ export default function Education() {
             <div className="space-y-2 mb-4">
               {['Specializing in AI, Data Science, and Machine Learning','Hands-on experience with modern AI/ML frameworks','Building practical AI, DS, and ML projects'].map((p, i) => (
                 <div key={i} className="flex items-start gap-2">
-                  <span className="w-1 h-1 bg-cyan-500 rounded-full mt-2 flex-shrink-0"></span>
+                  <span className="w-1 h-1 bg-cyan-500 rounded-full mt-2 shrink-0"></span>
                   <p className="text-neutral-300 text-xs">{p}</p>
                 </div>
               ))}
@@ -126,7 +126,7 @@ export default function Education() {
             <div className="absolute top-6 right-6">
               <span className="px-3 py-1 bg-violet-500/10 border border-violet-500/20 text-violet-400 text-xs font-mono rounded-full">Completed</span>
             </div>
-            <div className="w-14 h-14 rounded-2xl bg-gradient-to-br from-violet-500 to-indigo-600 flex items-center justify-center mb-5 group-hover:scale-110 group-hover:rotate-6 transition-all duration-500 shadow-lg shadow-violet-500/20">
+            <div className="w-14 h-14 rounded-2xl bg-linear-to-br from-violet-500 to-indigo-600 flex items-center justify-center mb-5 group-hover:scale-110 group-hover:rotate-6 transition-all duration-500 shadow-lg shadow-violet-500/20">
               <span className="iconify text-2xl text-white" data-icon="mdi:school"></span>
             </div>
             <h3 className="text-xl font-bold text-white mb-1 group-hover:text-violet-400 transition-colors">Higher Secondary Education (12th)</h3>
@@ -138,7 +138,7 @@ export default function Education() {
             <div className="space-y-2 mb-4">
               {['Strong foundation in science subjects','Developed analytical and problem-solving skills','Built academic foundation for higher studies'].map((p, i) => (
                 <div key={i} className="flex items-start gap-2">
-                  <span className="w-1 h-1 bg-violet-500 rounded-full mt-2 flex-shrink-0"></span>
+                  <span className="w-1 h-1 bg-violet-500 rounded-full mt-2 shrink-0"></span>
                   <p className="text-neutral-300 text-xs">{p}</p>
                 </div>
               ))}
