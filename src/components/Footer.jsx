@@ -6,7 +6,14 @@ export default function Footer() {
       <div className="max-w-7xl mx-auto relative z-10">
         <div className="grid md:grid-cols-4 gap-12 mb-12">
           <div className="md:col-span-1">
-            <a href="#home" className="font-mono font-bold text-2xl gradient-text inline-block mb-4">ZK.</a>
+            <a href="#home" className="inline-flex items-center gap-3 font-mono font-bold text-2xl mb-4 group">
+              <img 
+                src="/logo.png" 
+                alt="Logo" 
+                className="w-8 h-8 object-contain transition-transform duration-300 group-hover:scale-110 drop-shadow-[0_0_10px_rgba(59,130,246,0.6)]" 
+              />
+              <span className="gradient-text">ZK.</span>
+            </a>
             <p className="text-neutral-400 text-sm leading-relaxed mb-6">
               Building the future, one line of code at a time.
             </p>

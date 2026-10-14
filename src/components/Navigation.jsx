@@ -83,9 +83,16 @@ export default function Navigation() {
     }`}>
       <div className="max-w-7xl mx-auto px-6 lg:px-10">
         <div className="flex justify-between items-center h-16">
-          <a ref={logoRef} href="#home" className="font-mono font-bold text-xl relative group">
-            <span className="gradient-text">ZK</span>
-            <span className="text-white/60">.</span>
+          <a ref={logoRef} href="#home" className="flex items-center gap-3 font-mono font-bold text-xl relative group">
+            <img 
+              src="/logo.png" 
+              alt="Logo" 
+              className="w-8 h-8 object-contain transition-transform duration-300 group-hover:scale-110 drop-shadow-[0_0_10px_rgba(59,130,246,0.6)]" 
+            />
+            <span className="tracking-tight">
+              <span className="gradient-text">ZK</span>
+              <span className="text-white/60">.</span>
+            </span>
             <span className="absolute -bottom-1 left-0 w-0 h-px bg-linear-to-r from-cyan-400 to-violet-500 group-hover:w-full transition-all duration-500"></span>
           </a>
 
