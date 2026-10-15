@@ -40,7 +40,7 @@ export default function Certifications() {
 
   return (
     <section ref={sectionRef} id="certifications" className="py-24 px-6 lg:px-8 bg-[#030712] relative overflow-hidden">
-      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-violet-600 rounded-full filter blur-[200px] opacity-5 pointer-events-none"></div>
+      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-150 h-150 bg-violet-600 rounded-full filter blur-[200px] opacity-5 pointer-events-none"></div>
       <div className="absolute inset-0 grid-pattern pointer-events-none"></div>
 
       <div className="max-w-7xl mx-auto relative z-10">
