@@ -1,18 +1,20 @@
 export default function Footer() {
   return (
     <footer className="bg-[#030712] border-t border-white/5 text-white py-16 px-6 lg:px-8 relative overflow-hidden">
-      <div className="absolute bottom-0 left-0 w-[400px] h-[400px] bg-cyan-500 rounded-full filter blur-[180px] opacity-5"></div>
+      <div className="absolute bottom-0 left-0 w-100 h-100 bg-cyan-500 rounded-full filter blur-[180px] opacity-5"></div>
 
       <div className="max-w-7xl mx-auto relative z-10">
         <div className="grid md:grid-cols-4 gap-12 mb-12">
           <div className="md:col-span-1">
-            <a href="#home" className="inline-flex items-center gap-3 font-mono font-bold text-2xl mb-4 group">
-              <img 
-                src="/logo.png" 
-                alt="Logo" 
-                className="w-8 h-8 object-contain transition-transform duration-300 group-hover:scale-110 drop-shadow-[0_0_10px_rgba(59,130,246,0.6)]" 
-              />
-              <span className="gradient-text">ZK.</span>
+            <a href="#home" className="inline-flex items-center mb-4 group" aria-label="Zaid Khan Home">
+              <div className="relative flex items-center justify-center">
+                <div className="absolute inset-0 bg-blue-500/20 rounded-full blur-lg opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                <img 
+                  src="/logo.png" 
+                  alt="Zaid Khan Logo" 
+                  className="w-10 h-10 object-contain relative z-10 transition-transform duration-300 group-hover:scale-110 drop-shadow-[0_0_14px_rgba(59,130,246,0.6)]" 
+                />
+              </div>
             </a>
             <p className="text-neutral-400 text-sm leading-relaxed mb-6">
               Building the future, one line of code at a time.
