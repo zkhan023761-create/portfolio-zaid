@@ -135,11 +135,11 @@ export default function CustomCursor() {
       {/* Outer circle */}
       <div
         ref={cursorBgRef}
-        className="fixed top-0 left-0 w-8 h-8 border border-cyan-500/30 rounded-full pointer-events-none z-9999 mix-blend-screen flex items-center justify-center overflow-hidden transition-opacity duration-300"
+        className="fixed top-0 left-0 w-8 h-8 border border-[#89AACC]/40 rounded-full pointer-events-none z-[9999] mix-blend-screen flex items-center justify-center overflow-hidden transition-opacity duration-300"
         style={{ opacity: isVisible ? 1 : 0 }}
       >
         {hoverText && (
-          <span className="text-[9px] font-bold font-mono tracking-widest text-cyan-400 text-center uppercase">
+          <span className="text-[9px] font-bold font-mono tracking-widest text-[#89AACC] text-center uppercase">
             {hoverText}
           </span>
         )}
@@ -148,7 +148,7 @@ export default function CustomCursor() {
       {/* Inner dot */}
       <div
         ref={cursorDotRef}
-        className="fixed top-0 left-0 w-2 h-2 bg-violet-500 rounded-full pointer-events-none z-9999 transition-opacity duration-300 shadow-md shadow-violet-500/30"
+        className="fixed top-0 left-0 w-2 h-2 bg-[#89AACC] rounded-full pointer-events-none z-[9999] transition-opacity duration-300 shadow-[0_0_8px_rgba(137,170,204,0.6)]"
         style={{ opacity: isVisible ? 1 : 0 }}
       />
     </>

@@ -1,0 +1,73 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 560" width="800" height="560">
+  <defs>
+    <linearGradient id="bgGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#0a1210"/>
+      <stop offset="50%" stop-color="#10241e"/>
+      <stop offset="100%" stop-color="#070c0a"/>
+    </linearGradient>
+    <linearGradient id="goldGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#D4AF37"/>
+      <stop offset="50%" stop-color="#FFF2A1"/>
+      <stop offset="100%" stop-color="#AA771C"/>
+    </linearGradient>
+  </defs>
+
+  <!-- Background Canvas -->
+  <rect width="800" height="560" fill="url(#bgGrad)"/>
+
+  <!-- Ornate Double Outer Border -->
+  <rect x="24" y="24" width="752" height="512" fill="none" stroke="url(#goldGrad)" stroke-width="2" rx="12"/>
+  <rect x="34" y="34" width="732" height="492" fill="none" stroke="#254035" stroke-width="1" rx="8"/>
+
+  <!-- Corner Flourishes -->
+  <circle cx="48" cy="48" r="6" fill="url(#goldGrad)"/>
+  <circle cx="752" cy="48" r="6" fill="url(#goldGrad)"/>
+  <circle cx="48" cy="512" r="6" fill="url(#goldGrad)"/>
+  <circle cx="752" cy="512" r="6" fill="url(#goldGrad)"/>
+
+  <!-- Header Badge -->
+  <text x="400" y="95" text-anchor="middle" fill="#34D399" font-family="'Inter', sans-serif" font-size="12" letter-spacing="4" font-weight="600">INTEL &amp; DIGITAL INDIA INITIATIVE</text>
+
+  <!-- Title -->
+  <text x="400" y="145" text-anchor="middle" fill="url(#goldGrad)" font-family="'Instrument Serif', Georgia, serif" font-size="36" font-style="italic" font-weight="normal">Certificate of Appreciation</text>
+
+  <line x1="280" y1="165" x2="520" y2="165" stroke="url(#goldGrad)" stroke-width="1" stroke-dasharray="4 2"/>
+
+  <!-- Presentation text -->
+  <text x="400" y="210" text-anchor="middle" fill="#888899" font-family="'Inter', sans-serif" font-size="14" letter-spacing="2">THIS CERTIFICATE IS PRESENTED TO</text>
+
+  <!-- Recipient Name -->
+  <text x="400" y="265" text-anchor="middle" fill="#F0F4F8" font-family="'Instrument Serif', Georgia, serif" font-size="44" font-style="italic" font-weight="bold">Zaid Khan</text>
+
+  <line x1="240" y1="285" x2="560" y2="285" stroke="#333348" stroke-width="1.5"/>
+
+  <!-- Statement -->
+  <text x="400" y="325" text-anchor="middle" fill="#AAAAAA" font-family="'Inter', sans-serif" font-size="13">for successfully completing the AI awareness, appreciation and fundamentals curriculum in</text>
+
+  <!-- Certification Name -->
+  <rect x="220" y="345" width="360" height="42" fill="#132a22" stroke="#34D399" stroke-width="1" rx="21"/>
+  <text x="400" y="372" text-anchor="middle" fill="#FFFFFF" font-family="'Inter', sans-serif" font-size="18" font-weight="bold" letter-spacing="1">AI FOR ALL - AI APPRECIATE</text>
+
+  <!-- Description -->
+  <text x="400" y="420" text-anchor="middle" fill="#777788" font-family="'Inter', sans-serif" font-size="12">Government of India • Ministry of Electronics and Information Technology (MeitY) &amp; Intel</text>
+
+  <!-- Bottom Seals & Signatures -->
+  <g transform="translate(140, 485)">
+    <line x1="0" y1="0" x2="160" y2="0" stroke="#444455" stroke-width="1"/>
+    <text x="80" y="20" text-anchor="middle" fill="#888899" font-family="'Inter', sans-serif" font-size="11">DATE: JANUARY 2026</text>
+  </g>
+
+  <!-- Center Gold Seal -->
+  <g transform="translate(400, 475)">
+    <circle cx="0" cy="0" r="32" fill="#0d211a" stroke="url(#goldGrad)" stroke-width="2"/>
+    <circle cx="0" cy="0" r="26" fill="none" stroke="url(#goldGrad)" stroke-dasharray="3 2"/>
+    <text x="0" y="4" text-anchor="middle" fill="url(#goldGrad)" font-family="'Inter', sans-serif" font-size="9" font-weight="bold">DIGITAL INDIA</text>
+    <text x="0" y="14" text-anchor="middle" fill="#34D399" font-family="'Inter', sans-serif" font-size="7">INTEL CERTIFIED</text>
+  </g>
+
+  <g transform="translate(500, 485)">
+    <line x1="0" y1="0" x2="160" y2="0" stroke="#444455" stroke-width="1"/>
+    <text x="80" y="20" text-anchor="middle" fill="#888899" font-family="'Inter', sans-serif" font-size="11">ISSUER: INTEL &amp; MEITY</text>
+  </g>
+</svg>
+

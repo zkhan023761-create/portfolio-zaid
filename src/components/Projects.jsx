@@ -1,466 +1,314 @@
 'use client';
-import { useState, useEffect, useRef } from 'react';
+import { useEffect, useRef } from 'react';
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 
 gsap.registerPlugin(ScrollTrigger);
 
-const projects = [
+const BENTO_PROJECTS = [
   {
-    name: 'RedBus Clone',
-    category: 'design',
-    icon: 'mdi:bus',
-    gradient: 'from-red-500 to-red-700',
-    image: 'https://images.unsplash.com/photo-1527786356703-4b100091cd2c?w=500&h=300&fit=crop',
-    description: 'A comprehensive bus booking platform redesign with enhanced search functionality, seat selection, and booking management system.',
-    features: ['User-friendly booking flow design', 'Interactive seat selection interface', 'Mobile-optimized responsive layout'],
-    tags: ['Figma', 'UI Design', 'UX Research'],
-    badge: 'UI/UX',
-    badgeBg: 'bg-purple-100',
-    badgeText: 'text-purple-700',
-    link: 'https://www.figma.com/design/xVgaR3muKlLBEf0DTcGfnq/Portfolio-Project?node-id=0-1&t=sgpLUIVpfpaP3OaV-1',
-    hasGallery: true,
-    galleryImages: [
-      '/rebbus.png'
-    ]
+    title: 'Zuniii Creation',
+    subtitle: 'Bridal & Contemporary Mehndi Platform',
+    category: 'Live Production Flagship',
+    badge: 'LIVE PRODUCTION',
+    badgeColor: 'text-emerald-400 bg-emerald-950/60 border-emerald-500/30',
+    liveUrl: 'https://zunicreation.xyz',
+    githubUrl: 'https://github.com/zkhan023761-create',
+    domain: 'zunicreation.xyz',
+    colSpan: 'md:col-span-7',
+    description:
+      'A full-stack, bespoke web platform designed and deployed for Zuniii Creation in Mumbai. Engineered with Next.js, responsive luxury galleries, direct WhatsApp booking pipeline, and custom domain configuration.',
+    image: '/projects/zunicreation-home.png',
+    tags: ['Next.js', 'React', 'Tailwind CSS', 'WhatsApp API', 'zunicreation.xyz'],
+    ctaType: 'live',
   },
   {
-    name: 'BookMyShow Clone',
-    category: 'coding',
-    icon: 'mdi:movie-open',
-    gradient: 'from-red-500 to-pink-600',
-    image: 'https://images.unsplash.com/photo-1598899134739-24c46f58b8c0?w=500&h=300&fit=crop',
-    description: 'A functional clone of the popular ticket booking platform with responsive design and interactive features.',
-    features: ['Movie listings with filters and search', 'Theatre seat selection system', 'Booking confirmation workflow'],
-    tags: ['HTML', 'CSS', 'JavaScript'],
-    badge: 'CODING',
-    badgeBg: 'bg-primary-100',
-    badgeText: 'text-primary-700',
-    link: 'https://github.com/zkhan023761-create/BookMyShow-Clone',
-    hasGallery: true,
-    galleryImages: [
-      '/book-my-show.png'
-    ]
+    title: 'MediAI Ecosystem',
+    subtitle: 'Clinical Intelligence & Connected Health',
+    category: 'Collaborative Project',
+    badge: 'COLLABORATION',
+    badgeColor: 'text-cyan-400 bg-cyan-950/60 border-cyan-500/30',
+    liveUrl: 'https://medi-ai-official.vercel.app/',
+    secondaryUrl: 'http://mediaiofficial.in/',
+    secondaryLabel: 'mediaiofficial.in',
+    githubUrl: 'https://github.com/zkhan023761-create',
+    colSpan: 'md:col-span-5',
+    description:
+      'A collaborative healthcare platform providing clinical intelligence, patient triage assistance, diagnostic insights, and connected medical workflows.',
+    image: '/projects/mediai-home.png',
+    tags: ['Next.js', 'Healthcare AI', 'Clinical Triage', 'Collaboration'],
+    ctaType: 'collab',
   },
   {
-    name: 'Printify Clone',
-    category: 'coding',
-    icon: 'mdi:shopping-outline',
-    gradient: 'from-green-500 to-emerald-600',
-    image: 'https://images.unsplash.com/photo-1556740738-b6a63e27c4df?w=500&h=300&fit=crop',
-    description: 'A responsive e-commerce platform clone with product listings and user-friendly navigation.',
-    features: ['Product catalog with categories', 'Shopping cart functionality', 'Responsive grid layouts'],
-    tags: ['HTML', 'CSS', 'JavaScript'],
-    badge: 'CODING',
-    badgeBg: 'bg-primary-100',
-    badgeText: 'text-primary-700',
-    link: 'https://github.com/zkhan023761-create/Printify-Clone',
-    hasGallery: true,
-    galleryImages: [
-      '/printify.png'
-    ]
+    title: 'RescueBite Platform',
+    subtitle: 'Smart Food Rescue & Distribution',
+    category: 'Collaborative Project',
+    badge: 'COLLABORATION',
+    badgeColor: 'text-amber-400 bg-amber-950/60 border-amber-500/30',
+    liveUrl: 'https://rescuebiteofficial.vercel.app/',
+    githubUrl: 'https://github.com/zkhan023761-create',
+    colSpan: 'md:col-span-5',
+    description:
+      'A collaborative community platform connecting restaurants, supermarkets, and volunteers to reduce food waste through real-time surplus redistribution.',
+    image: '/projects/rescuebite-home.png',
+    tags: ['React', 'Logistics UX', 'Real-Time Routing', 'Collaboration'],
+    ctaType: 'collab',
   },
   {
-    name: 'Wonderlust Travels',
-    category: 'coding',
-    icon: 'mdi:airplane',
-    gradient: 'from-blue-500 to-purple-600',
-    image: 'https://images.unsplash.com/photo-1488646953014-85cb44e25828?w=500&h=300&fit=crop',
-    description: 'A modern travel booking web application with creative design and smooth interactions.',
-    features: ['Destination browsing with filters', 'Smooth scroll animations', 'Contact form integration'],
-    tags: ['HTML', 'Tailwind', 'JavaScript'],
-    badge: 'CODING',
-    badgeBg: 'bg-primary-100',
-    badgeText: 'text-primary-700',
-    link: 'https://github.com/zkhan023761-create/Wonderlust-Travels-clone',
-    hasGallery: true,
-    galleryImages: [
-      '/wonderlust-travels.png'
-    ]
+    title: 'Figma Design System & GitHub',
+    subtitle: 'UI/UX Prototypes & Code Architecture',
+    category: 'Design & Codebase',
+    badge: 'FIGMA & GITHUB',
+    badgeColor: 'text-purple-400 bg-purple-950/60 border-purple-500/30',
+    liveUrl:
+      'https://www.figma.com/design/xVgaR3muKlLBEf0DTcGfnq/Portfolio-Project?node-id=0-1&p=f&t=4HsgolleAXIYOzSp-0',
+    linkedinUrl: 'https://lnkd.in/p/dtUWb7bK',
+    githubUrl: 'https://github.com/zkhan023761-create',
+    colSpan: 'md:col-span-7',
+    description:
+      'High-fidelity user interface prototyping, bespoke design token hierarchies, mobile-first design systems, and published full-stack repositories on GitHub.',
+    image: '/projects/figma-design-system.jpg',
+    tags: ['Figma', 'UI/UX Design', 'Design Tokens', 'GitHub', 'Open Source'],
+    ctaType: 'figma',
   },
-  {
-    name: 'Admin Dashboard',
-    category: 'coding',
-    icon: 'mdi:view-dashboard',
-    gradient: 'from-green-500 to-teal-600',
-    image: 'https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=500&h=300&fit=crop',
-    description: 'A responsive admin dashboard with intuitive controls and data visualization.',
-    features: ['Analytics and metrics display', 'User management interface', 'Responsive sidebar navigation'],
-    tags: ['HTML', 'CSS', 'JavaScript'],
-    badge: 'CODING',
-    badgeBg: 'bg-primary-100',
-    badgeText: 'text-primary-700',
-    link: 'https://github.com/zkhan023761-create/admin-dashboard',
-    hasGallery: true,
-    galleryImages: [
-      '/admin-dashboard.png'
-    ]
-  },
-  {
-    name: 'ChatBot Interface',
-    category: 'coding',
-    icon: 'mdi:chat',
-    gradient: 'from-indigo-500 to-purple-600',
-    image: 'https://images.unsplash.com/photo-1504384308090-c894fdcc538d?w=500&h=300&fit=crop',
-    description: 'A responsive chatbot interface with natural language processing and user-friendly design.',
-    features: ['Real-time message exchange', 'Auto-response system', 'Typing indicator animation'],
-    tags: ['HTML', 'CSS', 'JavaScript'],
-    badge: 'CODING',
-    badgeBg: 'bg-primary-100',
-    badgeText: 'text-primary-700',
-    link: 'https://github.com/zkhan023761-create/chatbot',
-    hasGallery: true,
-    galleryImages: [
-      '/chatbot.png'
-    ]
-  },
-  {
-    name: 'Quiz Application',
-    category: 'coding',
-    icon: 'mdi:help-box',
-    gradient: 'from-violet-500 to-pink-600',
-    image: 'https://images.unsplash.com/photo-1633356122544-f134324ef6db?w=500&h=300&fit=crop',
-    description: 'An interactive quiz application with multiple-choice questions and scoring system.',
-    features: ['Dynamic question rendering', 'Score calculation and feedback', 'Timer functionality'],
-    tags: ['HTML', 'CSS', 'JavaScript'],
-    badge: 'CODING',
-    badgeBg: 'bg-primary-100',
-    badgeText: 'text-primary-700',
-    link: 'https://github.com/zkhan023761-create/Quiz',
-    hasGallery: true,
-    galleryImages: [
-      '/quiz.png'
-    ]
-  },
-  {
-    name: 'Tailkits Clone',
-    category: 'coding',
-    icon: 'mdi:palette',
-    gradient: 'from-cyan-500 to-blue-600',
-    image: 'https://images.unsplash.com/photo-1561070791-2526d30994b5?w=500&h=300&fit=crop',
-    description: 'A responsive clone of the Tailkits website with modern UI components and animations.',
-    features: ['Component library showcase', 'Smooth animations and transitions', 'Code snippet displays'],
-    tags: ['HTML', 'Tailwind', 'JavaScript'],
-    badge: 'CODING',
-    badgeBg: 'bg-primary-100',
-    badgeText: 'text-primary-700',
-    link: 'https://github.com/zkhan023761-create/tailkits-clone',
-    hasGallery: true,
-    galleryImages: [
-      '/tailkits.png'
-    ]
-  },
-  {
-    name: 'Subscription Plan',
-    category: 'coding',
-    icon: 'mdi:credit-card',
-    gradient: 'from-orange-500 to-red-600',
-    image: 'https://images.unsplash.com/photo-1556656793-08538906a9f8?w=500&h=300&fit=crop',
-    description: 'A responsive subscription plan page with interactive pricing cards and toggle options.',
-    features: ['Monthly/yearly toggle switch', 'Feature comparison table', 'Call-to-action buttons'],
-    tags: ['HTML', 'CSS', 'JavaScript'],
-    badge: 'CODING',
-    badgeBg: 'bg-primary-100',
-    badgeText: 'text-primary-700',
-    link: 'https://github.com/zkhan023761-create/subscription-plan',
-    hasGallery: true,
-    galleryImages: [
-      '/subscription.png'
-    ]
-  },
-  {
-    name: 'JioMart Clone Application',
-    category: 'design',
-    icon: 'mdi:shopping',
-    gradient: 'from-yellow-400 to-orange-500',
-    image: 'https://images.unsplash.com/photo-1607082348824-0a96f2a4b9da?w=500&h=300&fit=crop',
-    description: 'Complete mobile app redesign for quick commerce platform with enhanced user experience.',
-    features: ['User flow optimization', 'Mobile-first design approach', 'Interactive prototyping'],
-    tags: ['Figma', 'UI Design', 'Prototyping'],
-    badge: 'UI/UX',
-    badgeBg: 'bg-purple-100',
-    badgeText: 'text-purple-700',
-    link: 'https://www.figma.com/design/xVgaR3muKlLBEf0DTcGfnq/Portfolio-Project?node-id=0-1&t=sgpLUIVpfpaP3OaV-1',
-    hasGallery: true,
-    galleryImages: [
-      '/jio-mart.png'
-    ]
-  },
-  {
-    name: 'Gozoop Website Clone',
-    category: 'design',
-    icon: 'mdi:briefcase',
-    gradient: 'from-indigo-500 to-blue-600',
-    image: 'https://images.unsplash.com/photo-1552664730-d307ca884978?w=500&h=300&fit=crop',
-    description: 'Professional corporate website design with modern aesthetics and clean interface.',
-    features: ['Corporate branding consistency', 'Portfolio showcase design', 'Responsive layouts'],
-    tags: ['Figma', 'Web Design', 'UX Research'],
-    badge: 'UI/UX',
-    badgeBg: 'bg-purple-100',
-    badgeText: 'text-purple-700',
-    link: 'https://www.figma.com/design/rfiuPmW8GxbPksQYOuBe3q/CARHARTT?node-id=0-1&t=MGbptlkmYnr1nyDt-1',
-    hasGallery: true,
-    galleryImages: [
-      '/Gozzop.png'
-    ]
-  },
-  {
-    name: 'Snapdeal Website Clone',
-    category: 'design',
-    icon: 'mdi:cart',
-    gradient: 'from-red-500 to-orange-600',
-    image: 'https://images.unsplash.com/photo-1460925895917-afdab0c3dde8?w=500&h=300&fit=crop',
-    description: 'E-commerce platform redesign focusing on improved navigation and checkout flow.',
-    features: ['Enhanced checkout process', 'Product discovery optimization', 'Trust-building elements'],
-    tags: ['Figma', 'E-commerce', 'User Flow'],
-    badge: 'UI/UX',
-    badgeBg: 'bg-purple-100',
-    badgeText: 'text-purple-700',
-    link: 'https://www.figma.com/design/rfiuPmW8GxbPksQYOuBe3q/CARHARTT?node-id=0-1&t=MGbptlkmYnr1nyDt-1',
-    hasGallery: true,
-    galleryImages: [
-      '/snapdeal.png'
-    ]
-  },
-  {
-    name: 'CoCo Cola Website Clone',
-    category: 'design',
-    icon: 'mdi:bottle-wine',
-    gradient: 'from-neutral-700 to-neutral-900',
-    image: 'https://images.unsplash.com/photo-1554227073-94e28f2ddb4f?w=500&h=300&fit=crop',
-    description: 'Modern beverage brand website with engaging animations and responsive design.',
-    features: ['Brand storytelling design', 'Micro-interactions', 'Visual hierarchy'],
-    tags: ['Figma', 'Brand', 'Interactive'],
-    badge: 'UI/UX',
-    badgeBg: 'bg-purple-100',
-    badgeText: 'text-purple-700',
-    link: 'https://www.figma.com/design/xVgaR3muKlLBEf0DTcGfnq/Portfolio-Project?node-id=0-1&t=sgpLUIVpfpaP3OaV-1',
-    hasGallery: true,
-    galleryImages: [
-      '/coco-cola.png'
-    ]
-  },
-  {
-    name: 'Tours & Travels Redesign',
-    category: 'design',
-    icon: 'mdi:earth',
-    gradient: 'from-emerald-500 to-green-600',
-    image: 'https://images.unsplash.com/photo-1488646953014-85cb44e25828?w=500&h=300&fit=crop',
-    description: 'Complete website overhaul for halal tourism platform with cultural sensitivity and modern design.',
-    features: ['Cultural context consideration', 'Booking journey optimization', 'Accessibility compliance'],
-    tags: ['Figma', 'Redesign', 'Travel'],
-    badge: 'UI/UX',
-    badgeBg: 'bg-purple-100',
-    badgeText: 'text-purple-700',
-    link: 'https://www.figma.com/design/xVgaR3muKlLBEf0DTcGfnq/Portfolio-Project?node-id=0-1&t=sgpLUIVpfpaP3OaV-1',
-    hasGallery: true,
-    galleryImages: [
-      '/travels.png'
-    ]
-  },
-  {
-    name: 'School & Campus Redesign',
-    category: 'design',
-    icon: 'mdi:school',
-    gradient: 'from-blue-600 to-indigo-700',
-    image: 'https://images.unsplash.com/photo-1427504494785-cdba58eafd00?w=500&h=300&fit=crop',
-    description: 'Comprehensive redesign of educational institution\'s digital presence across web and mobile.',
-    features: ['Multi-platform design system', 'Student portal interface', 'Information architecture'],
-    tags: ['Figma', 'Education', 'Multi-platform'],
-    badge: 'UI/UX',
-    badgeBg: 'bg-purple-100',
-    badgeText: 'text-purple-700',
-    link: 'https://www.figma.com/design/xVgaR3muKlLBEf0DTcGfnq/Portfolio-Project?node-id=0-1&t=sgpLUIVpfpaP3OaV-1',
-    hasGallery: true,
-    galleryImages: [
-      '/school-admission.png',
-      '/campus-gallery.png'
-    ]
-  }
 ];
 
 export default function Projects() {
-  const [filter, setFilter] = useState('all');
   const sectionRef = useRef(null);
-
-  const filteredProjects = filter === 'all' 
-    ? projects 
-    : projects.filter(project => project.category === filter);
 
   useEffect(() => {
     const ctx = gsap.context(() => {
-      // Header reveal
-      gsap.fromTo('.projects-header',
-        { y: 50, opacity: 0 },
-        { y: 0, opacity: 1, duration: 0.8, ease: 'power3.out',
-          scrollTrigger: { trigger: '.projects-header', start: 'top 85%' } }
+      // Header entrance
+      gsap.fromTo(
+        '.works-header',
+        { opacity: 0, y: 30 },
+        {
+          opacity: 1,
+          y: 0,
+          duration: 1,
+          ease: 'power3.out',
+          scrollTrigger: {
+            trigger: '.works-header',
+            start: 'top 85%',
+          },
+        }
       );
 
-      // Category tab row reveal
-      gsap.fromTo('.projects-filter-btn',
-        { scale: 0.9, opacity: 0 },
-        { scale: 1, opacity: 1, stagger: 0.05, duration: 0.5, ease: 'back.out(1.5)',
-          scrollTrigger: { trigger: '.projects-filter-btn', start: 'top 90%' } }
+      // Bento cards entrance
+      gsap.fromTo(
+        '.bento-card',
+        { opacity: 0, y: 40 },
+        {
+          opacity: 1,
+          y: 0,
+          duration: 0.9,
+          stagger: 0.15,
+          ease: 'power3.out',
+          scrollTrigger: {
+            trigger: '.bento-grid',
+            start: 'top 80%',
+          },
+        }
       );
-
-      // Card reveals on scroll
-      gsap.fromTo('.project-card-anim',
-        { y: 50, opacity: 0, scale: 0.95 },
-        { y: 0, opacity: 1, scale: 1, stagger: 0.05, duration: 0.6, ease: 'power3.out',
-          scrollTrigger: { trigger: '.projects-grid-container', start: 'top 85%' } }
-      );
-
-
     }, sectionRef);
 
     return () => ctx.revert();
-  }, [filter]); // Re-bind triggers on filter changes
-
-  const handleFilterChange = (newFilter) => {
-    if (newFilter === filter) return;
-    
-    // Staggered exit transition
-    gsap.to('.project-card-anim', {
-      scale: 0.9,
-      opacity: 0,
-      y: 20,
-      duration: 0.25,
-      stagger: 0.02,
-      ease: 'power2.in',
-      onComplete: () => {
-        setFilter(newFilter);
-        // Entrance is triggered in useEffect when filter changes
-      }
-    });
-  };
+  }, []);
 
   return (
-    <section ref={sectionRef} id="projects" className="py-24 px-6 lg:px-8 bg-[#050b18] relative overflow-hidden">
-      <div className="absolute top-20 left-20 w-[500px] h-[500px] bg-cyan-500 rounded-full filter blur-[180px] opacity-5 pointer-events-none animate-float"></div>
-      <div className="absolute bottom-20 right-20 w-[400px] h-[400px] bg-violet-600 rounded-full filter blur-[150px] opacity-5 pointer-events-none animate-float" style={{animationDelay: '2s'}}></div>
-      <div className="absolute inset-0 grid-pattern pointer-events-none"></div>
-
-      <div className="max-w-7xl mx-auto relative z-10">
-        
+    <section
+      id="work"
+      ref={sectionRef}
+      className="bg-bg py-16 md:py-24 border-t border-stroke/50"
+    >
+      <div className="max-w-300 mx-auto px-6 md:px-10 lg:px-16">
         {/* Header */}
-        <div className="text-center projects-header">
-          <span className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full border border-cyan-500/20 bg-cyan-500/5 text-cyan-400 text-xs font-mono tracking-widest uppercase mb-4">
-            <span className="w-1 h-1 bg-cyan-400 rounded-full"></span>
-            Portfolio
-          </span>
-          <h2 className="text-4xl lg:text-6xl font-black text-white mt-3 mb-4">
-            Featured <span className="gradient-text">Projects</span>
-          </h2>
-          <p className="text-neutral-500 text-lg max-w-2xl mx-auto mb-16">
-            A showcase of my development and design work with real-world applications
-          </p>
-        </div>
+        <div className="works-header flex flex-col md:flex-row md:items-end justify-between mb-12 md:mb-16 gap-6">
+          <div>
+            <div className="flex items-center gap-3 mb-3">
+              <span className="w-8 h-px bg-stroke" />
+              <span className="text-xs text-muted uppercase tracking-[0.3em] font-medium">
+                Selected Work &amp; Collaborations
+              </span>
+            </div>
+            <h2 className="text-4xl md:text-5xl lg:text-6xl text-text-primary tracking-tight font-normal">
+              Featured <span className="font-display italic">projects</span>
+            </h2>
+            <p className="text-muted text-sm md:text-base mt-2 max-w-lg font-light">
+              Live production platforms, collaborative web applications, Figma design prototypes, and GitHub codebases.
+            </p>
+          </div>
 
-        {/* Tab Filters Row */}
-        <div className="flex flex-wrap justify-center gap-6 mb-16">
-          <button 
-            onClick={() => handleFilterChange('all')}
-            className={`projects-filter-btn px-5 py-2 rounded-full text-sm font-medium transition-all duration-300 ${
-              filter === 'all' 
-                ? 'bg-linear-to-r from-cyan-500 to-violet-600 text-white shadow-lg shadow-cyan-500/20 scale-105' 
-                : 'bg-white/5 border border-white/10 text-neutral-500 hover:border-cyan-500/30 hover:text-white'
-            }`}
-          >All Projects</button>
-          <button 
-            onClick={() => handleFilterChange('coding')}
-            className={`projects-filter-btn px-5 py-2 rounded-full text-sm font-medium transition-all duration-300 ${
-              filter === 'coding' 
-                ? 'bg-linear-to-r from-cyan-500 to-violet-600 text-white shadow-lg shadow-cyan-500/20 scale-105' 
-                : 'bg-white/5 border border-white/10 text-neutral-500 hover:border-cyan-500/30 hover:text-white'
-            }`}
-          >Coding</button>
-          <button 
-            onClick={() => handleFilterChange('design')}
-            className={`projects-filter-btn px-5 py-2 rounded-full text-sm font-medium transition-all duration-300 ${
-              filter === 'design' 
-                ? 'bg-linear-to-r from-violet-600 to-pink-600 text-white shadow-lg shadow-violet-500/20 scale-105' 
-                : 'bg-white/5 border border-white/10 text-neutral-500 hover:border-violet-500/30 hover:text-white'
-            }`}
-          >UI/UX Design</button>
-        </div>
-
-        {/* Grid Container */}
-        <div className="projects-grid-container grid md:grid-cols-2 lg:grid-cols-3 gap-8 lg:gap-10 min-h-[400px]">
-          {filteredProjects.map((project) => (
-            <div 
-              key={project.name}
-              data-cursor-text="OPEN"
-              className="project-card-anim bg-[#0a0f1e] rounded-2xl overflow-hidden border border-white/5 hover:border-cyan-500/20 transition-colors duration-500 group relative hover:shadow-2xl hover:shadow-cyan-500/10 cursor-none"
+          {/* Quick Action Links on Desktop */}
+          <div className="hidden md:flex items-center gap-3">
+            <a
+              href="https://zunicreation.xyz"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="group relative rounded-full text-xs uppercase tracking-wider font-medium px-4 py-2 text-text-primary border border-stroke hover:border-transparent transition-colors"
             >
-              {/* Glow border ring */}
-              <div className="absolute -inset-0.5 bg-linear-to-r from-cyan-500 to-violet-500 rounded-2xl opacity-0 group-hover:opacity-10 blur transition-opacity duration-500 pointer-events-none"></div>
-              
-              {/* Corner accents */}
-              <div className="absolute top-0 left-0 w-20 h-20 bg-linear-to-br from-cyan-400/10 to-transparent rounded-br-full opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none"></div>
-              
-              {/* 3D Tilt Card content wrapper */}
-              <div className="tilt-card-project h-full flex flex-col">
-                <div className={`project-image h-48 bg-linear-to-br ${project.gradient} relative overflow-hidden shrink-0`}>
-                  {project.hasGallery ? (
-                    <div className={`absolute inset-0 grid ${project.galleryImages.length === 1 ? 'grid-cols-1' : 'grid-cols-1 md:grid-cols-2'} gap-0`}>
-                      {project.galleryImages.map((imgSrc, idx) => (
-                        <div key={idx} className={`relative overflow-hidden ${project.galleryImages.length === 1 ? 'h-full' : 'h-24 md:h-full'} bg-white`}>
-                          <img 
-                            src={imgSrc} 
-                            alt=""
-                            className="w-full h-full object-contain group-hover:scale-105 transition-transform duration-700"
-                            onError={(e) => {
-                              e.target.style.display = 'none';
-                              e.target.parentElement.innerHTML = `<div class="w-full h-full flex items-center justify-center bg-linear-to-br ${project.gradient}"><span class="iconify text-white text-3xl" data-icon="${project.icon}"></span></div>`;
-                            }}
-                          />
-                        </div>
-                      ))}
-                    </div>
-                  ) : (
-                    <span className="iconify text-white text-6xl group-hover:scale-120 transition-transform duration-500 relative z-10" data-icon={project.icon}></span>
-                  )}
-                  <div className="absolute inset-0 bg-black/20 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
-                  <div className="absolute inset-0 bg-linear-to-r from-transparent via-white/10 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-1000"></div>
+              <span className="absolute -inset-px rounded-full accent-gradient opacity-0 group-hover:opacity-100 transition-opacity duration-300 -z-10" />
+              <span className="relative z-10 flex items-center gap-1.5">
+                <span>zunicreation.xyz</span>
+                <i className="fa-solid fa-arrow-up-right-from-square text-[10px]" />
+              </span>
+            </a>
+
+            <a
+              href="https://github.com/zkhan023761-create"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="group relative rounded-full text-xs uppercase tracking-wider font-medium px-4 py-2 text-text-primary border border-stroke hover:border-transparent transition-colors"
+            >
+              <span className="absolute -inset-px rounded-full accent-gradient opacity-0 group-hover:opacity-100 transition-opacity duration-300 -z-10" />
+              <span className="relative z-10 flex items-center gap-1.5">
+                <i className="fa-brands fa-github text-xs" />
+                <span>GitHub</span>
+              </span>
+            </a>
+          </div>
+        </div>
+
+        {/* Bento Grid: 7 / 5 / 5 / 7 alternate spans */}
+        <div className="bento-grid grid grid-cols-1 md:grid-cols-12 gap-5 md:gap-6">
+          {BENTO_PROJECTS.map((project, idx) => (
+            <div
+              key={idx}
+              className={`bento-card ${project.colSpan} relative rounded-3xl overflow-hidden bg-surface border border-stroke min-h-95 md:min-h-110 flex flex-col justify-end p-6 md:p-8 group cursor-pointer transition-shadow duration-300 hover:shadow-2xl hover:shadow-black/50`}
+            >
+              {/* Background Image: Real Captured Homepages */}
+              <div
+                className="absolute inset-0 bg-cover bg-top transition-transform duration-700 ease-out group-hover:scale-105"
+                style={{ backgroundImage: `url(${project.image})` }}
+              />
+
+              {/* Halftone Overlay */}
+              <div className="halftone-overlay absolute inset-0 opacity-20 mix-blend-multiply pointer-events-none" />
+
+              {/* Dark Gradient Vignette for clear text readability */}
+              <div className="absolute inset-0 bg-linear-to-t from-bg via-bg/75 to-bg/30 pointer-events-none" />
+
+              {/* Hover Overlay: bg-bg/80 + backdrop-blur-lg */}
+              <div className="absolute inset-0 bg-bg/85 opacity-0 group-hover:opacity-100 transition-all duration-300 backdrop-blur-lg flex flex-col items-center justify-center p-6 z-20 text-center">
+                {/* Pill with animated gradient border, white bg */}
+                <div className="relative p-[1.5px] rounded-full accent-gradient animate-gradient-shift shadow-xl mb-4 transform group-hover:scale-105 transition-transform duration-300">
+                  <div className="bg-white text-black px-6 py-2.5 rounded-full flex items-center gap-2">
+                    <span className="text-xs uppercase tracking-wider font-semibold">
+                      View —
+                    </span>
+                    <span className="font-display italic text-lg text-black">
+                      {project.title}
+                    </span>
+                    <i className="fa-solid fa-arrow-up-right-from-square text-xs text-black" />
+                  </div>
                 </div>
 
-                <div className="p-5 flex-1 flex flex-col justify-between">
-                  <div>
-                    <div className="flex items-center justify-between mb-3">
-                      <span className={`px-3 py-1 ${project.category === 'design' ? 'bg-violet-500/10 text-violet-400 border border-violet-500/20' : 'bg-cyan-500/10 text-cyan-400 border border-cyan-500/20'} rounded-full text-xs font-mono`}>
-                        {project.badge}
-                      </span>
-                      {project.category === 'design'
-                        ? <i className="fab fa-figma text-neutral-400 text-lg group-hover:text-violet-400 transition-colors"></i>
-                        : <span className="iconify text-neutral-400 text-lg group-hover:text-cyan-400 transition-colors" data-icon="mdi:code-tags"></span>
-                      }
-                    </div>
-                    <h3 className="text-base font-bold text-white mb-2 group-hover:text-cyan-400 transition-colors">{project.name}</h3>
-                    <p className="text-neutral-500 mb-3 text-xs leading-relaxed">{project.description}</p>
-                    <ul className="info-list text-xs text-neutral-400 mb-4">
-                      {project.features.map((feature, idx) => (
-                        <li key={idx} className="group-hover:text-neutral-400 transition-colors">{feature}</li>
-                      ))}
-                    </ul>
-                  </div>
+                <p className="text-xs md:text-sm text-text-primary/90 max-w-sm font-light mb-4">
+                  {project.description}
+                </p>
 
-                  <div>
-                    <div className="flex flex-wrap gap-1.5 mb-5">
-                      {project.tags.map((tag, idx) => (
-                        <span key={idx} className="px-2 py-0.5 bg-white/5 text-neutral-400 border border-white/5 rounded-full text-[10px] font-mono hover:text-cyan-400 hover:border-cyan-500/20 transition-colors cursor-default">
-                          {tag}
-                        </span>
-                      ))}
-                    </div>
-                    <a href={project.link} target="_blank" rel="noopener noreferrer"
-                      className="w-full flex items-center justify-center gap-2 px-4 py-2.5 bg-linear-to-r from-cyan-500 to-violet-600 text-white rounded-xl text-sm font-semibold hover:shadow-lg hover:shadow-cyan-500/20 transition-all duration-300 group/btn relative overflow-hidden">
-                      <span className="relative z-10">See Project</span>
-                      <span className="iconify text-base group-hover/btn:translate-x-1 transition-transform relative z-10" data-icon="mdi:arrow-right"></span>
-                      <span className="absolute inset-0 bg-linear-to-r from-violet-600 to-cyan-500 opacity-0 group-hover/btn:opacity-100 transition-opacity duration-300"></span>
+                {/* Direct Action Links on Hover: Live Site, Mirror, GitHub */}
+                <div className="flex items-center gap-2.5 flex-wrap justify-center z-30" onClick={(e) => e.stopPropagation()}>
+                  <a
+                    href={project.liveUrl}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="px-4 py-1.5 rounded-full text-xs font-medium bg-[#89AACC] text-black hover:bg-white transition-colors flex items-center gap-1.5"
+                  >
+                    {project.ctaType === 'figma' ? (
+                      <>
+                        <i className="fa-brands fa-figma text-xs" />
+                        <span>Open Figma Design</span>
+                      </>
+                    ) : (
+                      <>
+                        <span>Visit Platform</span>
+                        <i className="fa-solid fa-arrow-up-right-from-square text-[10px]" />
+                      </>
+                    )}
+                  </a>
+
+                  {project.secondaryUrl && (
+                    <a
+                      href={project.secondaryUrl}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="px-3.5 py-1.5 rounded-full text-xs font-medium bg-surface border border-stroke text-text-primary hover:border-white transition-colors flex items-center gap-1.5"
+                    >
+                      <i className="fa-solid fa-globe text-[11px]" />
+                      <span>{project.secondaryLabel}</span>
                     </a>
-                  </div>
+                  )}
+
+                  {project.linkedinUrl && (
+                    <a
+                      href={project.linkedinUrl}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="px-3.5 py-1.5 rounded-full text-xs font-medium bg-surface border border-stroke text-text-primary hover:border-white transition-colors flex items-center gap-1.5"
+                    >
+                      <i className="fa-brands fa-linkedin text-xs text-[#89AACC]" />
+                      <span>LinkedIn Post</span>
+                      <i className="fa-solid fa-arrow-up-right-from-square text-[10px]" />
+                    </a>
+                  )}
+
+                  {project.githubUrl && (
+                    <a
+                      href={project.githubUrl}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="px-3.5 py-1.5 rounded-full text-xs font-medium bg-surface border border-stroke text-text-primary hover:border-white transition-colors flex items-center gap-1.5"
+                    >
+                      <i className="fa-brands fa-github text-xs" />
+                      <span>GitHub</span>
+                      <i className="fa-solid fa-arrow-up-right-from-square text-[10px]" />
+                    </a>
+                  )}
                 </div>
               </div>
+
+              {/* Card Static Content (Bottom) */}
+              <div className="relative z-10">
+                <div className="flex items-center gap-2 mb-2 flex-wrap">
+                  <span className="text-[10px] uppercase tracking-[0.2em] font-medium text-text-primary/70 bg-bg/70 backdrop-blur-md px-2.5 py-1 rounded-full border border-stroke">
+                    {project.category}
+                  </span>
+                  <span
+                    className={`text-[10px] uppercase tracking-wider font-medium backdrop-blur-md px-2.5 py-1 rounded-full border flex items-center gap-1.5 ${project.badgeColor}`}
+                  >
+                    <span className="w-1.5 h-1.5 rounded-full bg-current animate-pulse" />
+                    {project.badge}
+                  </span>
+                </div>
+
+                <h3 className="text-2xl md:text-3xl text-text-primary font-medium tracking-tight mb-2">
+                  {project.title}{' '}
+                  <span className="text-muted font-display italic text-xl md:text-2xl font-normal">
+                    — {project.subtitle}
+                  </span>
+                </h3>
+
+                <div className="flex flex-wrap gap-1.5 mt-3">
+                  {project.tags.map((tag, tIdx) => (
+                    <span
+                      key={tIdx}
+                      className="text-[11px] font-mono text-muted/80 bg-surface/90 border border-stroke/60 px-2 py-0.5 rounded-md"
+                    >
+                      {tag}
+                    </span>
+                  ))}
+                </div>
+              </div>
+
+              {/* Master Click Target */}
+              <a
+                href={project.liveUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="absolute inset-0 z-10"
+                aria-label={`View ${project.title}`}
+              />
             </div>
           ))}
         </div>

@@ -1,99 +1,207 @@
+'use client';
+import { useEffect, useRef, useState } from 'react';
+import { gsap } from 'gsap';
+
+const SOCIAL_LINKS = [
+  { name: 'LinkedIn', href: 'https://www.linkedin.com/in/zaid-khan-943376379', icon: 'fa-brands fa-linkedin' },
+  { name: 'GitHub', href: 'https://github.com/zkhan023761-create', icon: 'fa-brands fa-github' },
+];
+
 export default function Footer() {
+  const videoRef = useRef(null);
+  const marqueeRef = useRef(null);
+  const [copied, setCopied] = useState(false);
+
+  const handleEmailClick = (e) => {
+    // Trigger mail client
+    window.location.href = 'mailto:zkhan023761@gmail.com';
+    // Copy to clipboard fallback
+    if (navigator.clipboard) {
+      navigator.clipboard.writeText('zkhan023761@gmail.com');
+      setCopied(true);
+      setTimeout(() => setCopied(false), 3000);
+    }
+  };
+
+  // Inverted HLS Video Setup
+  useEffect(() => {
+    const video = videoRef.current;
+    if (!video) return;
+
+    const hlsSrc = 'https://stream.mux.com/Aa02T7oM1wH5Mk5EEVDYhbZ1ChcdhRsS2m1NYyx4Ua1g.m3u8';
+    let hlsInstance = null;
+
+    const setupHls = () => {
+      if (window.Hls && window.Hls.isSupported()) {
+        hlsInstance = new window.Hls({
+          enableWorker: true,
+          lowLatencyMode: true,
+        });
+        hlsInstance.loadSource(hlsSrc);
+        hlsInstance.attachMedia(video);
+        hlsInstance.on(window.Hls.Events.MANIFEST_PARSED, () => {
+          video.play().catch(() => {});
+        });
+      } else if (video.canPlayType('application/vnd.apple.mpegurl')) {
+        video.src = hlsSrc;
+        video.addEventListener('loadedmetadata', () => {
+          video.play().catch(() => {});
+        });
+      }
+    };
+
+    if (window.Hls) {
+      setupHls();
+    } else {
+      const interval = setInterval(() => {
+        if (window.Hls) {
+          clearInterval(interval);
+          setupHls();
+        }
+      }, 100);
+      return () => {
+        clearInterval(interval);
+        if (hlsInstance) hlsInstance.destroy();
+      };
+    }
+
+    return () => {
+      if (hlsInstance) hlsInstance.destroy();
+    };
+  }, []);
+
+  // GSAP Marquee continuous animation
+  useEffect(() => {
+    const marquee = marqueeRef.current;
+    if (!marquee) return;
+
+    const anim = gsap.to(marquee, {
+      xPercent: -50,
+      duration: 35,
+      ease: 'none',
+      repeat: -1,
+    });
+
+    return () => anim.kill();
+  }, []);
+
   return (
-    <footer className="bg-[#030712] border-t border-white/5 text-white py-16 px-6 lg:px-8 relative overflow-hidden">
-      <div className="absolute bottom-0 left-0 w-100 h-100 bg-cyan-500 rounded-full filter blur-[180px] opacity-5"></div>
+    <footer
+      id="contact"
+      className="relative bg-bg pt-20 md:pt-28 pb-8 md:pb-12 overflow-hidden border-t border-stroke/50"
+    >
+      {/* Background Inverted HLS Video: scale-y-[-1] */}
+      <div className="absolute inset-0 overflow-hidden pointer-events-none">
+        <video
+          ref={videoRef}
+          autoPlay
+          muted
+          loop
+          playsInline
+          className="absolute top-1/2 left-1/2 min-w-full min-h-full w-auto h-auto object-cover -translate-x-1/2 -translate-y-1/2 scale-y-[-1] opacity-40"
+        />
+        {/* Heavier overlay: bg-black/60 */}
+        <div className="absolute inset-0 bg-black/60 backdrop-blur-[2px]" />
+      </div>
 
-      <div className="max-w-7xl mx-auto relative z-10">
-        <div className="grid md:grid-cols-4 gap-12 mb-12">
-          <div className="md:col-span-1">
-            <a href="#home" className="inline-flex items-center mb-4 group" aria-label="Zaid Khan Home">
-              <div className="relative flex items-center justify-center">
-                <div className="absolute inset-0 bg-blue-500/20 rounded-full blur-lg opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
-                <img 
-                  src="/logo.png" 
-                  alt="Zaid Khan Logo" 
-                  className="w-10 h-10 object-contain relative z-10 transition-transform duration-300 group-hover:scale-110 drop-shadow-[0_0_14px_rgba(59,130,246,0.6)]" 
-                />
-              </div>
-            </a>
-            <p className="text-neutral-400 text-sm leading-relaxed mb-6">
-              Building the future, one line of code at a time.
-            </p>
-            <div className="flex gap-3">
-              {[
-                { icon: 'mdi:react', color: 'hover:text-cyan-400' },
-                { icon: 'mdi:nodejs', color: 'hover:text-green-400' },
-                { fa: 'fab fa-figma', color: 'hover:text-pink-400' },
-              ].map((t, i) => (
-                <div key={i} className={`w-8 h-8 bg-white/5 border border-white/10 rounded-lg flex items-center justify-center text-neutral-400 ${t.color} transition-colors cursor-pointer hover:border-white/20`}>
-                  {t.fa ? <i className={`${t.fa} text-sm`}></i> : <span className="iconify text-sm" data-icon={t.icon}></span>}
-                </div>
-              ))}
-            </div>
-          </div>
-
-          <div>
-            <h3 className="text-white font-bold text-sm mb-4 flex items-center gap-2">
-              <span className="w-1 h-4 bg-linear-to-b from-cyan-400 to-violet-500 rounded-full"></span>
-              Quick Links
-            </h3>
-            <div className="space-y-2">
-              {['Home','About','Education','Skills','Projects','Certifications','Contact'].map(link => (
-                <a key={link} href={`#${link.toLowerCase()}`}
-                  className="block text-neutral-400 hover:text-cyan-400 text-sm transition-colors hover:translate-x-1 duration-200">
-                  → {link}
-                </a>
-              ))}
-            </div>
-          </div>
-
-          <div>
-            <h3 className="text-white font-bold text-sm mb-4 flex items-center gap-2">
-              <span className="w-1 h-4 bg-linear-to-b from-violet-400 to-pink-500 rounded-full"></span>
-              Services
-            </h3>
-            <div className="space-y-2 text-sm">
-              {['Web Development','UI/UX Design','Frontend Development','Backend Development','Figma Prototyping','WordPress Development'].map(s => (
-                <p key={s} className="text-neutral-400 hover:text-violet-400 transition-colors cursor-default">→ {s}</p>
-              ))}
-            </div>
-          </div>
-
-          <div>
-            <h3 className="text-white font-bold text-sm mb-4 flex items-center gap-2">
-              <span className="w-1 h-4 bg-linear-to-b from-pink-400 to-cyan-500 rounded-full"></span>
-              Connect
-            </h3>
-            <div className="flex flex-wrap gap-2 mb-5">
-              {[
-                { href: 'https://www.linkedin.com/in/zaid-khan-943376379', icon: 'mdi:linkedin', color: 'hover:bg-blue-600/20 hover:border-blue-500/40 hover:text-blue-400' },
-                { href: 'https://github.com/zkhan023761-create', icon: 'mdi:github', color: 'hover:bg-white/10 hover:border-white/20 hover:text-white' },
-                { href: 'https://www.instagram.com/khan.zaxid/', fa: 'fab fa-instagram', color: 'hover:bg-pink-600/20 hover:border-pink-500/40 hover:text-pink-400' },
-                { href: 'mailto:zkhan023761@gmail.com', icon: 'mdi:email', color: 'hover:bg-red-600/20 hover:border-red-500/40 hover:text-red-400' },
-                { href: 'https://wa.me/919082775122', icon: 'mdi:whatsapp', color: 'hover:bg-green-600/20 hover:border-green-500/40 hover:text-green-400' },
-              ].map((s, i) => (
-                <a key={i} href={s.href} target="_blank" rel="noopener noreferrer"
-                  className={`w-9 h-9 flex items-center justify-center bg-white/5 border border-white/10 rounded-lg text-neutral-400 transition-all duration-300 ${s.color}`}>
-                  {s.fa ? <i className={`${s.fa} text-sm`}></i> : <span className="iconify text-sm" data-icon={s.icon}></span>}
-                </a>
-              ))}
-            </div>
-            <div className="space-y-2 text-xs text-neutral-400">
-              <p className="flex items-center gap-2"><span className="iconify text-cyan-500" data-icon="mdi:email"></span>zkhan023761@gmail.com</p>
-              <p className="flex items-center gap-2"><span className="iconify text-cyan-500" data-icon="mdi:phone"></span>+91 9082775122</p>
-            </div>
-          </div>
+      {/* Main Container */}
+      <div className="relative z-10 max-w-300 mx-auto px-6 md:px-10 lg:px-16 flex flex-col items-center text-center">
+        {/* Eyebrow */}
+        <div className="flex items-center gap-3 mb-6">
+          <span className="w-8 h-px bg-stroke" />
+          <span className="text-xs text-muted uppercase tracking-[0.3em] font-medium">
+            Let&apos;s Connect
+          </span>
+          <span className="w-8 h-px bg-stroke" />
         </div>
 
-        <div className="border-t border-white/5 pt-8 flex flex-col md:flex-row justify-between items-center gap-4">
-          <p className="text-neutral-400 text-sm">
-            &copy; 2026 <span className="gradient-text font-semibold">Zaid Khan</span>. All rights reserved.
-          </p>
-          <div className="flex gap-4 text-xs text-neutral-400">
-            <a href="#" className="hover:text-cyan-400 transition-colors">Privacy Policy</a>
-            <span>·</span>
-            <a href="#" className="hover:text-cyan-400 transition-colors">Terms of Service</a>
+        {/* Big Heading */}
+        <h2 className="text-5xl md:text-7xl lg:text-8xl font-normal text-text-primary tracking-tight mb-4">
+          Have an <span className="font-display italic">idea?</span>
+        </h2>
+        <p className="text-muted text-sm md:text-base max-w-md mb-10 leading-relaxed font-light">
+          Available for bespoke web development, AI integration, data science pipelines, and scalable full-stack architectures.
+        </p>
+
+        {/* Email CTA Button with gradient hover border ring & Gmail fallback */}
+        <div className="flex flex-col items-center gap-3 mb-16">
+          <a
+            href="mailto:zkhan023761@gmail.com"
+            onClick={handleEmailClick}
+            className="group relative inline-flex items-center gap-3 rounded-full text-base md:text-lg px-8 py-4 bg-bg text-text-primary border border-stroke hover:border-transparent transition-all duration-300 hover:scale-105 shadow-xl cursor-pointer"
+          >
+            <span className="absolute -inset-[1.5px] rounded-full accent-gradient opacity-0 group-hover:opacity-100 transition-opacity duration-300 -z-10" />
+            <i className="fa-solid fa-envelope text-xs text-[#89AACC]" />
+            <span className="font-mono text-xs sm:text-sm text-[#89AACC]">
+              {copied ? 'Copied zkhan023761@gmail.com!' : 'zkhan023761@gmail.com'}
+            </span>
+            <i className="fa-solid fa-arrow-up-right-from-square text-xs transition-transform duration-200 group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
+          </a>
+
+          <div className="flex items-center gap-3 text-xs text-muted font-mono">
+            <span>Click to email or copy address</span>
+            <span>•</span>
+            <a
+              href="https://mail.google.com/mail/?view=cm&fs=1&to=zkhan023761@gmail.com"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-[#89AACC] hover:underline flex items-center gap-1.5"
+            >
+              <span>Open in Gmail</span>
+              <i className="fa-solid fa-arrow-up-right-from-square text-[9px]" />
+            </a>
           </div>
+        </div>
+      </div>
+
+      {/* GSAP Marquee: "BUILDING THE FUTURE • " repeated */}
+      <div className="relative z-10 w-full overflow-hidden py-6 border-y border-stroke/40 my-8 bg-surface/30 backdrop-blur-sm select-none">
+        <div
+          ref={marqueeRef}
+          className="flex whitespace-nowrap text-3xl sm:text-4xl md:text-5xl font-display italic text-text-primary/70 tracking-widest"
+        >
+          {Array.from({ length: 16 }).map((_, i) => (
+            <span key={i} className="inline-block mx-4">
+              BUILDING THE FUTURE <span className="text-[#89AACC] not-italic">•</span>{' '}
+            </span>
+          ))}
+        </div>
+      </div>
+
+      {/* Footer Status Bar */}
+      <div className="relative z-10 max-w-300 mx-auto px-6 md:px-10 lg:px-16 pt-8 flex flex-col md:flex-row items-center justify-between gap-6 text-xs text-muted">
+        {/* Green pulsing dot + status */}
+        <div className="flex items-center gap-2.5">
+          <span className="relative flex h-2.5 w-2.5">
+            <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75" />
+            <span className="relative inline-flex rounded-full h-2.5 w-2.5 bg-emerald-500" />
+          </span>
+          <span className="text-text-primary/90 font-medium tracking-wide">
+            Available for projects
+          </span>
+          <span className="text-stroke">•</span>
+          <span>Mumbai, India</span>
+        </div>
+
+        {/* Social Links */}
+        <div className="flex items-center gap-5 flex-wrap">
+          {SOCIAL_LINKS.map((item) => (
+            <a
+              key={item.name}
+              href={item.href}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-muted hover:text-text-primary transition-colors font-medium tracking-wider flex items-center gap-1.5 group"
+            >
+              <i className={`${item.icon} text-sm group-hover:text-[#89AACC] transition-colors`} />
+              <span>{item.name}</span>
+            </a>
+          ))}
+        </div>
+
+        {/* Copyright */}
+        <div className="font-mono text-[11px] text-muted/80">
+          © {new Date().getFullYear()} Zaid Khan. All rights reserved.
         </div>
       </div>
     </footer>

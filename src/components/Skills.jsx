@@ -5,339 +5,275 @@ import { ScrollTrigger } from 'gsap/ScrollTrigger';
 
 gsap.registerPlugin(ScrollTrigger);
 
-const skills = [
-  { 
-    name: 'HTML5', 
-    icon: 'mdi:language-html5', 
-    bgColor: 'bg-gradient-to-br from-orange-400 to-orange-600', 
-    textColor: 'text-white', 
-    progress: 100, 
-    description: 'Semantic markup & structure',
-    category: 'Frontend',
-    glowColor: 'shadow-orange-500/50',
-    link: 'https://developer.mozilla.org/en-US/docs/Web/HTML'
+const SKILLS_DATA = [
+  // --- Data & Analytics ---
+  {
+    name: 'Python',
+    category: 'Data & Analytics',
+    level: '90%',
+    icon: 'fa-brands fa-python',
+    color: 'text-amber-400',
+    description:
+      'Core programming for AI & Machine Learning, data transformation, script automation, and statistical modeling.',
   },
-  { 
-    name: 'CSS3', 
-    icon: 'mdi:language-css3', 
-    bgColor: 'bg-gradient-to-br from-blue-400 to-blue-600', 
-    textColor: 'text-white', 
-    progress: 80, 
-    description: 'Modern styling & animations',
-    category: 'Frontend',
-    glowColor: 'shadow-blue-500/50',
-    link: 'https://developer.mozilla.org/en-US/docs/Web/CSS'
+  {
+    name: 'SQL',
+    category: 'Data & Analytics',
+    level: '88%',
+    icon: 'fa-solid fa-database',
+    color: 'text-cyan-400',
+    description:
+      'Relational database querying, schema design, complex joins, indexing, and PostgreSQL / MySQL optimization.',
   },
-  { 
-    name: 'Tailwind CSS', 
-    icon: 'mdi:tailwind', 
-    bgColor: 'bg-gradient-to-br from-cyan-400 to-cyan-600', 
-    textColor: 'text-white', 
-    progress: 90, 
-    description: 'Utility-first framework',
-    category: 'Frontend',
-    glowColor: 'shadow-cyan-500/50',
-    link: 'https://tailwindcss.com/'
+  {
+    name: 'Power BI',
+    category: 'Data & Analytics',
+    level: '85%',
+    icon: 'fa-solid fa-chart-column',
+    color: 'text-yellow-400',
+    description:
+      'Interactive executive dashboards, DAX queries, ETL data modeling, and actionable business intelligence visualizations.',
   },
-  { 
-    name: 'JavaScript', 
-    icon: 'mdi:language-javascript', 
-    bgColor: 'bg-gradient-to-br from-yellow-400 to-yellow-600', 
-    textColor: 'text-white', 
-    progress: 75, 
-    description: 'Interactive & dynamic web',
-    category: 'Frontend',
-    glowColor: 'shadow-yellow-500/50',
-    link: 'https://developer.mozilla.org/en-US/docs/Web/JavaScript'
+  {
+    name: 'Microsoft Excel',
+    category: 'Data & Analytics',
+    level: '92%',
+    icon: 'fa-solid fa-file-excel',
+    color: 'text-emerald-400',
+    description:
+      'Advanced spreadsheets, pivot tables, XLOOKUP, data cleaning, automated formulas, and statistical analysis.',
   },
-  { 
-    name: 'React.js', 
-    icon: 'mdi:react', 
-    bgColor: 'bg-gradient-to-br from-blue-400 to-blue-600', 
-    textColor: 'text-white', 
-    progress: 65, 
-    description: 'Component-based UI library',
-    category: 'Frontend',
-    glowColor: 'shadow-blue-500/50',
-    link: 'https://react.dev/'
+
+  // --- DevOps & Cloud ---
+  {
+    name: 'PM2 Process Manager',
+    category: 'DevOps',
+    level: '90%',
+    icon: 'fa-solid fa-server',
+    color: 'text-indigo-400',
+    description:
+      'Production clustering, zero-downtime reloads, daemon management, automatic restarts, and runtime log monitoring.',
   },
-  { 
-    name: 'Next.js', 
-    icon: 'simple-icons:nextdotjs', 
-    bgColor: 'bg-gradient-to-br from-neutral-700 to-neutral-900', 
-    textColor: 'text-white', 
-    progress: 60, 
-    description: 'React framework for production',
-    category: 'Frontend',
-    glowColor: 'shadow-neutral-700/50',
-    link: 'https://nextjs.org/'
+  {
+    name: 'DevOps & CI/CD',
+    category: 'DevOps',
+    level: '82%',
+    icon: 'fa-solid fa-code-branch',
+    color: 'text-sky-400',
+    description:
+      'Automated deployment pipelines, GitHub Actions workflows, environment configuration, and staging management.',
   },
-  { 
-    name: 'Node.js', 
-    icon: 'mdi:nodejs', 
-    bgColor: 'bg-gradient-to-br from-green-500 to-green-700', 
-    textColor: 'text-white', 
-    progress: 50, 
-    description: 'JavaScript runtime environment',
-    category: 'Backend',
-    glowColor: 'shadow-green-500/50',
-    link: 'https://nodejs.org/'
+  {
+    name: 'Linux & Bash',
+    category: 'DevOps',
+    level: '85%',
+    icon: 'fa-brands fa-linux',
+    color: 'text-slate-300',
+    description:
+      'Server administration, shell script automation, SSH configurations, systemd services, and file permission policies.',
   },
-  { 
-    name: 'Express.js', 
-    icon: 'simple-icons:express', 
-    bgColor: 'bg-gradient-to-br from-neutral-600 to-neutral-800', 
-    textColor: 'text-white', 
-    progress: 55, 
-    description: 'Fast Node.js web framework',
-    category: 'Backend',
-    glowColor: 'shadow-neutral-600/50',
-    link: 'https://expressjs.com/'
+  {
+    name: 'Nginx & SSL',
+    category: 'DevOps',
+    level: '80%',
+    icon: 'fa-solid fa-network-wired',
+    color: 'text-emerald-400',
+    description:
+      'Reverse proxy configurations, SSL/TLS certificate automation, load distribution, and HTTP header hardening.',
   },
-  { 
-    name: 'MongoDB', 
-    icon: 'simple-icons:mongodb', 
-    bgColor: 'bg-gradient-to-br from-green-600 to-green-800', 
-    textColor: 'text-white', 
-    progress: 45, 
-    description: 'NoSQL database management',
-    category: 'Backend',
-    glowColor: 'shadow-green-600/50',
-    link: 'https://www.mongodb.com/'
+
+  // --- Development ---
+  {
+    name: 'React.js & Next.js',
+    category: 'Development',
+    level: '90%',
+    icon: 'fa-brands fa-react',
+    color: 'text-cyan-400',
+    description:
+      'Modern App Router architecture, Server Components, client state hooks, SEO optimization, and high-performance UI.',
   },
-  { 
-    name: 'Nginx', 
-    icon: 'simple-icons:nginx', 
-    bgColor: 'bg-gradient-to-br from-emerald-500 to-teal-700', 
-    textColor: 'text-white', 
-    progress: 35, 
-    description: 'Web server & reverse proxy',
-    category: 'Backend',
-    glowColor: 'shadow-emerald-500/50',
-    link: 'https://nginx.org/'
+  {
+    name: 'Node.js & Express',
+    category: 'Development',
+    level: '86%',
+    icon: 'fa-brands fa-node-js',
+    color: 'text-green-400',
+    description:
+      'RESTful APIs, middleware orchestration, authentication flows, error handling, and asynchronous event loops.',
   },
-  { 
-    name: 'C Programming', 
-    icon: 'mdi:language-c', 
-    bgColor: 'bg-gradient-to-br from-indigo-500 to-indigo-700', 
-    textColor: 'text-white', 
-    progress: 50, 
-    description: 'Core programming fundamentals',
-    category: 'Programming',
-    glowColor: 'shadow-indigo-500/50',
-    link: 'https://en.wikipedia.org/wiki/C_(programming_language)'
+  {
+    name: 'Tailwind CSS',
+    category: 'Development',
+    level: '94%',
+    icon: 'fa-solid fa-wind',
+    color: 'text-teal-400',
+    description:
+      'Modern utility-first styling, responsive fluid layouts, custom CSS custom properties, and dark mode theming.',
   },
-  { 
-    name: 'Figma', 
-    icon: 'fab fa-figma', 
-    bgColor: 'bg-gradient-to-br from-purple-500 to-pink-600', 
-    textColor: 'text-white', 
-    progress: 90, 
-    description: 'UI/UX design & prototyping', 
-    isFontAwesome: true,
-    category: 'Design',
-    glowColor: 'shadow-purple-500/50',
-    link: 'https://www.figma.com/'
+  {
+    name: 'JavaScript (ES6+)',
+    category: 'Development',
+    level: '90%',
+    icon: 'fa-brands fa-js',
+    color: 'text-yellow-400',
+    description:
+      'Asynchronous programming, closures, DOM manipulation, functional data pipelines, and TypeScript foundations.',
   },
-  { 
-    name: 'WordPress', 
-    icon: 'mdi:wordpress', 
-    bgColor: 'bg-gradient-to-br from-blue-500 to-blue-700', 
-    textColor: 'text-white', 
-    progress: 70, 
-    description: 'CMS & website development',
-    category: 'CMS',
-    glowColor: 'shadow-blue-500/50',
-    link: 'https://wordpress.org/'
+  {
+    name: 'Figma & UI/UX',
+    category: 'Development',
+    level: '84%',
+    icon: 'fa-brands fa-figma',
+    color: 'text-purple-400',
+    description:
+      'High-fidelity mockups, design token architectures, interactive prototypes, user journey mapping, and wireframes.',
   },
-  { 
-    name: 'Git / GitHub', 
-    icon: 'mdi:github', 
-    bgColor: 'bg-gradient-to-br from-neutral-700 to-neutral-900', 
-    textColor: 'text-white', 
-    progress: 65, 
-    description: 'Version control & collaboration',
-    category: 'Tools',
-    glowColor: 'shadow-neutral-700/50',
-    link: 'https://github.com/'
+  {
+    name: 'Git & GitHub',
+    category: 'Development',
+    level: '90%',
+    icon: 'fa-brands fa-git-alt',
+    color: 'text-orange-400',
+    description:
+      'Collaborative branching workflows, PR reviews, merge conflict resolutions, semantic versioning, and open-source hygiene.',
   },
 ];
 
+const CATEGORIES = ['All', 'Data & Analytics', 'DevOps', 'Development'];
+
 export default function Skills() {
-  const [activeCategory, setActiveCategory] = useState('All');
+  const [selectedCategory, setSelectedCategory] = useState('All');
   const sectionRef = useRef(null);
-  const categories = ['All', 'Frontend', 'Backend', 'Design', 'Programming', 'CMS', 'Tools'];
-  
-  const filteredSkills = activeCategory === 'All' 
-    ? skills 
-    : skills.filter(skill => skill.category === activeCategory);
 
   useEffect(() => {
     const ctx = gsap.context(() => {
-      // Header reveal
-      gsap.fromTo('.skills-header',
-        { y: 50, opacity: 0 },
-        { y: 0, opacity: 1, duration: 0.8, ease: 'power3.out',
-          scrollTrigger: { trigger: '.skills-header', start: 'top 85%' } }
+      gsap.fromTo(
+        '.skills-header',
+        { opacity: 0, y: 30 },
+        {
+          opacity: 1,
+          y: 0,
+          duration: 1,
+          ease: 'power3.out',
+          scrollTrigger: {
+            trigger: '.skills-header',
+            start: 'top 85%',
+          },
+        }
       );
 
-      // Buttons row reveal
-      gsap.fromTo('.skills-filter-btn',
-        { scale: 0.9, opacity: 0 },
-        { scale: 1, opacity: 1, stagger: 0.05, duration: 0.5, ease: 'back.out(1.5)',
-          scrollTrigger: { trigger: '.skills-filter-btn', start: 'top 90%' } }
+      gsap.fromTo(
+        '.skill-card',
+        { opacity: 0, y: 25 },
+        {
+          opacity: 1,
+          y: 0,
+          duration: 0.6,
+          stagger: 0.05,
+          ease: 'power3.out',
+          scrollTrigger: {
+            trigger: '.skills-grid',
+            start: 'top 85%',
+          },
+        }
       );
-
-      // Skill cards reveal on scroll
-      gsap.fromTo('.skill-card-anim',
-        { y: 40, opacity: 0, scale: 0.95 },
-        { y: 0, opacity: 1, scale: 1, stagger: 0.05, duration: 0.6, ease: 'power3.out',
-          scrollTrigger: { trigger: '.skills-grid-container', start: 'top 82%' } }
-      );
-
-      // Progress bars fill reveal
-      gsap.utils.toArray('.skill-progress-bar').forEach((bar) => {
-        const pct = bar.getAttribute('data-progress') + '%';
-        gsap.fromTo(bar,
-          { width: '0%' },
-          { 
-            width: pct, 
-            duration: 1.2, 
-            ease: 'power3.out',
-            scrollTrigger: {
-              trigger: bar,
-              start: 'top 92%',
-              toggleActions: 'play none none none'
-            }
-          }
-        );
-      });
-
-
     }, sectionRef);
 
     return () => ctx.revert();
-  }, [activeCategory]); // Re-run triggers & tilt binds whenever filtered card list updates!
+  }, [selectedCategory]);
 
-  const handleCategoryChange = (category) => {
-    if (category === activeCategory) return;
-    
-    // Staggered fade out
-    gsap.to('.skill-card-anim', {
-      scale: 0.9,
-      opacity: 0,
-      y: 20,
-      duration: 0.25,
-      stagger: 0.02,
-      ease: 'power2.in',
-      onComplete: () => {
-        setActiveCategory(category);
-        // Fade in is handled by useEffect when activeCategory changes
-      }
-    });
-  };
+  const filteredSkills =
+    selectedCategory === 'All'
+      ? SKILLS_DATA
+      : SKILLS_DATA.filter((s) => s.category === selectedCategory);
 
   return (
-    <section ref={sectionRef} id="skills" className="py-24 px-6 lg:px-8 bg-[#030712] relative overflow-hidden">
-      <div className="absolute top-0 right-0 w-[500px] h-[500px] bg-violet-600 rounded-full filter blur-[180px] opacity-5 pointer-events-none"></div>
-      <div className="absolute bottom-0 left-0 w-[400px] h-[400px] bg-cyan-500 rounded-full filter blur-[150px] opacity-5 pointer-events-none"></div>
-      <div className="absolute inset-0 grid-pattern pointer-events-none"></div>
-      
-      <div className="max-w-7xl mx-auto relative z-10">
-        
+    <section
+      id="skills"
+      ref={sectionRef}
+      className="bg-bg py-16 md:py-24 border-t border-stroke/50"
+    >
+      <div className="max-w-[1200px] mx-auto px-6 md:px-10 lg:px-16">
         {/* Header */}
-        <div className="text-center mb-16 skills-header">
-          <span className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full border border-violet-500/20 bg-violet-500/5 text-violet-400 text-xs font-mono tracking-widest uppercase mb-4">
-            <span className="w-1 h-1 bg-violet-400 rounded-full"></span>
-            My Expertise
-          </span>
-          <h2 className="text-4xl lg:text-6xl font-black text-white mt-3 mb-4">
-            Skills & <span className="gradient-text">Technologies</span>
-          </h2>
-          <p className="text-neutral-500 text-lg max-w-2xl mx-auto">
-            A comprehensive toolkit combining modern development frameworks with advanced design capabilities
-          </p>
-        </div>
+        <div className="skills-header flex flex-col md:flex-row md:items-end justify-between mb-12 gap-6">
+          <div>
+            <div className="flex items-center gap-3 mb-3">
+              <span className="w-8 h-px bg-stroke" />
+              <span className="text-xs text-muted uppercase tracking-[0.3em] font-medium">
+                Capabilities &amp; Stack
+              </span>
+            </div>
+            <h2 className="text-4xl md:text-5xl lg:text-6xl text-text-primary tracking-tight font-normal">
+              Technical <span className="font-display italic">expertise</span>
+            </h2>
+            <p className="text-muted text-sm md:text-base mt-2 max-w-xl font-light">
+              High-velocity engineering across Python data analysis, SQL warehousing, Power BI dashboards, full-stack Next.js, and PM2 production infrastructure.
+            </p>
+          </div>
 
-        {/* Categories Tab Filters */}
-        <div className="flex flex-wrap justify-center gap-3 mb-16">
-          {categories.map((category) => (
-            <button
-              key={category}
-              onClick={() => handleCategoryChange(category)}
-              className={`skills-filter-btn px-5 py-2 rounded-full text-sm font-medium transition-all duration-300 ${
-                activeCategory === category
-                  ? 'bg-linear-to-r from-cyan-500 to-violet-600 text-white shadow-lg shadow-cyan-500/20 scale-105'
-                  : 'bg-white/5 text-neutral-500 border border-white/10 hover:border-cyan-500/30 hover:text-white'
-              }`}
-            >
-              {category}
-            </button>
-          ))}
+          {/* Category Filter Pills */}
+          <div className="flex flex-wrap gap-2">
+            {CATEGORIES.map((cat) => {
+              const isActive = selectedCategory === cat;
+              return (
+                <button
+                  key={cat}
+                  onClick={() => setSelectedCategory(cat)}
+                  className={`text-xs uppercase tracking-wider rounded-full px-4 py-2 font-medium transition-all duration-200 ${
+                    isActive
+                      ? 'text-text-primary bg-stroke/60 border border-white/20 shadow-sm'
+                      : 'text-muted bg-surface/50 hover:text-text-primary hover:bg-stroke/40 border border-stroke'
+                  }`}
+                >
+                  {cat}
+                </button>
+              );
+            })}
+          </div>
         </div>
 
         {/* Skills Grid */}
-        <div className="skills-grid-container grid md:grid-cols-2 lg:grid-cols-4 gap-5 min-h-[300px]">
-          {filteredSkills.map((skill) => (
-            <a
-              key={skill.name}
-              href={skill.link}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="skill-card-anim group relative block cursor-pointer"
+        <div className="skills-grid grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-5">
+          {filteredSkills.map((skill, idx) => (
+            <div
+              key={idx}
+              className="skill-card group bg-surface border border-stroke rounded-2xl p-6 transition-all duration-300 hover:border-[#89AACC]/40 hover:-translate-y-1 relative overflow-hidden"
             >
-              {/* Glow effect on hover */}
-              <div className={`absolute inset-0 ${skill.bgColor} rounded-3xl blur-xl opacity-0 group-hover:opacity-15 transition-opacity duration-550 pointer-events-none`}></div>
-              
-              {/* Card content */}
-              <div className="tilt-card-skill relative bg-[#0a0f1e] rounded-3xl p-6 border border-white/5 hover:border-cyan-500/20 transition-colors duration-500 hover:shadow-2xl hover:shadow-cyan-500/5">
-                <div className="absolute top-0 right-0 w-20 h-20 bg-linear-to-bl from-cyan-500/5 to-transparent rounded-tr-3xl opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none"></div>
-                
-                <div className="relative mb-5">
-                  <div className={`w-16 h-16 ${skill.bgColor} rounded-2xl flex items-center justify-center transform transition-transform duration-500 group-hover:rotate-6 shadow-lg`}>
-                    {skill.isFontAwesome ? (
-                      <i className={`${skill.icon} text-3xl ${skill.textColor}`}></i>
-                    ) : (
-                      <span className={`iconify text-3xl ${skill.textColor}`} data-icon={skill.icon}></span>
-                    )}
-                  </div>
-                  <div className="absolute -top-1 -right-1 w-3 h-3 bg-cyan-500 rounded-full opacity-0 group-hover:opacity-100 group-hover:animate-ping pointer-events-none"></div>
-                </div>
+              {/* Subtle accent hover glow */}
+              <div className="absolute top-0 right-0 w-24 h-24 accent-gradient opacity-0 group-hover:opacity-10 rounded-full blur-2xl transition-opacity duration-500 pointer-events-none" />
 
-                <div className="absolute top-4 right-4 opacity-0 group-hover:opacity-100 transition-all duration-500 transform translate-x-3 group-hover:translate-x-0">
-                  <span className="px-2 py-1 bg-linear-to-r from-cyan-500 to-violet-600 text-white text-[10px] font-mono rounded-full">{skill.category}</span>
-                </div>
-                
-                <h3 className="text-lg font-bold mb-2 text-white group-hover:text-cyan-400 transition-colors duration-300">{skill.name}</h3>
-                <p className="text-neutral-400 text-xs mb-5 leading-relaxed">{skill.description}</p>
-                
-                {/* Progress bar */}
-                <div className="relative">
-                  <div className="flex justify-between items-center mb-1.5">
-                    <span className="text-[10px] font-mono text-neutral-400 group-hover:text-cyan-500 transition-colors">Proficiency</span>
-                    <span className="text-[10px] font-mono text-cyan-400 bg-cyan-500/10 border border-cyan-500/20 px-2 py-0.5 rounded-full">{skill.progress}%</span>
+              <div className="flex items-start justify-between mb-4">
+                <div className="flex items-center gap-3.5">
+                  <div className="w-11 h-11 rounded-xl bg-bg border border-stroke flex items-center justify-center text-xl group-hover:scale-110 transition-transform duration-300">
+                    <i className={`${skill.icon} ${skill.color}`} />
                   </div>
-                  <div className="h-1.5 bg-white/5 rounded-full overflow-hidden">
-                    <div 
-                      className="skill-progress-bar h-full bg-linear-to-r from-cyan-500 to-violet-600 rounded-full" 
-                      data-progress={skill.progress}
-                      style={{ width: '0%' }}
-                    ></div>
+                  <div>
+                    <h3 className="text-base font-medium text-text-primary group-hover:text-white transition-colors">
+                      {skill.name}
+                    </h3>
+                    <span className="text-[11px] text-muted uppercase tracking-wider font-mono">
+                      {skill.category}
+                    </span>
                   </div>
                 </div>
 
-                {/* Hover metadata link reveal */}
-                <div className="mt-4 opacity-0 group-hover:opacity-100 transition-all duration-500 transform translate-y-2 group-hover:translate-y-0">
-                  <div className="flex items-center justify-between text-xs text-cyan-400 font-mono">
-                    <span className="flex items-center gap-1"><span className="iconify text-sm" data-icon="mdi:open-in-new"></span>Learn more</span>
-                    <span className="iconify" data-icon="mdi:arrow-right"></span>
-                  </div>
-                </div>
-                
-                {/* Underline gradient divider */}
-                <div className="absolute bottom-0 left-0 right-0 h-px bg-linear-to-r from-cyan-500 to-violet-600 transform scale-x-0 group-hover:scale-x-100 transition-transform duration-500 rounded-b-3xl"></div>
+                <span className="text-xs font-mono text-muted group-hover:text-text-primary transition-colors">
+                  {skill.level}
+                </span>
               </div>
-            </a>
+
+              <p className="text-xs text-muted leading-relaxed font-light mb-4">
+                {skill.description}
+              </p>
+
+              {/* Progress bar */}
+              <div className="h-1 bg-stroke/60 w-full rounded-full overflow-hidden">
+                <div
+                  className="h-full accent-gradient rounded-full transition-all duration-700"
+                  style={{ width: skill.level }}
+                />
+              </div>
+            </div>
           ))}
         </div>
       </div>

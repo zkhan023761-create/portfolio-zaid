@@ -1,139 +1,150 @@
 'use client';
-import { useState, useEffect, useRef } from 'react';
-import { gsap } from 'gsap';
+import { useState, useEffect } from 'react';
+
+const NAV_ITEMS = [
+  { name: 'Home', href: '#home' },
+  { name: 'Work', href: '#work' },
+  { name: 'Skills', href: '#skills' },
+  { name: 'Education', href: '#education' },
+  { name: 'Credentials', href: '#credentials' },
+  { name: 'Stats', href: '#stats' },
+];
 
 export default function Navigation() {
-  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
-  const navRef = useRef(null);
-  const logoRef = useRef(null);
-  const linksRef = useRef([]);
-  const btnRef = useRef(null);
+  const [activeSection, setActiveSection] = useState('Home');
 
   useEffect(() => {
-    // Intro animation
-    const tl = gsap.timeline();
-    tl.fromTo(navRef.current, { y: -100, opacity: 0 }, { y: 0, opacity: 1, duration: 1, ease: 'power4.out' })
-      .fromTo(logoRef.current, { x: -30, opacity: 0 }, { x: 0, opacity: 1, duration: 0.6, ease: 'power3.out' }, '-=0.5')
-      .fromTo(linksRef.current, { y: -20, opacity: 0 }, { y: 0, opacity: 1, stagger: 0.07, duration: 0.5, ease: 'power2.out' }, '-=0.4')
-      .fromTo(btnRef.current, { scale: 0, opacity: 0 }, { scale: 1, opacity: 1, duration: 0.5, ease: 'back.out(1.7)' }, '-=0.3');
+    const handleScroll = () => {
+      setScrolled(window.scrollY > 40);
 
-    // Magnetic effect helper
-    const makeMagnetic = (element, strength = 0.25) => {
-      if (!element) return;
-      
-      const handleMouseMove = (e) => {
-        const bound = element.getBoundingClientRect();
-        const x = e.clientX - (bound.left + bound.width / 2);
-        const y = e.clientY - (bound.top + bound.height / 2);
-        
-        gsap.to(element, {
-          x: x * strength,
-          y: y * strength,
-          duration: 0.3,
-          ease: 'power2.out'
-        });
-      };
-      
-      const handleMouseLeave = () => {
-        gsap.to(element, {
-          x: 0,
-          y: 0,
-          duration: 0.5,
-          ease: 'elastic.out(1.1, 0.4)'
-        });
-      };
-      
-      element.addEventListener('mousemove', handleMouseMove);
-      element.addEventListener('mouseleave', handleMouseLeave);
-      
-      return () => {
-        element.removeEventListener('mousemove', handleMouseMove);
-        element.removeEventListener('mouseleave', handleMouseLeave);
-      };
+      // Section spy
+      const sections = ['home', 'work', 'skills', 'education', 'credentials', 'stats'];
+      const scrollPos = window.scrollY + 200;
+      for (const sectionId of sections) {
+        const el = document.getElementById(sectionId);
+        if (el) {
+          const top = el.offsetTop;
+          const height = el.offsetHeight;
+          if (scrollPos >= top && scrollPos < top + height) {
+            const match = NAV_ITEMS.find(
+              (item) => item.href.substring(1) === sectionId
+            );
+            if (match) setActiveSection(match.name);
+            break;
+          }
+        }
+      }
     };
 
-    // Make elements magnetic
-    const cleanups = [];
-    if (logoRef.current) cleanups.push(makeMagnetic(logoRef.current, 0.2));
-    if (btnRef.current) cleanups.push(makeMagnetic(btnRef.current, 0.25));
-    
-    // Slight delay to ensure refs are fully populated
-    const timeoutId = setTimeout(() => {
-      linksRef.current.forEach(link => {
-        if (link) cleanups.push(makeMagnetic(link, 0.3));
-      });
-    }, 100);
-
-    const handleScroll = () => setScrolled(window.scrollY > 50);
-    window.addEventListener('scroll', handleScroll);
-    
-    return () => {
-      clearTimeout(timeoutId);
-      window.removeEventListener('scroll', handleScroll);
-      cleanups.forEach(cleanup => cleanup && cleanup());
-    };
+    window.addEventListener('scroll', handleScroll, { passive: true });
+    return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
-  const navLinks = ['Home', 'About', 'Education', 'Skills', 'Projects', 'Certifications', 'Contact'];
+  const handleNavClick = (e, href, name) => {
+    e.preventDefault();
+    setActiveSection(name);
+    const target = document.querySelector(href);
+    if (target) {
+      if (window.lenis) {
+        window.lenis.scrollTo(target, { offset: -70 });
+      } else {
+        target.scrollIntoView({ behavior: 'smooth' });
+      }
+    }
+  };
 
   return (
-    <nav ref={navRef} className={`fixed top-0 w-full z-50 transition-all duration-500 ${
-      scrolled ? 'bg-[#030712]/90 backdrop-blur-xl border-b border-cyan-500/10 shadow-lg shadow-cyan-500/5' : 'bg-transparent'
-    }`}>
-      <div className="max-w-7xl mx-auto px-6 lg:px-10">
-        <div className="flex justify-between items-center h-16">
-          <a ref={logoRef} href="#home" className="flex items-center relative group py-1" aria-label="Zaid Khan Home">
-            <div className="relative flex items-center justify-center">
-              <div className="absolute inset-0 bg-blue-500/20 rounded-full blur-md opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
-              <img 
-                src="/logo.png" 
-                alt="Zaid Khan Logo" 
-                className="w-9 h-9 object-contain relative z-10 transition-transform duration-300 group-hover:scale-110 drop-shadow-[0_0_12px_rgba(59,130,246,0.6)]" 
-              />
+    <nav className="fixed top-0 left-0 right-0 z-50 w-full flex justify-center sm:pt-4 sm:px-4 pointer-events-none">
+      <div
+        className={`pointer-events-auto w-full sm:w-auto max-w-full sm:max-w-max flex items-center bg-surface/90 backdrop-blur-xl border-b sm:border border-white/10 sm:rounded-full px-2 sm:px-3 py-2 transition-all duration-300 shadow-lg shadow-black/50 ${
+          scrolled ? 'bg-surface/95 sm:border-white/20' : ''
+        }`}
+      >
+        {/* Horizontal scroll track on mobile phones, flex on desktop */}
+        <div className="flex items-center w-full overflow-x-auto [scrollbar-width:none] [-ms-overflow-style:none] [&::-webkit-scrollbar]:hidden px-1 space-x-1 sm:space-x-1 shrink-0">
+          {/* Logo */}
+          <a
+            href="#home"
+            onClick={(e) => handleNavClick(e, '#home', 'Home')}
+            className="group relative w-8 h-8 sm:w-9 sm:h-9 rounded-full p-[1.5px] transition-transform duration-300 hover:scale-110 flex items-center justify-center shrink-0"
+          >
+            <div className="absolute inset-0 rounded-full accent-gradient group-hover:rotate-180 transition-transform duration-700" />
+            <div className="relative w-full h-full bg-bg rounded-full flex items-center justify-center">
+              <span className="font-display italic text-xs sm:text-[13px] text-text-primary tracking-tight">
+                ZK
+              </span>
             </div>
-            <span className="absolute -bottom-1 left-0 w-0 h-px bg-linear-to-r from-cyan-400 to-violet-500 group-hover:w-full transition-all duration-500"></span>
           </a>
 
-          <div className="hidden md:flex items-center space-x-8">
-            {navLinks.map((link, i) => (
-              <a key={link} ref={el => linksRef.current[i] = el} href={`#${link.toLowerCase()}`}
-                className="text-neutral-500 hover:text-white text-sm font-medium tracking-wide transition-all duration-300 relative group">
-                {link}
-                <span className="absolute -bottom-1 left-0 w-0 h-px bg-cyan-400 group-hover:w-full transition-all duration-300"></span>
-              </a>
-            ))}
+          {/* Divider */}
+          <div className="w-px h-4 sm:h-5 bg-stroke mx-1 shrink-0" />
+
+          {/* Nav Links */}
+          <div className="flex items-center space-x-0.5 sm:space-x-1 shrink-0">
+            {NAV_ITEMS.map((item) => {
+              const isActive = activeSection === item.name;
+              return (
+                <a
+                  key={item.name}
+                  href={item.href}
+                  onClick={(e) => handleNavClick(e, item.href, item.name)}
+                  className={`text-xs sm:text-sm rounded-full px-2.5 sm:px-4 py-1.5 sm:py-2 transition-all duration-200 font-medium shrink-0 whitespace-nowrap ${
+                    isActive
+                      ? 'text-text-primary bg-stroke/50'
+                      : 'text-muted hover:text-text-primary hover:bg-stroke/50'
+                  }`}
+                >
+                  {item.name}
+                </a>
+              );
+            })}
           </div>
 
-          <a ref={btnRef} href="#contact"
-            className="hidden md:flex items-center gap-2 px-5 py-2 rounded-full border border-cyan-500/40 text-cyan-400 text-sm font-medium hover:bg-cyan-500/10 hover:border-cyan-400 transition-all duration-300 hover:shadow-lg hover:shadow-cyan-500/20">
-            <span className="w-1.5 h-1.5 bg-cyan-400 rounded-full animate-pulse"></span>
-            Let&apos;s Talk
+          {/* Divider */}
+          <div className="w-px h-4 sm:h-5 bg-stroke mx-1 shrink-0" />
+
+          {/* "Say hi" button */}
+          <a
+            href="mailto:zkhan023761@gmail.com"
+            onClick={() => {
+              window.location.href = 'mailto:zkhan023761@gmail.com';
+            }}
+            className="group relative text-xs sm:text-sm rounded-full px-3 sm:px-4 py-1.5 sm:py-2 inline-flex items-center cursor-pointer shrink-0 whitespace-nowrap"
+          >
+            <span className="absolute -inset-[1.5px] rounded-full accent-gradient opacity-0 group-hover:opacity-100 transition-opacity duration-300 -z-10" />
+            <span className="relative z-10 flex items-center gap-1.5 font-medium text-text-primary">
+              <span>Say hi</span>
+              <i className="fa-solid fa-arrow-up-right-from-square text-[10px] transition-transform duration-200 group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
+            </span>
           </a>
 
-          <button onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-            className="md:hidden text-white p-2">
-            <span className="iconify text-2xl" data-icon={mobileMenuOpen ? 'mdi:close' : 'mdi:menu'}></span>
-          </button>
-        </div>
-      </div>
+          {/* Divider */}
+          <div className="w-px h-4 sm:h-5 bg-stroke mx-1 shrink-0" />
 
-      {mobileMenuOpen && (
-        <div className="md:hidden bg-[#030712]/98 backdrop-blur-xl border-t border-white/5">
-          <div className="px-6 py-6 space-y-4">
-            {navLinks.map(link => (
-              <a key={link} href={`#${link.toLowerCase()}`} onClick={() => setMobileMenuOpen(false)}
-                className="block py-2 text-neutral-400 hover:text-cyan-400 font-medium transition-colors border-b border-white/5 text-sm">
-                {link}
-              </a>
-            ))}
-            <a href="#contact" onClick={() => setMobileMenuOpen(false)}
-              className="block py-2 px-4 bg-linear-to-r from-cyan-500 to-violet-600 text-white rounded-full font-medium text-center text-sm">
-              Let&apos;s Talk
+          {/* LinkedIn & GitHub shortcuts */}
+          <div className="flex items-center space-x-1 shrink-0 pr-1">
+            <a
+              href="https://www.linkedin.com/in/zaid-khan-943376379"
+              target="_blank"
+              rel="noopener noreferrer"
+              title="LinkedIn Profile"
+              className="w-7 h-7 sm:w-8 sm:h-8 rounded-full border border-stroke/70 flex items-center justify-center text-muted hover:text-text-primary hover:border-[#89AACC]/60 transition-all bg-bg/50 shrink-0"
+            >
+              <i className="fa-brands fa-linkedin text-xs" />
+            </a>
+            <a
+              href="https://github.com/zkhan023761-create"
+              target="_blank"
+              rel="noopener noreferrer"
+              title="GitHub Profile"
+              className="w-7 h-7 sm:w-8 sm:h-8 rounded-full border border-stroke/70 flex items-center justify-center text-muted hover:text-text-primary hover:border-[#89AACC]/60 transition-all bg-bg/50 shrink-0"
+            >
+              <i className="fa-brands fa-github text-xs" />
             </a>
           </div>
         </div>
-      )}
+      </div>
     </nav>
   );
 }

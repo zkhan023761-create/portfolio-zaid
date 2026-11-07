@@ -11,17 +11,15 @@ export default function ThreeBackground() {
     let mouseX = 0, mouseY = 0;
     let targetMouseX = 0, targetMouseY = 0;
     let scrollY = 0;
-    let windowHalfX = window.innerWidth / 2;
-    let windowHalfY = window.innerHeight / 2;
     let animationId;
-    
-    let particleGeometry, particleMaterial, particles;
-    let lineGeometry, lineMaterial, lines;
 
-    const particleCount = 100;
-    const maxDistance = 1.3;
-    const particlePositions = new Float32Array(particleCount * 3);
-    const particleSpeeds = [];
+    let starGeometry, starMaterial, stars;
+    let nebulaPoints;
+
+    const starCount = 350;
+    const starPositions = new Float32Array(starCount * 3);
+    const starScales = new Float32Array(starCount);
+    const starSpeeds = [];
 
     const init = async () => {
       const THREE = await import('three');
@@ -29,225 +27,196 @@ export default function ThreeBackground() {
       const container = containerRef.current;
       if (!container) return;
 
-      // Camera setup
-      camera = new THREE.PerspectiveCamera(60, window.innerWidth / window.innerHeight, 0.1, 100);
-      camera.position.z = 4.5;
+      const width = window.innerWidth;
+      const height = window.innerHeight;
+
+      // Camera setup with deep space frustum
+      camera = new THREE.PerspectiveCamera(65, width / height, 0.1, 1000);
+      camera.position.z = 5.0;
 
       scene = new THREE.Scene();
       scene.background = null;
 
-      // Initialize particles positions & speeds
-      const areaRange = 8;
-      for (let i = 0; i < particleCount; i++) {
-        // Position
-        const x = (Math.random() - 0.5) * areaRange;
-        const y = (Math.random() - 0.5) * areaRange;
-        const z = (Math.random() - 0.5) * areaRange;
+      // 1. Generate Deep Space Cosmic Stars
+      const spreadX = 22;
+      const spreadY = 16;
+      const spreadZ = 20;
 
-        particlePositions[i * 3] = x;
-        particlePositions[i * 3 + 1] = y;
-        particlePositions[i * 3 + 2] = z;
+      for (let i = 0; i < starCount; i++) {
+        starPositions[i * 3] = (Math.random() - 0.5) * spreadX;
+        starPositions[i * 3 + 1] = (Math.random() - 0.5) * spreadY;
+        starPositions[i * 3 + 2] = (Math.random() - 0.5) * spreadZ;
 
-        // Speed
-        particleSpeeds.push({
-          x: (Math.random() - 0.5) * 0.005,
-          y: (Math.random() - 0.5) * 0.005,
-          z: (Math.random() - 0.5) * 0.005,
+        starScales[i] = Math.random() * 0.8 + 0.2;
+
+        starSpeeds.push({
+          x: (Math.random() - 0.5) * 0.0015,
+          y: (Math.random() - 0.5) * 0.0015,
+          twinkleSpeed: Math.random() * 0.03 + 0.01,
+          phase: Math.random() * Math.PI * 2,
         });
       }
 
-      // Create Particle Points
-      particleGeometry = new THREE.BufferGeometry();
-      particleGeometry.setAttribute('position', new THREE.BufferAttribute(particlePositions, 3));
+      starGeometry = new THREE.BufferGeometry();
+      starGeometry.setAttribute('position', new THREE.BufferAttribute(starPositions, 3));
+      starGeometry.setAttribute('scale', new THREE.BufferAttribute(starScales, 1));
 
-      // Draw circular texture on HTML5 Canvas
-      const canvas = document.createElement('canvas');
-      canvas.width = 16;
-      canvas.height = 16;
-      const ctx = canvas.getContext('2d');
-      const gradient = ctx.createRadialGradient(8, 8, 0, 8, 8, 8);
-      gradient.addColorStop(0, 'rgba(255,255,255,1)');
-      gradient.addColorStop(1, 'rgba(255,255,255,0)');
-      ctx.fillStyle = gradient;
-      ctx.fillRect(0, 0, 16, 16);
-      const texture = new THREE.CanvasTexture(canvas);
+      // Circular starlight texture with soft flare
+      const starCanvas = document.createElement('canvas');
+      starCanvas.width = 32;
+      starCanvas.height = 32;
+      const starCtx = starCanvas.getContext('2d');
+      const starGrad = starCtx.createRadialGradient(16, 16, 0, 16, 16, 16);
+      starGrad.addColorStop(0, 'rgba(255, 255, 255, 1)');
+      starGrad.addColorStop(0.2, 'rgba(199, 210, 254, 0.8)');
+      starGrad.addColorStop(0.6, 'rgba(99, 102, 241, 0.3)');
+      starGrad.addColorStop(1, 'rgba(0, 0, 0, 0)');
+      starCtx.fillStyle = starGrad;
+      starCtx.fillRect(0, 0, 32, 32);
 
-      particleMaterial = new THREE.PointsMaterial({
-        size: 0.12,
-        map: texture,
+      const starTexture = new THREE.CanvasTexture(starCanvas);
+
+      starMaterial = new THREE.PointsMaterial({
+        size: 0.16,
+        map: starTexture,
         transparent: true,
-        opacity: 0.5,
+        opacity: 0.75,
         blending: THREE.AdditiveBlending,
         depthWrite: false,
       });
 
-      particles = new THREE.Points(particleGeometry, particleMaterial);
-      scene.add(particles);
+      stars = new THREE.Points(starGeometry, starMaterial);
+      scene.add(stars);
 
-      // Create Line segments
-      // Allocate positions & colors buffer for rendering connections
-      lineGeometry = new THREE.BufferGeometry();
-      // Max possible lines for 100 particles is 100 * 99 / 2 = 4950. Allocating 3000 segments (6000 vertices) is safe.
-      const maxLineSegments = 3000;
-      const linePositions = new Float32Array(maxLineSegments * 2 * 3); 
-      const lineColors = new Float32Array(maxLineSegments * 2 * 3);
-      lineGeometry.setAttribute('position', new THREE.BufferAttribute(linePositions, 3));
-      lineGeometry.setAttribute('color', new THREE.BufferAttribute(lineColors, 3));
+      // 2. Add Cosmic Nebula Clusters
+      const nebulaCount = 120;
+      const nebulaPositions = new Float32Array(nebulaCount * 3);
+      const nebulaColors = new Float32Array(nebulaCount * 3);
 
-      lineMaterial = new THREE.LineBasicMaterial({
+      const nebulaPalette = [
+        new THREE.Color(0x6366f1), // Indigo
+        new THREE.Color(0x3b82f6), // Blue
+        new THREE.Color(0x06b6d4), // Cyan
+        new THREE.Color(0x8b5cf6), // Violet
+        new THREE.Color(0xd946ef), // Cosmic Magenta
+      ];
+
+      for (let i = 0; i < nebulaCount; i++) {
+        // Form an organic spiral/cloud formation
+        const radius = Math.random() * 9 + 2;
+        const angle = Math.random() * Math.PI * 2;
+        nebulaPositions[i * 3] = Math.cos(angle) * radius + (Math.random() - 0.5) * 3;
+        nebulaPositions[i * 3 + 1] = Math.sin(angle) * radius * 0.6 + (Math.random() - 0.5) * 2;
+        nebulaPositions[i * 3 + 2] = (Math.random() - 0.5) * 8 - 4;
+
+        const color = nebulaPalette[Math.floor(Math.random() * nebulaPalette.length)];
+        nebulaColors[i * 3] = color.r;
+        nebulaColors[i * 3 + 1] = color.g;
+        nebulaColors[i * 3 + 2] = color.b;
+      }
+
+      const nebulaGeometry = new THREE.BufferGeometry();
+      nebulaGeometry.setAttribute('position', new THREE.BufferAttribute(nebulaPositions, 3));
+      nebulaGeometry.setAttribute('color', new THREE.BufferAttribute(nebulaColors, 3));
+
+      // Nebula Cloud Soft Particle
+      const cloudCanvas = document.createElement('canvas');
+      cloudCanvas.width = 64;
+      cloudCanvas.height = 64;
+      const cloudCtx = cloudCanvas.getContext('2d');
+      const cloudGrad = cloudCtx.createRadialGradient(32, 32, 0, 32, 32, 32);
+      cloudGrad.addColorStop(0, 'rgba(255, 255, 255, 0.9)');
+      cloudGrad.addColorStop(0.3, 'rgba(165, 180, 252, 0.4)');
+      cloudGrad.addColorStop(0.7, 'rgba(99, 102, 241, 0.15)');
+      cloudGrad.addColorStop(1, 'rgba(0, 0, 0, 0)');
+      cloudCtx.fillStyle = cloudGrad;
+      cloudCtx.fillRect(0, 0, 64, 64);
+
+      const cloudTexture = new THREE.CanvasTexture(cloudCanvas);
+
+      const nebulaMaterial = new THREE.PointsMaterial({
+        size: 0.9,
+        map: cloudTexture,
         vertexColors: true,
         transparent: true,
-        opacity: 0.25,
+        opacity: 0.35,
         blending: THREE.AdditiveBlending,
         depthWrite: false,
       });
 
-      lines = new THREE.LineSegments(lineGeometry, lineMaterial);
-      scene.add(lines);
+      nebulaPoints = new THREE.Points(nebulaGeometry, nebulaMaterial);
+      scene.add(nebulaPoints);
 
-      // Renderer setup
-      renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true });
+      // WebGL Renderer with High Precision & Alpha
+      renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true, powerPreference: 'high-performance' });
       renderer.setPixelRatio(Math.min(typeof window !== 'undefined' ? window.devicePixelRatio : 1, 2));
-      renderer.setSize(window.innerWidth, window.innerHeight);
+      renderer.setSize(width, height);
       renderer.setClearColor(0x000000, 0);
       container.appendChild(renderer.domElement);
 
       const onWindowResize = () => {
         if (!camera || !renderer) return;
-        windowHalfX = window.innerWidth / 2;
-        windowHalfY = window.innerHeight / 2;
-        camera.aspect = window.innerWidth / window.innerHeight;
+        const w = window.innerWidth;
+        const h = window.innerHeight;
+        camera.aspect = w / h;
         camera.updateProjectionMatrix();
-        renderer.setSize(window.innerWidth, window.innerHeight);
+        renderer.setSize(w, h);
       };
 
       const onMouseMove = (event) => {
-        targetMouseX = (event.clientX - windowHalfX) / windowHalfX;
-        targetMouseY = -(event.clientY - windowHalfY) / windowHalfY;
+        const halfX = window.innerWidth / 2;
+        const halfY = window.innerHeight / 2;
+        targetMouseX = (event.clientX - halfX) / halfX;
+        targetMouseY = -(event.clientY - halfY) / halfY;
       };
 
       const onScroll = () => {
         scrollY = window.scrollY;
       };
 
-      window.addEventListener('resize', onWindowResize);
-      window.addEventListener('mousemove', onMouseMove);
-      window.addEventListener('scroll', onScroll);
+      window.addEventListener('resize', onWindowResize, { passive: true });
+      window.addEventListener('mousemove', onMouseMove, { passive: true });
+      window.addEventListener('scroll', onScroll, { passive: true });
+
+      let clock = 0;
 
       const animate = () => {
         animationId = requestAnimationFrame(animate);
-        render();
-      };
+        clock += 0.015;
 
-      const render = () => {
-        if (!particleGeometry || !lineGeometry) return;
-        
-        // Smoothly interpolate mouse coords
-        mouseX += (targetMouseX - mouseX) * 0.05;
-        mouseY += (targetMouseY - mouseY) * 0.05;
+        // Smooth cursor interpolation
+        mouseX += (targetMouseX - mouseX) * 0.04;
+        mouseY += (targetMouseY - mouseY) * 0.04;
 
-        const positions = particleGeometry.attributes.position.array;
-        const linePos = lineGeometry.attributes.position.array;
-        const lineCol = lineGeometry.attributes.color.array;
+        if (starGeometry && stars) {
+          const pos = starGeometry.attributes.position.array;
+          for (let i = 0; i < starCount; i++) {
+            // Subtle slow stellar drift
+            pos[i * 3] += starSpeeds[i].x;
+            pos[i * 3 + 1] += starSpeeds[i].y;
 
-        let lineIndex = 0;
-
-        // Approximate mouse vector in 3D scene space
-        const mouseVector = new THREE.Vector3(mouseX * 3.5, mouseY * 2.5, 0);
-
-        // Update particle positions & cursor repulsion
-        for (let i = 0; i < particleCount; i++) {
-          let x = positions[i * 3];
-          let y = positions[i * 3 + 1];
-          let z = positions[i * 3 + 2];
-
-          // Natural movement drift
-          x += particleSpeeds[i].x;
-          y += particleSpeeds[i].y;
-          z += particleSpeeds[i].z;
-
-          // Boundary bouncing
-          if (x < -areaRange / 2 || x > areaRange / 2) particleSpeeds[i].x *= -1;
-          if (y < -areaRange / 2 || y > areaRange / 2) particleSpeeds[i].y *= -1;
-          if (z < -areaRange / 2 || z > areaRange / 2) particleSpeeds[i].z *= -1;
-
-          // Cursor Repulsion Effect
-          const particleVec = new THREE.Vector3(x, y, z);
-          const distToMouse = particleVec.distanceTo(mouseVector);
-          if (distToMouse < 1.8) {
-            const dir = new THREE.Vector3().subVectors(particleVec, mouseVector).normalize();
-            // The closer, the stronger the push force
-            const force = (1.8 - distToMouse) * 0.015;
-            x += dir.x * force;
-            y += dir.y * force;
-            z += dir.z * force;
+            // Loop boundaries
+            if (pos[i * 3] > spreadX / 2) pos[i * 3] = -spreadX / 2;
+            if (pos[i * 3] < -spreadX / 2) pos[i * 3] = spreadX / 2;
+            if (pos[i * 3 + 1] > spreadY / 2) pos[i * 3 + 1] = -spreadY / 2;
+            if (pos[i * 3 + 1] < -spreadY / 2) pos[i * 3 + 1] = spreadY / 2;
           }
+          starGeometry.attributes.position.needsUpdate = true;
 
-          positions[i * 3] = x;
-          positions[i * 3 + 1] = y;
-          positions[i * 3 + 2] = z;
+          // Twinkle effect
+          starMaterial.opacity = 0.65 + Math.sin(clock * 2) * 0.15;
         }
 
-        particleGeometry.attributes.position.needsUpdate = true;
-
-        // Connect nearby particles with lines
-        for (let i = 0; i < particleCount; i++) {
-          const x1 = positions[i * 3];
-          const y1 = positions[i * 3 + 1];
-          const z1 = positions[i * 3 + 2];
-
-          for (let j = i + 1; j < particleCount; j++) {
-            const x2 = positions[j * 3];
-            const y2 = positions[j * 3 + 1];
-            const z2 = positions[j * 3 + 2];
-
-            const dx = x1 - x2;
-            const dy = y1 - y2;
-            const dz = z1 - z2;
-            const dist = Math.sqrt(dx * dx + dy * dy + dz * dz);
-
-            if (dist < maxDistance && lineIndex < maxLineSegments * 2 * 3 - 6) {
-              // Add vertices for this line segment
-              linePos[lineIndex] = x1;
-              linePos[lineIndex + 1] = y1;
-              linePos[lineIndex + 2] = z1;
-
-              linePos[lineIndex + 3] = x2;
-              linePos[lineIndex + 4] = y2;
-              linePos[lineIndex + 5] = z2;
-
-              // Color gradient fade based on distance
-              const alpha = 1.0 - (dist / maxDistance);
-              
-              // Vertex 1: Indigo (0x6366f1)
-              lineCol[lineIndex] = 0.39 * alpha;
-              lineCol[lineIndex + 1] = 0.40 * alpha;
-              lineCol[lineIndex + 2] = 0.95 * alpha;
-
-              // Vertex 2: Slate Blue (0x3b82f6)
-              lineCol[lineIndex + 3] = 0.23 * alpha;
-              lineCol[lineIndex + 4] = 0.51 * alpha;
-              lineCol[lineIndex + 5] = 0.96 * alpha;
-
-              lineIndex += 6;
-            }
-          }
+        if (nebulaPoints) {
+          nebulaPoints.rotation.z = clock * 0.02;
+          nebulaPoints.rotation.y = clock * 0.015;
         }
 
-        // Fill remaining buffer entries with zero to hide them
-        for (let i = lineIndex; i < linePos.length; i++) {
-          linePos[i] = 0;
-          lineCol[i] = 0;
-        }
+        // Camera responds gracefully to mouse & scroll
+        camera.position.x = mouseX * 0.45;
+        camera.position.y = mouseY * 0.35 - (scrollY * 0.001);
+        camera.lookAt(0, -scrollY * 0.0008, 0);
 
-        lineGeometry.attributes.position.needsUpdate = true;
-        lineGeometry.attributes.color.needsUpdate = true;
-
-        // Dynamic scene rotations based on scroll and mouse position
-        scene.rotation.y = scrollY * 0.0002 + mouseX * 0.1;
-        scene.rotation.x = mouseY * 0.1;
-
-        camera.lookAt(scene.position);
         renderer.render(scene, camera);
       };
 
@@ -262,7 +231,7 @@ export default function ThreeBackground() {
           renderer.dispose();
           try {
             container.removeChild(renderer.domElement);
-          } catch(e) {}
+          } catch (e) {}
         }
       };
     };
@@ -275,10 +244,10 @@ export default function ThreeBackground() {
   }, []);
 
   return (
-    <div 
-      ref={containerRef} 
-      className="fixed inset-0 pointer-events-none z-20"
-      style={{ opacity: 0.85 }}
+    <div
+      ref={containerRef}
+      className="fixed inset-0 pointer-events-none z-0"
+      style={{ opacity: 0.35 }}
     />
   );
 }
