@@ -1,0 +1,49 @@
+.contact__credits {
+}
+
+.contact__credits__wrapper {
+  position: fixed;
+  left: clamp(2.5rem, 5vw, 6.5rem);
+  top: 58vh;
+  bottom: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 1.4rem;
+  z-index: $z-3;
+
+  @include media("<phone") {
+    display: none;
+  }
+}
+
+.contact__credit {
+  font-family: $font-sans;
+  font-size: clamp(1.25rem, 1.25vw, 1.6rem);
+  line-height: 1.35;
+  display: flex;
+  align-items: baseline;
+  gap: 1.2rem;
+  white-space: nowrap;
+}
+
+.contact__credit__task {
+  font-family: $font-sans;
+  color: $color-half-black;
+  font-size: clamp(1.15rem, 1.15vw, 1.4rem);
+  min-width: 8rem;
+  font-weight: 450;
+  flex-shrink: 0;
+}
+
+.contact__credit__link {
+  @extend %link;
+  font-family: $font-sans;
+  font-weight: 500;
+  color: $color-black;
+  transition: color 0.2s $ease-out-expo;
+
+  &:hover {
+    color: #89AACC;
+  }
+}
