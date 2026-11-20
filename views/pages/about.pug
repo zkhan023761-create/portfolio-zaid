@@ -3,193 +3,46 @@ extends ../base.pug
 block variables
   - var template = "about"
 
-block content
+block content 
   main.about
-    .about__wrapper
+    .about__wrapper 
 
-      // Hero Section
-      section.about__hero
-        .about__hero__wrapper
-          h1.about__heading(data-midTitle)
-            span.about__heading__serif A
-            span.about__heading__sans bout
-          
-          p.about__quote(data-subTitle)
-            | When I'm not writing code or training models, I'm probably moving some vectors/vertices around, optimizing loss curves, or building automated systems.
+      section.about__heading
+        .about__heading__wrapper 
+          h1.about__heading__text(data-midTitle)
+            span.about__heading__serif(data-alt="A") A
+            span.about__heading__sans(data-alt="bout") bout
+          p.about__heading__subtext(data-subTitle)
+            | AI &amp; Data Science student at Nexcore NIT Mumbai. 
+            | Building intelligent neural systems, data pipelines, and production web platforms.
 
-          figure.about__portrait
-            img.about__portrait__img(src="images/zaid.jpg" alt="Zaid Khan - Full-Stack Developer & AI & DS Student")
-          
-          p.about__caption
-            | Full-Stack Developer, AI &amp; Data Science Student
+      section.about__body 
+        // Left Side: About Myself (Education & Capabilities)
+        .about__content
+          .about__section
+            p.about__eyebrow 01 / ABOUT MYSELF &amp; EDUCATION
+            ul.about__education__list
+              li.about__education__item
+                p.about__education__role B.Voc in AI &amp; Data Science
+                p.about__education__org Nexcore NIT Mumbai • 2024 — Present
+              li.about__education__item
+                p.about__education__role Higher Secondary Certificate (12th Science)
+                p.about__education__org Anjuman-i-Islam Mumbai • 2022 — 2024
 
-      // Skills Section
-      section.about__skills
-        .about__skills__wrapper
-          .about__section__header
-            p.about__section__eyebrow 01 / CAPABILITIES &amp; TECH STACK
-            h2.about__section__title
-              span.serif Technical 
-              span.sans Expertise
-            p.about__section__subtitle
-              | High-velocity engineering across Python data analysis, SQL warehousing, full-stack Next.js platforms, and PM2 production infrastructure.
+          .about__section
+            p.about__eyebrow 02 / CAPABILITIES &amp; TECH STACK
+            ul.about__skills__list
+              li.about__skill__pill Python
+              li.about__skill__pill SQL
+              li.about__skill__pill Power BI
+              li.about__skill__pill React.js
+              li.about__skill__pill Next.js
+              li.about__skill__pill Node.js
+              li.about__skill__pill Tailwind CSS
+              li.about__skill__pill PM2 Clustering
+              li.about__skill__pill Linux / Bash
+              li.about__skill__pill Figma UI/UX
 
-          // Category Filter Pills
-          .skills__filter
-            button.skills__filter__btn.is-active(type="button" data-filter="all") All
-            button.skills__filter__btn(type="button" data-filter="ai") AI &amp; Data
-            button.skills__filter__btn(type="button" data-filter="web") Full-Stack
-            button.skills__filter__btn(type="button" data-filter="devops") DevOps &amp; Cloud
-            button.skills__filter__btn(type="button" data-filter="design") UI/UX Design
-
-          // Skills Grid
-          .skills__grid
-            // AI & Data
-            .skill__card(data-category="ai")
-              .skill__card__top
-                .skill__card__meta
-                  h3.skill__name Python
-                  span.skill__badge AI &amp; Data
-                span.skill__level 92%
-              p.skill__desc Core programming for AI &amp; Data Science, data transformations, script automation, and statistical modeling.
-              .skill__progress
-                .skill__progress__bar(style="width: 92%")
-
-            .skill__card(data-category="ai")
-              .skill__card__top
-                .skill__card__meta
-                  h3.skill__name SQL
-                  span.skill__badge AI &amp; Data
-                span.skill__level 88%
-              p.skill__desc Relational database querying, schema design, complex joins, indexing, and PostgreSQL / MySQL optimization.
-              .skill__progress
-                .skill__progress__bar(style="width: 88%")
-
-            .skill__card(data-category="ai")
-              .skill__card__top
-                .skill__card__meta
-                  h3.skill__name Power BI &amp; Excel
-                  span.skill__badge AI &amp; Data
-                span.skill__level 88%
-              p.skill__desc Interactive executive dashboards, DAX queries, ETL data modeling, and actionable business intelligence visualizations.
-              .skill__progress
-                .skill__progress__bar(style="width: 88%")
-
-            // Full-Stack Web
-            .skill__card(data-category="web")
-              .skill__card__top
-                .skill__card__meta
-                  h3.skill__name React.js &amp; Next.js
-                  span.skill__badge Full-Stack
-                span.skill__level 90%
-              p.skill__desc Modern App Router architecture, Server Components, client state hooks, SEO optimization, and high-performance UI.
-              .skill__progress
-                .skill__progress__bar(style="width: 90%")
-
-            .skill__card(data-category="web")
-              .skill__card__top
-                .skill__card__meta
-                  h3.skill__name Node.js &amp; Express
-                  span.skill__badge Full-Stack
-                span.skill__level 86%
-              p.skill__desc RESTful APIs, middleware orchestration, authentication flows, error handling, and asynchronous event loops.
-              .skill__progress
-                .skill__progress__bar(style="width: 86%")
-
-            .skill__card(data-category="web")
-              .skill__card__top
-                .skill__card__meta
-                  h3.skill__name Tailwind CSS &amp; SCSS
-                  span.skill__badge Full-Stack
-                span.skill__level 94%
-              p.skill__desc Modern utility-first styling, responsive fluid layouts, custom CSS tokens, micro-interactions, and dark mode theming.
-              .skill__progress
-                .skill__progress__bar(style="width: 94%")
-
-            .skill__card(data-category="web")
-              .skill__card__top
-                .skill__card__meta
-                  h3.skill__name JavaScript (ES6+)
-                  span.skill__badge Full-Stack
-                span.skill__level 90%
-              p.skill__desc Asynchronous programming, closures, DOM manipulation, functional data pipelines, and TypeScript foundations.
-              .skill__progress
-                .skill__progress__bar(style="width: 90%")
-
-            // DevOps & Cloud
-            .skill__card(data-category="devops")
-              .skill__card__top
-                .skill__card__meta
-                  h3.skill__name PM2 Process Manager
-                  span.skill__badge DevOps
-                span.skill__level 90%
-              p.skill__desc Production clustering, zero-downtime reloads, daemon management, automatic restarts, and runtime log monitoring.
-              .skill__progress
-                .skill__progress__bar(style="width: 90%")
-
-            .skill__card(data-category="devops")
-              .skill__card__top
-                .skill__card__meta
-                  h3.skill__name Linux &amp; Bash
-                  span.skill__badge DevOps
-                span.skill__level 85%
-              p.skill__desc Server administration, shell script automation, SSH configurations, systemd services, and file permission policies.
-              .skill__progress
-                .skill__progress__bar(style="width: 85%")
-
-            .skill__card(data-category="devops")
-              .skill__card__top
-                .skill__card__meta
-                  h3.skill__name Git &amp; GitHub
-                  span.skill__badge DevOps
-                span.skill__level 90%
-              p.skill__desc Collaborative branching workflows, PR reviews, merge conflict resolutions, semantic versioning, and CI/CD pipelines.
-              .skill__progress
-                .skill__progress__bar(style="width: 90%")
-
-            .skill__card(data-category="devops")
-              .skill__card__top
-                .skill__card__meta
-                  h3.skill__name Nginx &amp; SSL
-                  span.skill__badge DevOps
-                span.skill__level 80%
-              p.skill__desc Reverse proxy configurations, SSL/TLS certificate automation, load distribution, and HTTP header hardening.
-              .skill__progress
-                .skill__progress__bar(style="width: 80%")
-
-            // UI/UX Design
-            .skill__card(data-category="design")
-              .skill__card__top
-                .skill__card__meta
-                  h3.skill__name Figma &amp; UI/UX
-                  span.skill__badge Design
-                span.skill__level 85%
-              p.skill__desc High-fidelity mockups, design token architectures, interactive prototypes, user journey mapping, and wireframes.
-              .skill__progress
-                .skill__progress__bar(style="width: 85%")
-
-      // Academic Foundations (Education)
-      section.about__education
-        .about__education__wrapper
-          .about__section__header
-            p.about__section__eyebrow 02 / ACADEMIC FOUNDATIONS
-            h2.about__section__title
-              span.serif Education 
-              span.sans &amp; Background
-            p.about__section__subtitle
-              | Core foundation in computer science, AI & Data Science models, statistical analysis, and applied data engineering.
-
-          .education__list
-            .education__item
-              .education__header
-                h3.education__name Nexcore NIT, Mumbai
-                span.education__year 2024 — Present
-              p.education__degree B.Voc in Artificial Intelligence &amp; Data Science
-              p.education__desc Specialized coursework covering neural models, relational data warehousing, predictive algorithms, statistical analysis, and modern full-stack development.
-
-            .education__item
-              .education__header
-                h3.education__name Anjuman-i-Islam, Mumbai
-                span.education__year 2022 — 2024
-              p.education__degree Higher Secondary Certificate (12th Science)
-              p.education__desc Rigorous foundation in Mathematics, Physics, Chemistry, and Information Technology.
+        // Right Side: Photo
+        figure.about__portrait
+          img.about__portrait__img(src="images/zaid.jpg" alt="Zaid Khan - AI & Data Science Developer")

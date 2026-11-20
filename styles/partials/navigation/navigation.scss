@@ -66,33 +66,3 @@
     }
   }
 }
-
-body[data-template="about"] {
-  .navigation__wrapper {
-    @include media(">phone") {
-      top: auto;
-      bottom: 2.8rem;
-      height: 5.6rem;
-      padding: 0 3.2rem;
-      width: fit-content;
-      margin: 0 auto;
-      background: rgba(234, 236, 238, 0.88);
-      backdrop-filter: blur(16px);
-      -webkit-backdrop-filter: blur(16px);
-      border-radius: 9999px;
-      border: 1px solid rgba(25, 33, 35, 0.1);
-      box-shadow: 0 14px 40px rgba(0, 0, 0, 0.08);
-      pointer-events: all;
-      z-index: 10;
-
-      .navigation__list {
-        opacity: 1 !important;
-        gap: 3.2rem;
-      }
-
-      .navigation__credits {
-        display: none;
-      }
-    }
-  }
-}
