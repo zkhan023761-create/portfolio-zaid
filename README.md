@@ -1,63 +1,7 @@
-# Zaid Khan — Personal Developer Portfolio
+# Zaid Khan — Portfolio Repository
 
-> Creative developer portfolio engineered with Express, WebGL / Three.js, GSAP motion, OGL, and Pug templating, inspired by the award-winning design architecture of [`goodie.work`](https://goodie.work).
+The project source code in this repository has been cleared as requested.
 
----
-
-## 👤 About Zaid Khan
-
-- **Role**: AI & Data Science Student / Full-Stack Developer
-- **Degree**: B.Voc in Artificial Intelligence & Data Science at **Nexcore Institute of Technology (NIT)**, Mumbai
-- **Foundation**: Higher Secondary Certificate (12th Science) from **Anjuman-i-Islam Junior College**, Mumbai
-- **Location**: Mumbai, Maharashtra, India
-- **Connect**: [LinkedIn](https://www.linkedin.com/in/zaid-khan-943376379) • [GitHub](https://github.com/zkhan023761-create) • [Email](mailto:zkhan023761@gmail.com)
-
----
-
-## 🚀 Featured Works & Deployments
-
-1. **[Zuniii Creation](https://zunicreation.xyz)** — Live bridal & contemporary luxury mehndi platform with automated WhatsApp client booking pipeline and PM2 daemon clustering with 100% uptime.
-2. **[RescueBite Platform](https://rescuebiteofficial.vercel.app/)** — Real-time food rescue and surplus redistribution routing platform connecting donors, restaurants, and volunteers.
-3. **[Medi AI Ecosystem](https://medi-ai-official.vercel.app/)** — Clinical intelligence and AI triage assistance platform with dual-domain architecture (`mediaiofficial.in`) and PM2 backend stability.
-4. **[Figma Design System](https://www.figma.com/design/xVgaR3muKlLBEf0DTcGfnq/Portfolio-Project?node-id=0-1&p=f&t=4HsgolleAXIYOzSp-0)** — High-fidelity UI/UX design tokens, interactive prototyping, and component architecture.
-5. **PM2 Cloud Infrastructure** — Production server clustering, automated zero-downtime reloads, and daemon supervision.
-
----
-
-## 🛠️ Tech Stack & Architecture
-
-- **Backend**: Node.js & Express.js
-- **Templates**: Pug Engine
-- **Graphics & 3D**: Three.js, OGL, WebGL Canvas (`scene.glb`)
-- **Motion & Physics**: GSAP & Normalize Wheel
-- **Bundler & Tooling**: Webpack 5, Babel, SASS
-- **Deployment**: Vercel ready (`vercel.json`) / PM2 Node server
-
----
-
-## 📦 Getting Started
-
-### 1. Install Dependencies
-```bash
-npm install
-```
-
-### 2. Development Mode
-Runs both backend nodemon and webpack development server simultaneously:
-```bash
-npm run dev
-```
-Open [http://localhost:2022](http://localhost:2022) to view the live portfolio.
-
-### 3. Production Build
-```bash
-npm run frontend:build
-npm run backend:build
-```
-
----
-
-## 📄 License & Credits
-
-- Portfolio of **Zaid Khan** © 2026. All rights reserved.
-- Creative development & engineering by **Zaid Khan**. All rights reserved.
+All profile information, dossiers, resumes, project archives, certificates, and photos are saved in:
+- [ABOUT_ME.md](./ABOUT_ME.md)
+- Dedicated archive directory: [../zaid_info/](../zaid_info/)
