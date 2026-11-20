@@ -1,0 +1,77 @@
+.contact__details {
+}
+
+.contact__details__wrapper {
+  position: fixed;
+  right: clamp(2.5rem, 5vw, 6.5rem);
+  left: auto;
+  top: 58vh;
+  bottom: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 1.4rem;
+  z-index: $z-3;
+  max-width: clamp(28rem, 34vw, 45rem);
+
+  @include media("<phone") {
+    position: absolute;
+    left: 2rem;
+    right: 2rem;
+    top: 42.5vh;
+    bottom: auto;
+    width: auto;
+    max-width: 100%;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1.2rem;
+  }
+}
+
+.contact__detail {
+  font-family: $font-sans;
+  font-size: clamp(1.25rem, 1.25vw, 1.6rem);
+  line-height: 1.35;
+  display: flex;
+  align-items: baseline;
+  gap: 1.2rem;
+  white-space: nowrap;
+
+  @include media("<phone") {
+    font-size: clamp(1.05rem, 3.2vw, 1.25rem);
+    white-space: normal;
+    word-break: break-all;
+
+    &:nth-of-type(2n) {
+      justify-content: flex-end;
+      text-align: right;
+    }
+  }
+}
+
+.contact__detail__type {
+  font-family: $font-sans;
+  color: $color-half-black;
+  font-size: clamp(1.15rem, 1.15vw, 1.4rem);
+  min-width: 6.5rem;
+  font-weight: 450;
+  flex-shrink: 0;
+
+  @include media("<phone") {
+    min-width: auto;
+  }
+}
+
+.contact__detail__link {
+  @extend %link;
+  font-family: $font-sans;
+  font-weight: 500;
+  color: $color-black;
+  transition: color 0.2s $ease-out-expo;
+  overflow: hidden;
+  text-overflow: ellipsis;
+
+  &:hover {
+    color: #89AACC;
+  }
+}

@@ -1,0 +1,25 @@
+extends ../base.pug 
+
+block variables
+  - var template = "home"
+
+block content 
+  main.home
+    .home__wrapper 
+
+      section.home__heading
+        .home__heading__wrapper 
+          h1.home__heading__text(data-bigTitle)
+            span.home__heading__serif(data-alt="Zaid") Zaid
+            span.home__heading__sans(data-alt="Khan") Khan
+
+      section.home__body 
+        .home__body__wrapper
+          p.home__text__01(data-subTitle) 
+            | AI &amp; Data Science Student from Mumbai, India. 
+          p.home__text__02(data-suburbTitle) 
+            | Currently pursuing B.Voc in AI &amp; Data Science at Nexcore NIT. Passionate about neural models, full-stack architectures, and building production-grade web systems.
+
+      section.home__canvas     
+        .home__canvas__wrapper    
+          figure.home__canvas__illustration

@@ -1,0 +1,66 @@
+extends ../base.pug 
+
+block variables
+  - var template = "work"
+
+block content 
+  main.work
+    .work__wrapper 
+
+      section.work__heading
+        .work__heading__wrapper 
+          h1.work__heading__text(data-midTitle) Work
+          p.work__heading__subtext(data-subTitle)
+            | Production flagships, real-world client platforms, 
+            | and collaborative AI architectures. 
+            | The visual experiments are in my playground.
+
+      section.work__body
+        .work__experiences 
+          ul.work__experiences__wrapper 
+            li.work__experience 
+              p.work__experience__title(data-first-letter="Z" data-other-letters="uniii Creation") Zuniii Creation
+              p.work__experience__subdetails Lead Full-Stack Developer &amp; Designer (2025 — Present)
+              .work__experience__expand
+                p.work__experience__details 
+                  | Full-stack bespoke web platform engineered for Zuniii Creation in Mumbai.
+                  | Responsive luxury galleries, WhatsApp client booking pipeline,
+                  | custom domain configuration, and zero-downtime PM2 daemon clustering.
+                .work__experience__extradetails
+                  p.work__experience__stack Next.js, React, Tailwind CSS, PM2 Daemons
+                  a.work__experience__link(href="https://zunicreation.xyz" target="_blank" rel="noopener noreferrer") Visit Live ↗
+
+            li.work__experience 
+              p.work__experience__title(data-first-letter="R" data-other-letters="escueBite") RescueBite
+              p.work__experience__subdetails Collaborative Impact Platform Architect (2025)
+              .work__experience__expand
+                p.work__experience__details 
+                  | Food surplus management platform connecting restaurants, donors,
+                  | and volunteers to curb food waste through real-time logistics routing,
+                  | volunteer dispatching, and community impact coordination.
+                .work__experience__extradetails
+                  p.work__experience__stack React, Real-Time Logistics UX, Social Impact, Vercel
+                  a.work__experience__link(href="https://rescuebiteofficial.vercel.app/" target="_blank" rel="noopener noreferrer") Visit Live ↗
+
+            li.work__experience 
+              p.work__experience__title(data-first-letter="M" data-other-letters="edi AI") Medi AI
+              p.work__experience__subdetails Healthcare AI &amp; Full-Stack Engineer (2025 — 2026)
+              .work__experience__expand
+                p.work__experience__details 
+                  | Healthcare intelligence platform delivering clinical decision support,
+                  | real-time AI triage assistance, diagnostic insights, and connected medical workflows
+                  | deployed with dual domain architecture and PM2 backend daemon stability.
+                .work__experience__extradetails
+                  p.work__experience__stack Next.js, Healthcare AI, Clinical Triage, PM2
+                  a.work__experience__link(href="https://medi-ai-official.vercel.app/" target="_blank" rel="noopener noreferrer") Visit Live ↗
+
+            li.work__experience 
+              p.work__experience__title(data-first-letter="I" data-other-letters="ndependent") Independent
+              p.work__experience__subdetails AI &amp; DS / Full-Stack Developer (2024 — Present)
+              .work__experience__expand
+                p.work__experience__details 
+                  | AI &amp; Data Science architectures, automated Python data transformations,
+                  | relational SQL warehousing, Three.js spatial experiences, and Linux process daemon management.
+                .work__experience__extradetails
+                  p.work__experience__stack Python, SQL, Power BI, Three.js, PM2, Linux
+                  a.work__experience__link(href="https://github.com/zkhan023761" target="_blank" rel="noopener noreferrer") GitHub Profile ↗
