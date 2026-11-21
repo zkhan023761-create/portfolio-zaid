@@ -1,15 +1,26 @@
 .home__body {
 }
+
 .home__body__wrapper {
   @extend %text-16-m;
   @extend %mobile;
-  width: 28.2rem;
-  margin: 2.5rem auto 0;
+  width: 100%;
+  max-width: 32rem;
+  margin: 1.2rem auto 0;
+  text-align: center;
 }
 
 .home__text__01 {
+  font-size: 1.3rem;
+  line-height: 1.35;
+  color: $color-black;
+  margin: 0;
 }
 
 .home__text__02 {
-  margin: 2.5rem -1.2rem 0;
+  font-size: 1.15rem;
+  line-height: 1.45;
+  color: $color-75-black;
+  margin: 0.8rem auto 0;
+  max-width: 29rem;
 }

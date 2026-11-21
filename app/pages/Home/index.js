@@ -39,7 +39,7 @@ export default class Home extends Page {
 
   reCalculate() {
     this.isMobile = innerWidth < 768;
-    this.scale = this.isMobile ? 0.6 : 0.35;
+    this.scale = this.isMobile ? 0.38 : 0.35;
     this.innerWidth = innerWidth;
     this.innerHeight = innerHeight;
 
