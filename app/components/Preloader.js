@@ -44,13 +44,11 @@ export default class Preloader extends Component {
         const map = texture;
         map.flipY = false;
         map.encoding = sRGBEncoding;
-        if (name === "about") Canvas.textures[name] = texture;
-        else
-          Canvas.materials[name] = new MeshBasicMaterial({
-            map,
-            transparent: true,
-            opacity: 0,
-          });
+        Canvas.materials[name] = new MeshBasicMaterial({
+          map,
+          transparent: true,
+          opacity: 0,
+        });
         this.onAssetLoaded();
       });
     });

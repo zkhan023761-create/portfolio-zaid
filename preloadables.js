@@ -11,7 +11,6 @@ preloadables.images = [
 preloadables.videos = [];
 preloadables.textures = {
   home: "/images/baked.jpg",
-  about: "/images/baked.jpg",
 };
 
 preloadables.exports = {
