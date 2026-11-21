@@ -49,7 +49,17 @@ export default class Navigation extends Component {
 
   reCalculate() {
     this.isMobile = innerWidth < 768;
-    this.create();
+    if (this.isMobile) {
+      if (!this.menuAnimation) {
+        this.menuAnimation = menuClick();
+      }
+    } else {
+      if (this.menuAnimation && this.menuAnimation.done) {
+        this.menuAnimation.reverse();
+        this.menuAnimation.done = false;
+      }
+      this.reset();
+    }
   }
 
   reset() {
@@ -76,9 +86,13 @@ export default class Navigation extends Component {
   }
 
   createHamburger() {
-    const hamburger = this.elements.hamburger;
-    hamburger.forEach((link) => {
-      link.onclick = this.onMenuClick.bind(this);
+    const hamburgers = document.querySelectorAll(".hamburger");
+    hamburgers.forEach((link) => {
+      link.onclick = (e) => this.onMenuClick(e);
+      link.addEventListener("touchend", (e) => {
+        e.preventDefault();
+        this.onMenuClick(e);
+      });
     });
   }
 
@@ -100,17 +114,16 @@ export default class Navigation extends Component {
     event.preventDefault();
     if (this.isNavigating) return;
     if (this.isMobile) {
-      if (this.menuAnimation.done) {
-        Canvas.navigate();
+      if (this.menuAnimation && this.menuAnimation.done) {
+        Canvas.navigate && Canvas.navigate();
         this.menuAnimation.reverse();
+        this.menuAnimation.done = false;
         await this.dispatchEvent({ type: "completed", event });
-        this.menuAnimation.reverse();
-        this.menuAnimation.done = !this.menuAnimation.done;
       } else {
-        this.onMenuClick();
+        this.onMenuClick(event);
       }
     } else {
-      Canvas.navigate();
+      Canvas.navigate && Canvas.navigate();
       this.isNavigating = true;
       this.hoverAnimation.progress(1);
       await this.transitionOut.restart();
@@ -121,9 +134,16 @@ export default class Navigation extends Component {
     }
   }
 
-  async onMenuClick() {
-    if (this.menuAnimation.done) this.menuAnimation.reverse();
-    else this.menuAnimation.play();
+  async onMenuClick(event) {
+    if (event && event.preventDefault) event.preventDefault();
+    if (!this.menuAnimation) {
+      this.menuAnimation = menuClick();
+    }
+    if (this.menuAnimation.done) {
+      this.menuAnimation.reverse();
+    } else {
+      this.menuAnimation.play();
+    }
     this.menuAnimation.done = !this.menuAnimation.done;
   }
 }

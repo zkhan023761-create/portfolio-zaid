@@ -1,18 +1,26 @@
 .hamburger {
   @extend %mobile;
   display: none;
+  cursor: pointer;
+  pointer-events: auto !important;
+  z-index: 100 !important;
+  -webkit-tap-highlight-color: transparent;
+
   @include media("<phone") {
     display: block;
-    &:hover {
-      cursor: pointer;
-    }
+    cursor: pointer;
   }
 }
+
 .hamburger__wrapper {
+  cursor: pointer;
+  pointer-events: auto;
 }
+
 .hamburger__icon {
   width: 4.5rem;
   height: 2.6rem;
   display: flex;
   align-items: center;
+  pointer-events: none;
 }

@@ -9,40 +9,47 @@ block content
 
       section.about__heading
         .about__heading__wrapper 
-          h1.about__heading__text(data-midTitle)
-            span.about__heading__serif(data-alt="A") A
-            span.about__heading__sans(data-alt="bout") bout
+          h1.about__heading__text(data-midTitle) About
           p.about__heading__subtext(data-subTitle)
             | AI &amp; Data Science student at Nexcore NIT Mumbai. 
             | Building intelligent neural systems, data pipelines, and production web platforms.
 
       section.about__body 
-        // Left Side: About Myself (Education & Capabilities)
-        .about__content
-          .about__section
-            p.about__eyebrow 01 / ABOUT MYSELF &amp; EDUCATION
-            ul.about__education__list
-              li.about__education__item
-                p.about__education__role B.Voc in AI &amp; Data Science
-                p.about__education__org Nexcore NIT Mumbai • 2024 — Present
-              li.about__education__item
-                p.about__education__role Higher Secondary Certificate (12th Science)
-                p.about__education__org Anjuman-i-Islam Mumbai • 2022 — 2024
+        // 01: Education & Foundations
+        .about__section.about__section--education
+          p.about__eyebrow 01 / BACKGROUND
+          h2.about__section__heading
+            span.about__serif Education 
+            span.about__sans &amp; Foundations
+          ul.about__education__list
+            li.about__education__item
+              p.about__education__role B.Voc in AI &amp; Data Science
+              p.about__education__org Nexcore NIT Mumbai • 2024 — Present
+            li.about__education__item
+              p.about__education__role Higher Secondary Certificate (12th Science)
+              p.about__education__org Anjuman-i-Islam Mumbai • 2022 — 2024
 
-          .about__section
-            p.about__eyebrow 02 / CAPABILITIES &amp; TECH STACK
-            ul.about__skills__list
-              li.about__skill__pill Python
-              li.about__skill__pill SQL
-              li.about__skill__pill Power BI
-              li.about__skill__pill React.js
-              li.about__skill__pill Next.js
-              li.about__skill__pill Node.js
-              li.about__skill__pill Tailwind CSS
-              li.about__skill__pill PM2 Clustering
-              li.about__skill__pill Linux / Bash
-              li.about__skill__pill Figma UI/UX
+        // 02: Core Stack & Capabilities
+        .about__section.about__section--skills
+          p.about__eyebrow 02 / CAPABILITIES
+          h2.about__section__heading
+            span.about__serif Core Stack 
+            span.about__sans &amp; Technologies
+          ul.about__skills__list
+            li.about__skill__pill Python
+            li.about__skill__pill SQL
+            li.about__skill__pill Power BI
+            li.about__skill__pill React.js
+            li.about__skill__pill Next.js
+            li.about__skill__pill Node.js
+            li.about__skill__pill Tailwind CSS
+            li.about__skill__pill PM2 Clustering
+            li.about__skill__pill Linux / Bash
+            li.about__skill__pill Figma UI/UX
 
-        // Right Side: Photo
+        // Photo
         figure.about__portrait
           img.about__portrait__img(src="images/zaid.jpg" alt="Zaid Khan - AI & Data Science Developer")
+
+      .about__mobile__footer
+        p.about__mobile__footer__text AI &amp; Data Science / Full-Stack Developer • Mumbai, India

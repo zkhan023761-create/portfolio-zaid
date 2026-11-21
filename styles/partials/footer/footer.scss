@@ -1,4 +1,11 @@
 .footer {
+  body[data-template="about"] &,
+  .content[data-template="about"] ~ &,
+  .content[data-template="about"] & {
+    @include media("<phone") {
+      display: none !important;
+    }
+  }
 }
 .footer__wrapper {
   @extend %fixed;

@@ -1,3 +1,24 @@
+body[data-template="about"] {
+  @include media("<phone") {
+    overflow-y: auto !important;
+    overflow-x: hidden !important;
+    height: auto !important;
+    min-height: 100vh;
+    user-select: auto;
+
+    .content {
+      height: auto !important;
+      min-height: 100vh;
+      overflow: visible !important;
+      position: static;
+    }
+
+    .footer {
+      display: none !important;
+    }
+  }
+}
+
 .about {
   width: 100%;
   height: 100vh;
@@ -5,10 +26,11 @@
   overflow: hidden;
 
   @include media("<phone") {
-    height: auto;
+    height: auto !important;
     min-height: 100vh;
-    overflow-y: auto;
-    -webkit-overflow-scrolling: touch;
+    overflow: visible !important;
+    position: static;
+    background: $color-white;
   }
 }
 
@@ -16,36 +38,58 @@
   width: 100%;
   height: 100%;
   position: relative;
+
+  @include media("<phone") {
+    height: auto !important;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    padding: 8.5rem 2rem 4rem;
+    gap: 2.8rem;
+    width: 100%;
+  }
 }
 
+/* ==========================================================================
+   Heading / Hero Section
+   Desktop: Fixed in top 50vh, perfectly matching Work/Playground/Contact
+   Mobile: Clean in-flow header
+   ========================================================================== */
 .about__heading {
+  @include media("<phone") {
+    width: 100%;
+    margin-bottom: 0;
+  }
 }
 
 .about__heading__wrapper {
   @extend %title-page;
+
   @include media("<phone") {
-    height: 46vh;
-    padding-top: 5rem;
+    position: static;
+    height: auto;
+    transform: none;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    gap: 1.2rem;
+    padding: 0;
+    pointer-events: auto;
   }
 }
 
 .about__heading__text {
   @extend %title-80;
-  display: flex;
-  gap: 0.2rem;
-  justify-content: center;
-  align-items: baseline;
-}
+  text-align: center;
+  margin: 0;
 
-.about__heading__serif {
-  font-family: $font-serif;
-  font-style: italic;
-}
-
-.about__heading__sans {
-  font-family: $font-sans;
-  font-weight: 350;
-  letter-spacing: -0.02em;
+  @include media("<phone") {
+    font-size: clamp(4.4rem, 13vw, 5.8rem);
+    line-height: 1.05;
+  }
 }
 
 .about__heading__subtext {
@@ -53,47 +97,89 @@
   width: 48rem;
   margin: 0 auto;
   color: $color-75-black;
+  text-align: center;
 
   @include media("<phone") {
-    width: clamp(0rem, 30.1rem, 400px);
+    width: 100%;
+    max-width: 32rem;
+    font-size: 1.3rem;
+    line-height: 1.5;
+    margin: 0 auto;
   }
 }
 
+/* ==========================================================================
+   Body Content
+   Desktop: Strictly below the 50vh centered navigation (top: calc(50vh + 7.5rem))
+   Mobile: Vertical centered flow (Photo -> Education -> Stack -> Footer)
+   ========================================================================== */
 .about__body {
-  @include media("<phone") {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 3.5rem;
-    padding: 50vh 2.4rem 8rem;
-  }
-}
-
-/* --- Left Side: About Myself (Education + Skills) --- */
-.about__content {
   position: fixed;
-  left: clamp(3.5rem, 6vw, 10rem);
   top: calc(50vh + 7.5rem);
-  bottom: 5.5rem;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  gap: 2rem;
-  max-width: clamp(34rem, 46vw, 64rem);
+  left: 0;
+  right: 0;
+  bottom: 4.5rem;
+  max-width: 124rem;
+  margin: 0 auto;
+  padding: 0 clamp(3rem, 5vw, 6rem);
+  display: grid;
+  grid-template-columns: 1.15fr 1fr 18rem;
+  gap: clamp(2.5rem, 3.5vw, 4.5rem);
+  align-items: start;
   z-index: 2;
+  overflow-y: auto;
+
+  // Custom sleek scrollbar for compact viewports
+  &::-webkit-scrollbar {
+    width: 4px;
+    display: block !important;
+  }
+  &::-webkit-scrollbar-track {
+    background: transparent;
+  }
+  &::-webkit-scrollbar-thumb {
+    background: rgba(25, 33, 35, 0.15);
+    border-radius: 9999px;
+  }
 
   @include media("<phone") {
     position: static;
-    max-width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    gap: 3.2rem;
     width: 100%;
-    gap: 2.5rem;
+    padding: 0;
+    overflow: visible;
   }
 }
 
+/* --- Sections --- */
 .about__section {
   display: flex;
   flex-direction: column;
-  gap: 1rem;
+  gap: 1.2rem;
+  width: 100%;
+
+  @include media("<phone") {
+    align-items: center;
+    text-align: center;
+    width: 100%;
+    gap: 1.2rem;
+  }
+}
+
+.about__section--education {
+  @include media("<phone") {
+    order: 2;
+  }
+}
+
+.about__section--skills {
+  @include media("<phone") {
+    order: 3;
+  }
 }
 
 .about__eyebrow {
@@ -101,60 +187,144 @@
   font-size: 1.15rem;
   font-weight: 600;
   text-transform: uppercase;
-  letter-spacing: 0.1em;
+  letter-spacing: 0.12em;
   color: $color-half-black;
   margin: 0;
+
+  @include media("<phone") {
+    font-size: 1.1rem;
+    letter-spacing: 0.14em;
+    text-align: center;
+  }
 }
 
+.about__section__heading {
+  font-size: clamp(1.8rem, 1.9vw, 2.3rem);
+  line-height: 1.2;
+  margin: 0 0 0.2rem;
+  display: flex;
+  align-items: baseline;
+  gap: 0.5rem;
+
+  @include media("<phone") {
+    font-size: 2.1rem;
+    gap: 0.4rem;
+    justify-content: center;
+    text-align: center;
+    margin-bottom: 0.4rem;
+  }
+
+  .about__serif {
+    font-family: $font-serif;
+    font-style: italic;
+    color: $color-black;
+  }
+
+  .about__sans {
+    font-family: $font-sans;
+    font-weight: 450;
+    color: $color-black;
+  }
+}
+
+/* --- Education List --- */
 .about__education__list {
   list-style: none;
   padding: 0;
   margin: 0;
   display: flex;
   flex-direction: column;
-  gap: 1rem;
+  gap: 1.2rem;
+
+  @include media("<phone") {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    gap: 1.6rem;
+    width: 100%;
+    max-width: 33rem;
+  }
 }
 
 .about__education__item {
   display: flex;
   flex-direction: column;
-  gap: 0.25rem;
+  gap: 0.35rem;
+  padding-bottom: 1.2rem;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+
+  &:last-child {
+    border-bottom: none;
+    padding-bottom: 0;
+  }
+
+  @include media("<phone") {
+    align-items: center;
+    text-align: center;
+    gap: 0.4rem;
+    width: 100%;
+  }
 }
 
 .about__education__role {
   font-family: $font-sans;
-  font-size: clamp(1.3rem, 1.35vw, 1.6rem);
+  font-size: clamp(1.3rem, 1.3vw, 1.55rem);
   font-weight: 600;
   color: $color-black;
   margin: 0;
   line-height: 1.25;
+
+  @include media("<phone") {
+    font-size: 1.5rem;
+    text-align: center;
+    line-height: 1.25;
+  }
 }
 
 .about__education__org {
   font-family: $font-sans;
-  font-size: clamp(1.15rem, 1.15vw, 1.35rem);
+  font-size: clamp(1.15rem, 1.1vw, 1.3rem);
   color: $color-half-black;
   margin: 0;
   line-height: 1.25;
+
+  @include media("<phone") {
+    font-size: 1.25rem;
+    text-align: center;
+    line-height: 1.25;
+  }
 }
 
+/* --- Skills Pills --- */
 .about__skills__list {
   list-style: none;
   padding: 0;
   margin: 0;
   display: flex;
   flex-wrap: wrap;
-  gap: 0.65rem;
+  gap: 0.6rem;
+
+  @include media("<phone") {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    gap: 0.65rem;
+    width: 100%;
+    max-width: 32rem;
+    margin: 0 auto;
+  }
 }
 
 .about__skill__pill {
   font-family: $font-sans;
-  font-size: clamp(1.05rem, 1.1vw, 1.25rem);
+  font-size: clamp(1.05rem, 1.05vw, 1.2rem);
   font-weight: 500;
   color: $color-black;
   background: #f4f5f6;
   border: 1px solid rgba(0, 0, 0, 0.06);
-  padding: 0.4rem 1rem;
+  padding: 0.35rem 0.95rem;
   border-radius: 9999px;
   transition: all 0.2s $ease-out-expo;
 
@@ -162,39 +332,72 @@
     background: $color-black;
     color: $color-white;
   }
-}
-
-/* --- Right Side: Photo on the Right --- */
-.about__portrait {
-  position: fixed;
-  right: clamp(3.5rem, 6vw, 10rem);
-  top: calc(50vh + 7.5rem);
-  bottom: 5.5rem;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  margin: 0;
-  z-index: 2;
 
   @include media("<phone") {
-    position: static;
-    order: -1;
-    margin-bottom: 1rem;
+    font-size: 1.2rem;
+    padding: 0.55rem 1.2rem;
+  }
+}
+
+/* --- Portrait Photo --- */
+.about__portrait {
+  display: flex;
+  justify-content: flex-end;
+  align-items: flex-start;
+  margin: 0;
+
+  @include media("<phone") {
+    order: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    margin: 0.5rem auto 1rem;
   }
 }
 
 .about__portrait__img {
-  width: clamp(13rem, 14.5vw, 18.5rem);
-  height: clamp(16.5rem, 18.5vw, 23.5rem);
+  width: clamp(15rem, 15vw, 18rem);
+  height: clamp(19rem, 19vw, 23rem);
   object-fit: cover;
-  border-radius: 1rem;
-  box-shadow: 0 16px 40px rgba(0, 0, 0, 0.1);
+  border-radius: 1.2rem;
+  box-shadow: 0 14px 36px rgba(0, 0, 0, 0.1);
   border: 1px solid rgba(0, 0, 0, 0.06);
   background: #f0f0f0;
   transition: transform 0.4s $ease-out-expo, box-shadow 0.4s $ease-out-expo;
 
   &:hover {
     transform: scale(1.03);
-    box-shadow: 0 20px 48px rgba(0, 0, 0, 0.14);
+    box-shadow: 0 18px 44px rgba(0, 0, 0, 0.14);
   }
+
+  @include media("<phone") {
+    width: clamp(14rem, 44vw, 17.5rem);
+    height: clamp(17.5rem, 55vw, 22rem);
+    border-radius: 1.2rem;
+    box-shadow: 0 10px 28px rgba(0, 0, 0, 0.08);
+  }
+}
+
+/* --- Mobile-Only Footer Note --- */
+.about__mobile__footer {
+  display: none;
+
+  @include media("<phone") {
+    order: 4;
+    display: block;
+    margin-top: 1rem;
+    padding: 2.5rem 0 3.5rem;
+    text-align: center;
+    border-top: 1px solid rgba(0, 0, 0, 0.06);
+    width: 100%;
+  }
+}
+
+.about__mobile__footer__text {
+  font-family: $font-sans;
+  font-size: 1.2rem;
+  color: $color-half-black;
+  margin: 0;
+  text-align: center;
 }
